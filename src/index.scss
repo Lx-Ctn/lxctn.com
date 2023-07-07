@@ -1,0 +1,48 @@
+:root {
+	font-size: calc(10px + 2vmin);
+	font-family: "K2D", sans-serif;
+	font-weight: 400;
+	text-align: center;
+	color: hsl(195, 100%, 16%);
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+@font-face {
+	font-family: Exo;
+	src: url(./assets/fonts/Exo-VariableFont_wght.ttf) format("truetype-variations");
+	font-weight: 100 900;
+}
+
+@font-face {
+	font-family: AlbertSans;
+	src: url(./assets/fonts/AlbertSans-VariableFont_wght.ttf) format("truetype-variations");
+	font-weight: 100 900;
+}
+
+body {
+	min-height: 100vh;
+	width: 100%;
+	background-color: #fff;
+	/*background-color: #011;*/
+
+	#root {
+		min-height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		.App {
+			min-height: 100vh;
+			width: 100%;
+
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+	}
+}

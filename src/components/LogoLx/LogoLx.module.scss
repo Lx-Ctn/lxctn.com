@@ -1,0 +1,32 @@
+.intro {
+	max-width: 10vmin;
+
+	height: 100vh;
+	position: absolute;
+	top: 0;
+	display: flex;
+	align-items: center;
+
+	svg {
+		transition: scale 1s;
+
+		&:hover {
+			scale: 1.08;
+		}
+	}
+}
+
+._ {
+	min-width: 31px; // if smaller, path animation may flinck and my eyes burns.
+
+	path {
+		transition: d 0.4s linear;
+	}
+
+	&:hover .lPath {
+		d: path(var(--curved-l-path));
+	}
+	&:hover .xPath {
+		d: path(var(--curved-x-path));
+	}
+}

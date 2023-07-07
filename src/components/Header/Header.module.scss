@@ -1,0 +1,90 @@
+._ {
+	position: fixed;
+	width: 100%;
+	z-index: 2;
+
+	&.intro {
+		z-index: 1;
+	}
+
+	.container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.logoLx {
+		transition: scale 1s, translate 0.5s; // each have they own origine ;)
+
+		&:hover {
+			scale: 1.04;
+		}
+	}
+
+	.hamburger {
+		position: absolute;
+	}
+
+	.sideNav {
+		width: min(3em + 1.5vw, 120px + 2em); // 1em + 2*padding
+		padding: 1em;
+
+		line-height: 0;
+	}
+
+	nav {
+		position: absolute;
+		left: 0;
+		right: 0;
+
+		margin: 0 min(4em + 1.5vw, 120px + 3em); //  .sideNav width + 1em
+
+		font-size: 1rem;
+
+		.navContainer {
+			max-width: 800px;
+			display: flex;
+			justify-content: space-evenly;
+			margin: auto;
+
+			a {
+				padding: 1em 0.3em;
+				white-space: nowrap;
+
+				&:after {
+					bottom: 0.7em;
+				}
+			}
+		}
+	}
+
+	transition: font-size 0.2s;
+}
+
+.mobile {
+	font-size: 1.6em;
+
+	.logoLx {
+		translate: calc(50vw - 43%) 0; // allow logo animation on resize
+		transition: scale 1s, translate 0.5s 0.2s; // add delay on translate to let the nav bar exit before the logo slide in
+	}
+
+	.navMobile {
+		font-size: 1em; // scale with header.mobile font-size
+		margin: 0;
+		position: static; // for the blur background to extend under mobile menu
+
+		.navContainer {
+			flex-direction: column;
+			align-items: center;
+
+			& a {
+				padding: 0.3em;
+
+				&:after {
+					bottom: 0.1em;
+				}
+			}
+		}
+	}
+}
