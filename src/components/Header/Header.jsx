@@ -12,7 +12,7 @@ import {
 	SIDE_NAV_DELAY,
 	animPropsNames,
 } from "./Header.motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { introEnded, closeMobileMenu, toggleParameterMenu, closeParameterMenu } from "../../store/headerSlice";
 
@@ -44,11 +44,6 @@ export default function Header() {
 		};
 	});
 
-	// Get Parameter menu height before display to animate it's arrival :
-	const [paramMenuHeight, setParamMenuHeight] = useState(null);
-	!isParameterMenuOpen && paramMenuHeight && setParamMenuHeight(null);
-	console.log("Header :", paramMenuHeight);
-
 	return (
 		<motion.header
 			ref={headerRef}
@@ -64,11 +59,7 @@ export default function Header() {
 				<ParameterButton />
 			</div>
 			<AnimatePresence>{isMobileMenuOpen && <Nav isMobile />}</AnimatePresence>
-			<AnimatePresence>
-				{isParameterMenuOpen && (
-					<ParameterMenu paramMenuHeight={paramMenuHeight} setParamMenuHeight={setParamMenuHeight} />
-				)}
-			</AnimatePresence>
+			<AnimatePresence>{isParameterMenuOpen && <ParameterMenu />}</AnimatePresence>
 		</motion.header>
 	);
 }
