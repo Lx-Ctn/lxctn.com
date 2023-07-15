@@ -10,26 +10,28 @@ import css from "./Avatar.module.scss";
 import ImageWebp from "../ImageWebp";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useParallax } from "../../utils/useParallax";
 
 export const Avatar = () => {
 	const prefersReducedMotion = useSelector(state => state.app.prefersReducedMotion);
 
 	const ref = useRef(null);
+	// Get mouse coor from the center of the component :
 	const coor = useParallax(ref, css.smoothTranslate);
 
-	const OFFSET = 150;
+	const translate = ({ top, bottom, left, right, all = 0 }) => {
+		const { x, y } = getWindowRatio(coor);
+		return {
+			translate: `${x > 0 ? x * (right ?? all) : x * (left ?? all)}% ${
+				y > 0 ? y * (bottom ?? all) : y * (top ?? all)
+			}%`,
+		};
+	};
 
-	const translate = ({ ratio = 1, flee = false } = {}) => ({
-		translate: `${(flee ? -coor.x : coor.x) / (OFFSET * ratio)}% ${
-			(flee ? -coor.y : coor.y) / (OFFSET * ratio)
-		}%`,
-	});
-
-	const [isMad, setIsMad] = useState(false);
 	const giveMadEyes = () => {
-		setIsMad(isMad => !isMad);
+		const eyes = ref.current.querySelector(".madEyes");
+		eyes.animate(madAnimation, { duration: 800 });
 	};
 
 	return prefersReducedMotion ? (
@@ -45,21 +47,37 @@ export const Avatar = () => {
 			animate={{ scale: 1, opacity: 1, transition: { duration: 0.3, delay: 0.1 } }}
 		>
 			<ImageWebp
-				style={translate({ flee: true })}
+				style={translate({ all: -2.3 })}
 				webp={webpBrush}
 				jpg={jpgAvatar}
 				alt="Brush behind Lx avatar"
 			/>
 			<ImageWebp webp={webpTorso} jpg={jpgAvatar} alt="Torso of Lx avatar" />
-			<ImageWebp style={translate()} webp={webpHead} jpg={jpgAvatar} alt="head of Lx avatar" />
+			<ImageWebp style={translate({ all: 2 })} webp={webpHead} jpg={jpgAvatar} alt="head of Lx avatar" />
 			<ImageWebp
-				className={isMad ? css.flash : ""}
-				style={translate({ ratio: 0.8 })}
+				className={"madEyes"}
+				style={translate({ top: 2.2, bottom: 2.7, all: 3 })}
 				webp={webpEyes}
 				jpg={jpgAvatar}
 				alt="Eyes of Lx avatar"
 			/>
-			<ImageWebp style={translate()} webp={webpEyesMask} jpg={jpgAvatar} alt="Mask for Lx avatar" />
+			<ImageWebp style={translate({ all: 2 })} webp={webpEyesMask} jpg={jpgAvatar} alt="Mask for Lx avatar" />
 		</motion.div>
 	);
 };
+
+// Get coor as ratio (0 -> 1) from center of the component (0) to the window edge (1) :
+const getWindowRatio = coor => {
+	const halfScreenWidth = window.innerWidth / 2;
+	const halfScreenHeight = window.innerHeight / 2;
+	const x = coor.x / halfScreenWidth;
+	const y = coor.y / halfScreenHeight;
+
+	// When scrolling, we go over -> need to limit the height ratio
+	return { x, y: y > 1 ? 1 : y < -1 ? -1 : y };
+};
+
+const madAnimation = [
+	{ offset: 0.45, transform: "translateY(-1%)" },
+	{ offset: 0.55, transform: "translateY(-1%)" },
+];

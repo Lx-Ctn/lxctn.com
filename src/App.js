@@ -13,6 +13,7 @@ import { ShowTheme } from "./utils/colorTheme";
 function App() {
 	useResponsive();
 	usePrefersReducedMotion();
+
 	return (
 		<motion.div className="App" key="app">
 			<DelayRender delay={340}>

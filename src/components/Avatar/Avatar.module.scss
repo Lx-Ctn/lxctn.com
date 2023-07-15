@@ -14,19 +14,6 @@
 	}
 
 	&.smoothTranslate picture {
-		transition: translate 0.8s;
-	}
-
-	.flash {
-		animation: flash 0.9s;
-	}
-}
-
-@keyframes flash {
-	35% {
-		transform: translateY(-2px);
-	}
-	65% {
-		transform: translateY(-2px);
+		transition: translate 0.5s;
 	}
 }
