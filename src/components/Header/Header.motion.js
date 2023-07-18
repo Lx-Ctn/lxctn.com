@@ -24,7 +24,7 @@ export const navVariants = (isIntro, isMobile) => ({
 					type: "spring",
 					bounce: 0.4,
 					duration: 0.5,
-					staggerChildren: 0.05,
+					staggerChildren: 0.06,
 					staggerDirection: 1,
 					delayChildren: isMobile ? 0 : 0.3,
 			  },

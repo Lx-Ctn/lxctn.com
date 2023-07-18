@@ -1,3 +1,15 @@
+main {
+	--distance-from-header: 4em;
+
+	margin-top: var(--distance-from-header);
+	min-height: calc(100vh - var(--distance-from-header));
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
 a {
 	text-decoration: none;
 	color: #003f54;

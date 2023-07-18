@@ -1,16 +1,19 @@
 import "./App.scss";
 import { Provider } from "react-redux";
 import store from "./store";
+import { Outlet } from "react-router-dom";
+import Router from "./router/Router";
+
 import { useResponsive } from "./utils/useResponsive";
 import { usePrefersReducedMotion } from "./utils/handleReducedMotion";
 
-import { Header, AnimatedTitle, Avatar, ContactCard } from "./components";
+import { Header } from "./components";
 import { DelayRender } from "./components/utils";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ShowTheme } from "./utils/colorTheme";
 
-function App() {
+export function Root() {
 	useResponsive();
 	usePrefersReducedMotion();
 
@@ -20,27 +23,20 @@ function App() {
 				<Header />
 			</DelayRender>
 
-			<div className="intro-hero">
-				<Avatar />
-				<DelayRender delay={700}>
-					<AnimatedTitle />
-				</DelayRender>
-			</div>
+			<main>
+				<AnimatePresence mode="exitBeforeEnter">
+					<Outlet key={window.location.pathname} />
+				</AnimatePresence>
+			</main>
 
 			<ShowTheme />
-			<ShowTheme />
-			<ShowTheme />
-			<ShowTheme />
-			<ShowTheme />
-			<ContactCard />
 		</motion.div>
 	);
 }
 
 const AppContainer = () => (
 	<Provider store={store}>
-		<App />
+		<Router />
 	</Provider>
 );
-
 export default AppContainer;

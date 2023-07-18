@@ -15,6 +15,7 @@ import {
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { introEnded, closeMobileMenu, toggleParameterMenu, closeParameterMenu } from "../../store/headerSlice";
+import { Link } from "react-router-dom";
 
 //
 export const HEADER_MOBILE_BREAKPOINT = 500;
@@ -70,17 +71,10 @@ const Hamburger = ({ isIntro }) => (
 	</motion.div>
 );
 
-const Link = ({ children, motionPosition, link, isIntro, isMobile }) => (
-	<motion.a
-		className="nav-link"
-		custom={motionPosition}
-		variants={linkVariants(isIntro, isMobile)}
-		href={link}
-		target="_blank"
-		rel="noopener noreferrer"
-	>
-		{children}
-	</motion.a>
+const CustomLink = ({ children, motionPosition, link, isIntro, isMobile }) => (
+	<motion.div className={css.navLink} custom={motionPosition} variants={linkVariants(isIntro, isMobile)}>
+		<Link to={link}>{children}</Link>
+	</motion.div>
 );
 
 const Nav = ({ isIntro, isMobile }) => {
@@ -96,15 +90,15 @@ const Nav = ({ isIntro, isMobile }) => {
 			}}
 		>
 			<div className={css.navContainer}>
-				<Link {...{ isIntro, isMobile }} motionPosition="20vw" link="https://lxctn.com/">
+				<CustomLink {...{ isIntro, isMobile }} motionPosition="20vw" link="/">
 					Who's Lx ?
-				</Link>
-				<Link {...{ isIntro, isMobile }} motionPosition={0} link="https://lxctn.com/work">
+				</CustomLink>
+				<CustomLink {...{ isIntro, isMobile }} motionPosition={0} link="/work">
 					Work
-				</Link>
-				<Link {...{ isIntro, isMobile }} motionPosition="-20vw" link="https://lxctn.com/contact">
+				</CustomLink>
+				<CustomLink {...{ isIntro, isMobile }} motionPosition="-20vw" link="/contact">
 					Contact
-				</Link>
+				</CustomLink>
 			</div>
 		</motion.nav>
 	);
