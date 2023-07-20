@@ -1,5 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { prefersReducedMotion } from "../utils/handleReducedMotion";
+
+const QUERY = "(prefers-reduced-motion: reduce)";
+const mediaQueryList = window.matchMedia(QUERY);
+export const prefersReducedMotion = mediaQueryList.matches;
 
 const initialAppState = {
 	appWidth: window.innerWidth,

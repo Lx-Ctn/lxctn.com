@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { HEADER_MOBILE_BREAKPOINT } from "../components/Header/Header";
+import { prefersReducedMotion } from "./appSlice";
 
 const initialHeaderState = {
-	isIntro: true,
+	isIntro: !prefersReducedMotion,
 	isMobile: window.innerWidth < HEADER_MOBILE_BREAKPOINT,
 	isMobileMenuOpen: false,
 	isParameterMenuOpen: false,

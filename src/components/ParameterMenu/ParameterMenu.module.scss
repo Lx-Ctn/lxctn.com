@@ -1,6 +1,6 @@
 ._ {
 	display: grid;
-	grid-template-rows: 0fr; // will be animated via motion to "1fr"
+	grid-template-rows: 1fr; // will be animated via motion from "0fr" to "1fr", but if prefered-reduce-motion === true : need base of "1fr"
 
 	font-size: 0.8em;
 

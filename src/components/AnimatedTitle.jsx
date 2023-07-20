@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const displayedWords = ["Design", "Web", "Games", "Branding", "Code", "Design"];
 const delayBetweenWords = 500;
@@ -18,8 +19,10 @@ const AnimatedTitle = () => {
 	}, [setCount, count]);
 
 	const currentWord = displayedWords[count];
-
-	return (
+	const reduceMotion = useSelector(state => state.app.prefersReducedMotion);
+	return reduceMotion ? (
+		<h1>Lx {currentWord}</h1>
+	) : (
 		<motion.h1 {...titleVariants(currentWord.length)}>
 			Lx{" "}
 			<AnimatePresence mode="wait">

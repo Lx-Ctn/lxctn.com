@@ -1,7 +1,10 @@
 ._ {
+	--active-color: rgb(0, 176, 208);
+	--active-bg-color: rgb(165, 0, 52);
+
 	position: fixed;
 	width: 100%;
-	z-index: 2;
+	z-index: 3;
 
 	&.intro {
 		z-index: 1;
@@ -15,9 +18,12 @@
 
 	.logoLx {
 		transition: scale 1s, translate 0.5s; // each have they own origine ;)
+		&.reduceMotion {
+			transition: scale 1s;
+		}
 
 		&:hover {
-			scale: 1.04;
+			scale: 1.05;
 		}
 	}
 
@@ -58,6 +64,17 @@
 				&:after {
 					bottom: 0.7em;
 				}
+				&.active {
+					color: var(--active-color);
+
+					&:after {
+						border-color: var(--active-color);
+						scale: 0.7;
+					}
+					&:hover:after {
+						scale: 1;
+					}
+				}
 			}
 		}
 	}
@@ -71,6 +88,9 @@
 	.logoLx {
 		translate: calc(50vw - 43%) 0; // allow logo animation on resize
 		transition: scale 1s, translate 0.5s 0.2s; // add delay on translate to let the nav bar exit before the logo slide in
+		&.reduceMotion {
+			transition: scale 1s;
+		}
 	}
 
 	.navMobile {
@@ -84,6 +104,7 @@
 
 			a {
 				padding: 0.3em;
+
 				&:after {
 					bottom: 0.1em;
 				}

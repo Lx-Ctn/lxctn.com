@@ -3,7 +3,6 @@ import { LogoLx, GearIcon, BackdropGradientBlur, HamburgerIcon, ParameterMenu } 
 import { DelayRender } from "../utils/DelayRender";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-	headerVariants,
 	logoVariants,
 	navVariants,
 	hamburgerVariants,
@@ -15,7 +14,7 @@ import {
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { introEnded, closeMobileMenu, toggleParameterMenu, closeParameterMenu } from "../../store/headerSlice";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 //
 export const HEADER_MOBILE_BREAKPOINT = 500;
@@ -43,60 +42,68 @@ export default function Header() {
 			window.removeEventListener("click", handleCloseOutside.nav);
 			window.removeEventListener("click", handleCloseOutside.param);
 		};
-	});
+	}, [isMobileMenuOpen, isParameterMenuOpen, dispatch]);
+
+	const isAnimating = useSelector(state => !state.app.prefersReducedMotion);
 
 	return (
 		<motion.header
 			ref={headerRef}
-			className={`${css._} ${isMobile && css.mobile} ${isIntro && css.intro}`}
-			variants={headerVariants}
-			{...animPropsNames}
+			className={`${css._} ${isMobile ? css.mobile : null} ${isIntro ? css.intro : null}`}
 		>
 			<BackdropGradientBlur blur="12px" color="#fff6" fromEnd="2em" style={{ bottom: "-1.5em" }} />
-			<AnimatePresence>{!isMobile && <Nav key="nav" isIntro={isIntro} />}</AnimatePresence>
-			<AnimatePresence>{isMobile && <Hamburger key="hamburger" isIntro={isIntro} />}</AnimatePresence>
+			<AnimatePresence>{!isMobile && <Nav key="nav" {...{ isIntro, isAnimating }} />}</AnimatePresence>
+			<AnimatePresence>
+				{isMobile && <Hamburger key="hamburger" {...{ isIntro, isAnimating }} />}
+			</AnimatePresence>
 			<div className={css.container}>
-				<Logo {...{ isIntro, isMobile }} />
-				<ParameterButton />
+				<Logo {...{ isIntro, isMobile, isAnimating }} />
+				<ParameterButton isAnimating={isAnimating} />
 			</div>
-			<AnimatePresence>{isMobileMenuOpen && <Nav isMobile />}</AnimatePresence>
+			<AnimatePresence>{isMobileMenuOpen && <Nav isMobile isAnimating={isAnimating} />}</AnimatePresence>
 			<AnimatePresence>{isParameterMenuOpen && <ParameterMenu />}</AnimatePresence>
 		</motion.header>
 	);
 }
 
-const Hamburger = ({ isIntro }) => (
-	<motion.div className={`${css.sideNav} ${css.hamburger}`} {...hamburgerVariants(isIntro)}>
+const Hamburger = ({ isIntro, isAnimating }) => (
+	<motion.div className={`${css.sideNav} ${css.hamburger}`} {...(isAnimating && hamburgerVariants(isIntro))}>
 		<HamburgerIcon />
 	</motion.div>
 );
 
-const CustomLink = ({ children, motionPosition, link, isIntro, isMobile }) => (
-	<motion.div className={css.navLink} custom={motionPosition} variants={linkVariants(isIntro, isMobile)}>
-		<Link to={link}>{children}</Link>
+const CustomLink = ({ children, motionPosition, link, isIntro, isMobile, isAnimating }) => (
+	<motion.div
+		className={css.navLink}
+		custom={motionPosition}
+		variants={isAnimating && linkVariants(isIntro, isMobile)}
+	>
+		<NavLink className={({ isActive }) => (isActive ? css.active : null)} to={link}>
+			{children}
+		</NavLink>
 	</motion.div>
 );
 
-const Nav = ({ isIntro, isMobile }) => {
+const Nav = ({ isIntro, isMobile, isAnimating }) => {
 	const dispatch = useDispatch();
 
 	return (
 		<motion.nav
 			className={isMobile ? css.navMobile : ""}
-			variants={navVariants(isIntro, isMobile)}
+			variants={isAnimating && console.log(navVariants(isIntro, isMobile))}
 			{...animPropsNames}
 			onAnimationComplete={() => {
 				isIntro && dispatch(introEnded());
 			}}
 		>
 			<div className={css.navContainer}>
-				<CustomLink {...{ isIntro, isMobile }} motionPosition="20vw" link="/">
+				<CustomLink {...{ isIntro, isMobile, isAnimating }} motionPosition="20vw" link="/">
 					Who's Lx ?
 				</CustomLink>
-				<CustomLink {...{ isIntro, isMobile }} motionPosition={0} link="/work">
+				<CustomLink {...{ isIntro, isMobile, isAnimating }} motionPosition={0} link="/work">
 					Work
 				</CustomLink>
-				<CustomLink {...{ isIntro, isMobile }} motionPosition="-20vw" link="/contact">
+				<CustomLink {...{ isIntro, isMobile, isAnimating }} motionPosition="-20vw" link="/contact">
 					Contact
 				</CustomLink>
 			</div>
@@ -104,34 +111,42 @@ const Nav = ({ isIntro, isMobile }) => {
 	);
 };
 
-const Logo = ({ isIntro, isMobile }) => {
+const Logo = ({ isIntro, isMobile, isAnimating }) => {
 	const dispatch = useDispatch();
 	return (
-		<motion.div className={`${css.sideNav} ${css.logoLx}`}>
-			<DelayRender delay={SIDE_NAV_DELAY}>
-				<motion.div
-					{...logoVariants(isIntro, isMobile)}
-					onAnimationComplete={() => {
-						isIntro && dispatch(introEnded());
-					}}
-				>
-					<LogoLx color={undefined} />
-				</motion.div>
-			</DelayRender>
+		<motion.div className={`${css.sideNav} ${css.logoLx} ${!isAnimating && css.reduceMotion}`}>
+			{isAnimating ? (
+				<DelayRender delay={SIDE_NAV_DELAY}>
+					<motion.div
+						{...logoVariants(isIntro, isMobile)}
+						onAnimationComplete={() => {
+							isIntro && dispatch(introEnded());
+						}}
+					>
+						<LogoLx color={undefined} />
+					</motion.div>
+				</DelayRender>
+			) : (
+				<LogoLx color={undefined} />
+			)}
 		</motion.div>
 	);
 };
 
-const ParameterButton = () => {
+const ParameterButton = ({ isAnimating }) => {
 	const dispatch = useDispatch();
 	const toggleParam = () => {
 		dispatch(toggleParameterMenu());
 	};
-	return (
+	return isAnimating ? (
 		<motion.div className={`${css.sideNav}`}>
 			<DelayRender delay={SIDE_NAV_DELAY}>
 				<GearIcon {...gearVariants} onClick={toggleParam} />
 			</DelayRender>
 		</motion.div>
+	) : (
+		<div className={`${css.sideNav}`}>
+			<GearIcon onClick={toggleParam} />
+		</div>
 	);
 };
