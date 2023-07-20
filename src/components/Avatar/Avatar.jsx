@@ -14,8 +14,18 @@ import { useRef } from "react";
 import { useParallax } from "../../utils/useParallax";
 
 export const Avatar = () => {
-	const prefersReducedMotion = useSelector(state => state.app.prefersReducedMotion);
+	const reducedMotion = useSelector(state => state.app.prefersReducedMotion);
+	return reducedMotion ? <FixedAvatar /> : <AnimatedAvatar />;
+};
 
+const FixedAvatar = () => (
+	<div className={css._}>
+		<ImageWebp webp={webpAvatar} jpg={jpgAvatar} alt="Lx avatar" />
+	</div>
+);
+
+const AnimatedAvatar = () => {
+	const isIntro = useSelector(state => state.header.isIntro);
 	const ref = useRef(null);
 	// Get mouse coor from the center of the component :
 	const coor = useParallax(ref, css.smoothTranslate);
@@ -34,16 +44,12 @@ export const Avatar = () => {
 		eyes.animate(madAnimation, { duration: 800 });
 	};
 
-	return prefersReducedMotion ? (
-		<div className={css._}>
-			<ImageWebp webp={webpAvatar} jpg={jpgAvatar} alt="Lx avatar" />
-		</div>
-	) : (
+	return (
 		<motion.div
 			ref={ref}
 			onClick={giveMadEyes}
 			className={css._}
-			initial={{ scale: 0.8, opacity: 0 }}
+			initial={isIntro && { scale: 0.8, opacity: 0 }}
 			animate={{ scale: 1, opacity: 1, transition: { duration: 0.3, delay: 0.1 } }}
 		>
 			<ImageWebp

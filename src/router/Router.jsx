@@ -2,7 +2,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { Root } from "../App";
-import { Home, Contact, AboutMe, ErrorPage } from "./pages";
+import { Home, HomeElement, Contact, AboutMe, ErrorPage } from "./pages";
 
 const router = createBrowserRouter([
 	{
@@ -13,11 +13,18 @@ const router = createBrowserRouter([
 			{
 				path: "/",
 				element: <Home />,
+				children: [
+					{
+						path: "/",
+						element: <HomeElement />,
+					},
+					{
+						path: "contact",
+						element: <Contact />,
+					},
+				],
 			},
-			{
-				path: "contact",
-				element: <Contact />,
-			},
+
 			{
 				path: "aboutme",
 				element: <AboutMe />,

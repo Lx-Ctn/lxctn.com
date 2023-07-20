@@ -1,7 +1,7 @@
 import "./App.scss";
 import { Provider } from "react-redux";
 import store from "./store";
-import { Outlet } from "react-router-dom";
+import { useOutlet } from "react-router-dom";
 import Router from "./router/Router";
 
 import { useResponsive } from "./utils/useResponsive";
@@ -23,16 +23,21 @@ export function Root() {
 				<Header />
 			</DelayRender>
 
-			<main>
-				<AnimatePresence mode="exitBeforeEnter">
-					<Outlet key={window.location.pathname} />
-				</AnimatePresence>
-			</main>
-
+			<Main />
 			<ShowTheme />
 		</motion.div>
 	);
 }
+
+const Main = () => {
+	const routeElement = useOutlet();
+
+	return (
+		<AnimatePresence mode="wait">
+			<main key={window.location.pathname}>{routeElement}</main>
+		</AnimatePresence>
+	);
+};
 
 const AppContainer = () => (
 	<Provider store={store}>
