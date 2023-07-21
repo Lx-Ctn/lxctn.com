@@ -2,7 +2,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { Root } from "../App";
-import { Home, HomeElement, Contact, AboutMe, ErrorPage } from "./pages";
+import { Home, HomeElement, Contact, AboutMe, WorkPage, ErrorPage } from "./pages";
 
 const router = createBrowserRouter([
 	{
@@ -28,6 +28,10 @@ const router = createBrowserRouter([
 			{
 				path: "aboutme",
 				element: <AboutMe />,
+			},
+			{
+				path: "work",
+				element: <WorkPage />,
 			},
 		],
 	},
