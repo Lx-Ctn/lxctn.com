@@ -74,6 +74,7 @@ const Hamburger = ({ isIntro, isAnimating }) => (
 
 const CustomLink = ({ children, motionPosition, link, isIntro, isMobile, isAnimating }) => (
 	<motion.div
+		key={isAnimating} // need to force rerender : a bug in framer-motion keep last initial state when isAnimating prop change
 		className={css.navLink}
 		custom={motionPosition}
 		variants={isAnimating && linkVariants(isIntro, isMobile)}
@@ -86,12 +87,11 @@ const CustomLink = ({ children, motionPosition, link, isIntro, isMobile, isAnima
 
 const Nav = ({ isIntro, isMobile, isAnimating }) => {
 	const dispatch = useDispatch();
-
 	return (
 		<motion.nav
 			className={isMobile ? css.navMobile : ""}
-			variants={isAnimating && console.log(navVariants(isIntro, isMobile))}
-			{...animPropsNames}
+			variants={isAnimating && navVariants(isIntro, isMobile)}
+			{...(isAnimating && animPropsNames)}
 			onAnimationComplete={() => {
 				isIntro && dispatch(introEnded());
 			}}
