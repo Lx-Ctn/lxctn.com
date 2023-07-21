@@ -1,12 +1,11 @@
 import css from "./Home.module.scss";
-import { Outlet, useLocation } from "react-router-dom";
+import { useOutlet, useLocation } from "react-router-dom";
 import { Avatar, AnimatedTitle } from "../../components";
 import { DelayRender } from "../../components/utils";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useSelector } from "react-redux";
 
 export const Home = () => {
-	console.log("home");
 	const location = useLocation();
 	const reducedMotion = useSelector(state => state.app.prefersReducedMotion);
 	const isIntro = useSelector(state => state.header.isIntro);
@@ -18,7 +17,11 @@ export const Home = () => {
 			<Outlet />
 		</div>
 	) : (
-		<motion.div className={`${css._} ${location.pathname === "/contact" ? css.contact : null}`} layout>
+		<motion.div
+			key={"home"}
+			className={`${css._} ${location.pathname === "/contact" ? css.contact : null}`}
+			{...homePageAnimation}
+		>
 			<div className={css.avatar_container}>
 				<Avatar />
 			</div>
@@ -41,13 +44,29 @@ export const HomeElement = () => {
 	return reducedMotion ? (
 		<h1>Lx Design</h1>
 	) : (
-		<motion.div {...homeAnimation}>
+		<motion.div {...homeElementAnimation}>
 			<AnimatedTitle />
 		</motion.div>
 	);
 };
 
-const homeAnimation = {
+const Outlet = () => {
+	const routeElement = useOutlet();
+
+	return (
+		<AnimatePresence mode="wait">
+			<div key={window.location.pathname}>{routeElement}</div>
+		</AnimatePresence>
+	);
+};
+
+const homePageAnimation = {
+	initial: { scale: 0.4, opacity: 0 },
+	animate: { scale: 1, opacity: 1 },
+	exit: { scale: 0.4, opacity: 0, transition: { duration: 0.2 } },
+	transition: { duration: 0.4 },
+};
+const homeElementAnimation = {
 	initial: { scale: 0.4, opacity: 0 },
 	animate: { scale: 1, opacity: 1 },
 	exit: { scale: 0.4, opacity: 0, transition: { duration: 0.2 } },

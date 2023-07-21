@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 
 export const Contact = () => {
-	console.log("contact");
 	const reducedMotion = useSelector(state => state.app.prefersReducedMotion);
 	return (
 		<motion.div className={css._} {...(!reducedMotion && animation)}>

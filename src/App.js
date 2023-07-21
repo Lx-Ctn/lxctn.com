@@ -22,7 +22,6 @@ export function Root() {
 			<DelayRender delay={340}>
 				<Header />
 			</DelayRender>
-
 			<Main />
 			<ShowTheme />
 		</motion.div>
@@ -31,10 +30,12 @@ export function Root() {
 
 const Main = () => {
 	const routeElement = useOutlet();
-
+	const pathname = window.location.pathname;
+	// Contact is rendered as a subroute of the home page "/" to get smooth transition between avatar position :
+	const CorrectedPathname = pathname === "/contact" ? "/" : pathname; // So "/contact" path should not trigger this parent animation
 	return (
 		<AnimatePresence mode="wait">
-			<main key={window.location.pathname}>{routeElement}</main>
+			<main key={CorrectedPathname}>{routeElement}</main>
 		</AnimatePresence>
 	);
 };
