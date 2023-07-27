@@ -4,12 +4,13 @@ import "./index.scss";
 import reportWebVitals from "./reportWebVitals";
 import { AppLoader } from "./components/utils";
 const LazyApp = lazy(() => import("./App"));
-/* 
-// Timeout to test the loading animation :
+
+/* // Timeout to test the loading animation :
 const LazyApp = lazy(() => {
-	return new Promise(resolve => { setTimeout(() => resolve(import("./App")), 0) });
-});
-*/
+	return new Promise(resolve => {
+		setTimeout(() => resolve(import("./App")), 3000);
+	});
+}); */
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
