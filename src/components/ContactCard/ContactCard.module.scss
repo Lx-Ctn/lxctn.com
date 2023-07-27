@@ -1,4 +1,4 @@
-.container {
+._ {
 	border: 1px solid #0099df;
 	border-radius: 2em;
 
@@ -8,5 +8,20 @@
 
 	h1 {
 		font-weight: 100;
+		transition: color 1.3s;
+
+		span {
+			position: relative;
+		}
+
+		.highlight {
+			transition: color 1.3s;
+		}
+		&:hover {
+			color: hsl(185 40% 75%);
+		}
+		&:hover .highlight {
+			color: hsl(185, 100%, 25%);
+		}
 	}
 }
