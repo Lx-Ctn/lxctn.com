@@ -23,13 +23,13 @@ export const ContactCard = () => {
 const Lx = () => {
 	return (
 		<>
-			<motion.span variants={fadeVariant} custom={{ x: ["0em", "1.4em"], times: [0.2, 1] }}>
+			<motion.span variants={fadeVariant} custom={{ x: ["0em", "1.4em"], times: [0.1, 0.9] }}>
 				<motion.span variants={fadeVariant} custom={{ opacity: [1, 0], times: [0.4, 0.6] }}>
 					A
 				</motion.span>
 				<motion.span
 					variants={fadeVariant}
-					custom={{ x: ["0em", "0.5em"], times: [0.8, 1] }}
+					custom={{ x: ["0em", "0.5em"], times: [0.65, 1] }}
 					className={css.highlight}
 				>
 					l
@@ -39,7 +39,7 @@ const Lx = () => {
 				</motion.span>
 				<motion.span className={css.highlight}>x</motion.span>
 			</motion.span>
-			<motion.span variants={fadeVariant} custom={{ opacity: [1, 0], times: [0, 0.2] }}>
+			<motion.span variants={fadeVariant} custom={{ opacity: [1, 0], times: [0, 0.3] }}>
 				andre
 			</motion.span>
 		</>
@@ -48,24 +48,24 @@ const Lx = () => {
 
 const Ctn = () => {
 	return (
-		<motion.span variants={fadeVariant} custom={{ x: ["0em", "-1em"], times: [0.2, 1] }}>
+		<motion.span variants={fadeVariant} custom={{ x: ["0em", "-1em"], times: [0.1, 0.9] }}>
 			<motion.span className={css.highlight}>C</motion.span>
-			<motion.span variants={fadeVariant} custom={{ opacity: [1, 0], times: [0, 0.5] }}>
+			<motion.span variants={fadeVariant} custom={{ opacity: [1, 0], times: [0, 0.4] }}>
 				O
 			</motion.span>
 			<motion.span
 				variants={fadeVariant}
-				custom={{ x: ["0", "-0.65em"], times: [0.5, 1] }}
+				custom={{ x: ["0", "-0.65em"], times: [0.3, 0.6] }}
 				className={css.highlight}
 			>
 				T
 			</motion.span>
-			<motion.span variants={fadeVariant} custom={{ opacity: [1, 0], times: [0, 0.5] }}>
+			<motion.span variants={fadeVariant} custom={{ opacity: [1, 0], times: [0, 0.4] }}>
 				TI
 			</motion.span>
 			<motion.span
 				variants={fadeVariant}
-				custom={{ x: ["0", "-1.52em"], times: [0.5, 1] }}
+				custom={{ x: ["0", "-1.52em"], times: [0.3, 0.6] }}
 				className={css.highlight}
 			>
 				N
@@ -78,6 +78,6 @@ const fadeVariant = {
 	hover: custom => ({
 		opacity: custom.opacity,
 		left: custom.x,
-		transition: { duration: 2.7, delay: 1.0, times: custom.times },
+		transition: { duration: 2.3, delay: 1.0, times: custom.times },
 	}),
 };

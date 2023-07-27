@@ -18,7 +18,7 @@
 			transition: color 1.3s;
 		}
 		&:hover {
-			color: hsl(185 40% 75%);
+			color: hsla(185 100% 25% / 25%);
 		}
 		&:hover .highlight {
 			color: hsl(185, 100%, 25%);
