@@ -3,6 +3,7 @@ import { useEffect } from "react";
 
 import { updateAppWidth } from "../store/appSlice";
 import { setHeaderMobile } from "../store/headerSlice";
+import { get } from "../store/selectors";
 
 export const useResponsive = () => {
 	const dispatch = useDispatch();
@@ -15,6 +16,6 @@ export const useResponsive = () => {
 		return () => window.removeEventListener("resize", updateScreenWidth);
 	}, [dispatch]);
 
-	const appWidth = useSelector(state => state.app.appWidth);
+	const appWidth = useSelector(get.appWidth);
 	return appWidth;
 };

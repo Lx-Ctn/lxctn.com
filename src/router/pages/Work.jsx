@@ -2,11 +2,12 @@ import css from "./Work.module.scss";
 import { Fragment } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSelector } from "react-redux";
+import { get } from "../../store/selectors";
 import { NavLink, useOutlet } from "react-router-dom";
 import projectsData from "../../assets/projectsData";
 
 export const WorkPage = () => {
-	const reducedMotion = useSelector(state => state.app.prefersReducedMotion);
+	const reducedMotion = useSelector(get.reducedMotion);
 	return (
 		<motion.div className={css._} {...(!reducedMotion && workPageTransition)}>
 			<h1>Look at what i've done</h1>

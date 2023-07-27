@@ -15,6 +15,7 @@ import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { closeMobileMenu, toggleParameterMenu, closeParameterMenu } from "../../store/headerSlice";
 import { introEnded } from "../../store/appSlice";
+import { get } from "../../store/selectors";
 import { NavLink } from "react-router-dom";
 
 //
@@ -24,12 +25,12 @@ export default function Header() {
 	const headerRef = useRef();
 	const dispatch = useDispatch();
 
-	const isIntro = useSelector(state => state.app.isIntro); // To change animation after the first render
-	const isMobile = useSelector(state => state.header.isMobile);
+	const isIntro = useSelector(get.isIntro); // To change animation after the first render
+	const isMobile = useSelector(get.isMobile);
 
 	// Handle closeable menus :
-	const isMobileMenuOpen = useSelector(state => state.header.isMobileMenuOpen);
-	const isParameterMenuOpen = useSelector(state => state.header.isParameterMenuOpen);
+	const isMobileMenuOpen = useSelector(get.isMobileMenuOpen);
+	const isParameterMenuOpen = useSelector(get.isParameterMenuOpen);
 
 	useEffect(() => {
 		const isOutsiteHeader = ({ target }) => !headerRef.current.contains(target);
@@ -45,7 +46,7 @@ export default function Header() {
 		};
 	}, [isMobileMenuOpen, isParameterMenuOpen, dispatch]);
 
-	const isAnimating = useSelector(state => !state.app.reducedMotion);
+	const isAnimating = !useSelector(get.reducedMotion);
 
 	return (
 		<motion.header
@@ -115,7 +116,7 @@ const Nav = ({ isIntro, isMobile, isAnimating }) => {
 const Logo = ({ isIntro, isMobile, isAnimating }) => {
 	const dispatch = useDispatch();
 	return (
-		<motion.div className={`${css.sideNav} ${css.logoLx} ${!isAnimating && css.reduceMotion}`}>
+		<motion.div className={`${css.sideNav} ${css.logoLx} ${!isAnimating && css.reducedMotion}`}>
 			{isAnimating ? (
 				<DelayRender delay={SIDE_NAV_DELAY}>
 					<motion.div

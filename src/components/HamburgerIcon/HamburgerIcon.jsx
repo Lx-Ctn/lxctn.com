@@ -2,10 +2,11 @@ import { motion } from "framer-motion";
 import css from "./HamburgerIcon.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMobileMenu } from "../../store/headerSlice";
+import { get } from "../../store/selectors";
 
 export const HamburgerIcon = props => {
 	const dispatch = useDispatch();
-	const isOpen = useSelector(state => state.header.isMobileMenuOpen);
+	const isOpen = useSelector(get.isMobileMenuOpen);
 	const handleClick = () => {
 		dispatch(toggleMobileMenu());
 	};

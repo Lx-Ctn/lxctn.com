@@ -88,7 +88,7 @@
 	.logoLx {
 		translate: calc(50vw - 43%) 0; // allow logo animation on resize
 		transition: scale 1s, translate 0.5s 0.2s; // add delay on translate to let the nav bar exit before the logo slide in
-		&.reduceMotion {
+		&.reducedMotion {
 			transition: scale 1s;
 		}
 	}

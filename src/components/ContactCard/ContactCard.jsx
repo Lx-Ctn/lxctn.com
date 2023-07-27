@@ -1,9 +1,10 @@
 import { useSelector } from "react-redux";
 import css from "./ContactCard.module.scss";
 import { motion } from "framer-motion";
+import { get } from "../../store/selectors";
 
 export const ContactCard = () => {
-	const reducedMotion = useSelector(state => state.app.reducedMotion);
+	const reducedMotion = useSelector(get.reducedMotion);
 	return (
 		<motion.div className={css._}>
 			{reducedMotion ? (

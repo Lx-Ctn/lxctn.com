@@ -4,21 +4,17 @@ import { childVariants, paramMenuVariants } from "./ParameterMenu.motion";
 import { animPropsNames } from "../Header/Header.motion";
 import { Checkbox } from "../Checkbox/Checkbox";
 import { useSelector } from "react-redux";
+import { get } from "../../store/selectors";
 
 export const ParameterMenu = ({ ...props }) => {
-	const prefersReducedMotion = useSelector(state => state.app.reducedMotion);
+	const reducedMotion = useSelector(get.reducedMotion);
 	return (
-		<motion.div
-			className={css._}
-			variants={!prefersReducedMotion && paramMenuVariants}
-			{...animPropsNames}
-			{...props}
-		>
+		<motion.div className={css._} variants={!reducedMotion && paramMenuVariants} {...animPropsNames} {...props}>
 			<div className={css.wrapper}>
 				{[0, 0, 0, 0].map((_, i) => (
 					<Checkbox
 						key={i}
-						variants={!prefersReducedMotion && childVariants}
+						variants={!reducedMotion && childVariants}
 						label="Thème"
 						description="Permuter entre le mode sombre ou clair"
 						on="clair"

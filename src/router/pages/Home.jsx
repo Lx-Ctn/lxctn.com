@@ -3,10 +3,11 @@ import { useOutlet, useLocation } from "react-router-dom";
 import { Avatar, AnimatedTitle } from "../../components";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSelector } from "react-redux";
+import { get } from "../../store/selectors";
 
 export const Home = () => {
 	const location = useLocation();
-	const reducedMotion = useSelector(state => state.app.reducedMotion);
+	const reducedMotion = useSelector(get.reducedMotion);
 
 	return (
 		<div
@@ -33,8 +34,8 @@ const Outlet = () => {
 };
 
 export const HomeElement = () => {
-	const reducedMotion = useSelector(state => state.app.reducedMotion);
-	const isIntro = useSelector(state => state.app.isIntro);
+	const reducedMotion = useSelector(get.reducedMotion);
+	const isIntro = useSelector(get.isIntro);
 	return reducedMotion ? (
 		<h1>Lx Design</h1>
 	) : (

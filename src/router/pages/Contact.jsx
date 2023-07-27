@@ -2,10 +2,11 @@ import { ContactCard } from "../../components";
 import css from "./Contact.module.scss";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
+import { get } from "../../store/selectors";
 
 export const Contact = () => {
-	const reducedMotion = useSelector(state => state.app.reducedMotion);
-	const isIntro = useSelector(state => state.app.isIntro);
+	const reducedMotion = useSelector(get.reducedMotion);
+	const isIntro = useSelector(get.isIntro);
 
 	return (
 		<motion.div className={css._} {...(!reducedMotion && animation(isIntro))}>
