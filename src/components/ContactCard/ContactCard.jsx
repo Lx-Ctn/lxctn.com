@@ -1,12 +1,18 @@
+import { useSelector } from "react-redux";
 import css from "./ContactCard.module.scss";
 import { motion } from "framer-motion";
 
 export const ContactCard = () => {
+	const reducedMotion = useSelector(state => state.app.reducedMotion);
 	return (
 		<motion.div className={css._}>
-			<motion.h1 whileHover="hover">
-				<Lx /> <Ctn />
-			</motion.h1>
+			{reducedMotion ? (
+				<h1>Alexandre COTTIN</h1>
+			) : (
+				<motion.h1 whileHover="hover">
+					<Lx /> <Ctn />
+				</motion.h1>
+			)}
 			<p>
 				Tel : <a href="tel:0658529939">06 58 52 99 39</a>
 			</p>

@@ -13,7 +13,8 @@ import {
 } from "./Header.motion";
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { introEnded, closeMobileMenu, toggleParameterMenu, closeParameterMenu } from "../../store/headerSlice";
+import { closeMobileMenu, toggleParameterMenu, closeParameterMenu } from "../../store/headerSlice";
+import { introEnded } from "../../store/appSlice";
 import { NavLink } from "react-router-dom";
 
 //
@@ -23,7 +24,7 @@ export default function Header() {
 	const headerRef = useRef();
 	const dispatch = useDispatch();
 
-	const isIntro = useSelector(state => state.header.isIntro); // To change animation after the first render
+	const isIntro = useSelector(state => state.app.isIntro); // To change animation after the first render
 	const isMobile = useSelector(state => state.header.isMobile);
 
 	// Handle closeable menus :
@@ -44,7 +45,7 @@ export default function Header() {
 		};
 	}, [isMobileMenuOpen, isParameterMenuOpen, dispatch]);
 
-	const isAnimating = useSelector(state => !state.app.prefersReducedMotion);
+	const isAnimating = useSelector(state => !state.app.reducedMotion);
 
 	return (
 		<motion.header

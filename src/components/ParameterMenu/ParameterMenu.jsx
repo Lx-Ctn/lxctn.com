@@ -6,7 +6,7 @@ import { Checkbox } from "../Checkbox/Checkbox";
 import { useSelector } from "react-redux";
 
 export const ParameterMenu = ({ ...props }) => {
-	const prefersReducedMotion = useSelector(state => state.app.prefersReducedMotion);
+	const prefersReducedMotion = useSelector(state => state.app.reducedMotion);
 	return (
 		<motion.div
 			className={css._}

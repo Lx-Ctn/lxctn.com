@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 
 export const Contact = () => {
-	const reducedMotion = useSelector(state => state.app.prefersReducedMotion);
-	const isIntro = useSelector(state => state.header.isIntro);
+	const reducedMotion = useSelector(state => state.app.reducedMotion);
+	const isIntro = useSelector(state => state.app.isIntro);
 
 	return (
 		<motion.div className={css._} {...(!reducedMotion && animation(isIntro))}>

@@ -1,12 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-const QUERY = "(prefers-reduced-motion: reduce)";
-const mediaQueryList = window.matchMedia(QUERY);
-export const prefersReducedMotion = mediaQueryList.matches;
+import { reducedMotion } from "../utils/handleReducedMotion";
 
 const initialAppState = {
 	appWidth: window.innerWidth,
-	prefersReducedMotion,
+	reducedMotion,
+	isIntro: !reducedMotion,
 };
 
 const appSlice = createSlice({
@@ -16,11 +14,14 @@ const appSlice = createSlice({
 		updateAppWidth: state => {
 			state.appWidth = window.innerWidth;
 		},
-		updatePrefersReducedMotion: (state, action) => {
-			state.prefersReducedMotion = action.payload;
+		updateReducedMotion: (state, action) => {
+			state.reducedMotion = action.payload;
+		},
+		introEnded: state => {
+			state.isIntro = false;
 		},
 	},
 });
 
-export const { updateAppWidth, updatePrefersReducedMotion } = appSlice.actions;
+export const { updateAppWidth, updateReducedMotion, introEnded } = appSlice.actions;
 export default appSlice.reducer;

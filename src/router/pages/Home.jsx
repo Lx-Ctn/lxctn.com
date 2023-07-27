@@ -6,14 +6,14 @@ import { useSelector } from "react-redux";
 
 export const Home = () => {
 	const location = useLocation();
-	const reducedMotion = useSelector(state => state.app.prefersReducedMotion);
+	const reducedMotion = useSelector(state => state.app.reducedMotion);
 
 	return (
 		<div
-			className={`${css._} ${location.pathname === "/contact" ? css.contact : null}`}
+			className={`${css._} ${location.pathname === "/contact" ? css.contact : ""}`}
 			{...(!reducedMotion && homePageAnimation)}
 		>
-			<div className={css.avatar_container}>
+			<div className={`${css.avatar_container} ${reducedMotion ? css.reducedMotion : ""}`}>
 				<Avatar />
 			</div>
 			{/* Outlet to render HomeElement or Contact as sub-route :
@@ -33,8 +33,8 @@ const Outlet = () => {
 };
 
 export const HomeElement = () => {
-	const reducedMotion = useSelector(state => state.app.prefersReducedMotion);
-	const isIntro = useSelector(state => state.header.isIntro);
+	const reducedMotion = useSelector(state => state.app.reducedMotion);
+	const isIntro = useSelector(state => state.app.isIntro);
 	return reducedMotion ? (
 		<h1>Lx Design</h1>
 	) : (

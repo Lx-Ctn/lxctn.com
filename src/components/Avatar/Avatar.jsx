@@ -14,7 +14,7 @@ import { useRef } from "react";
 import { useParallax } from "../../utils/useParallax";
 
 export const Avatar = () => {
-	const reducedMotion = useSelector(state => state.app.prefersReducedMotion);
+	const reducedMotion = useSelector(state => state.app.reducedMotion);
 	return reducedMotion ? <FixedAvatar /> : <AnimatedAvatar />;
 };
 
@@ -25,7 +25,7 @@ const FixedAvatar = () => (
 );
 
 const AnimatedAvatar = () => {
-	const isIntro = useSelector(state => state.header.isIntro);
+	const isIntro = useSelector(state => state.app.isIntro);
 	const ref = useRef(null);
 	// Get mouse coor from the center of the component :
 	const coor = useParallax(ref, css.smoothTranslate);
