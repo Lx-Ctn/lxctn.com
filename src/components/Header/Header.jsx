@@ -1,5 +1,5 @@
 import css from "./Header.module.scss";
-import { LogoLx, GearIcon, BackdropGradientBlur, HamburgerIcon, ParameterMenu } from "../../components";
+import { LogoLx, GearIcon, BackdropGradientBlur, HamburgerIcon, ParameterMenu, HomeIcon } from "../../components";
 import { DelayRender } from "../utils/DelayRender";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { closeMobileMenu, toggleParameterMenu, closeParameterMenu } from "../../store/headerSlice";
 import { introEnded } from "../../store/appSlice";
 import { get } from "../../store/selectors";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 //
 export const HEADER_MOBILE_BREAKPOINT = 500;
@@ -100,6 +100,9 @@ const Nav = ({ isIntro, isMobile, isAnimating }) => {
 		>
 			<div className={css.navContainer}>
 				<CustomLink {...{ isIntro, isMobile, isAnimating }} motionPosition="20vw" link="/">
+					<HomeIcon />
+				</CustomLink>
+				<CustomLink {...{ isIntro, isMobile, isAnimating }} motionPosition="20vw" link="/aboutme">
 					Who's Lx ?
 				</CustomLink>
 				<CustomLink {...{ isIntro, isMobile, isAnimating }} motionPosition={0} link="/work">
@@ -115,8 +118,12 @@ const Nav = ({ isIntro, isMobile, isAnimating }) => {
 
 const Logo = ({ isIntro, isMobile, isAnimating }) => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	return (
-		<motion.div className={`${css.sideNav} ${css.logoLx} ${!isAnimating && css.reducedMotion}`}>
+		<motion.div
+			className={`${css.sideNav} ${css.logoLx} ${isAnimating ? "" : css.reducedMotion}`}
+			onClick={() => navigate("/")}
+		>
 			{isAnimating ? (
 				<DelayRender delay={SIDE_NAV_DELAY}>
 					<motion.div
@@ -141,14 +148,14 @@ const ParameterButton = ({ isAnimating }) => {
 		dispatch(toggleParameterMenu());
 	};
 	return isAnimating ? (
-		<motion.div className={`${css.sideNav}`}>
+		<motion.div className={`${css.sideNav}`} onClick={toggleParam}>
 			<DelayRender delay={SIDE_NAV_DELAY}>
-				<GearIcon {...gearVariants} onClick={toggleParam} />
+				<GearIcon {...gearVariants} />
 			</DelayRender>
 		</motion.div>
 	) : (
-		<div className={`${css.sideNav}`}>
-			<GearIcon onClick={toggleParam} />
+		<div className={`${css.sideNav}`} onClick={toggleParam}>
+			<GearIcon />
 		</div>
 	);
 };

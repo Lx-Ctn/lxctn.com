@@ -4,11 +4,7 @@
 		--stroke-width-quotien: calc(1 / 1.5);
 	}
 
-	transition: rotate 0.6s cubic-bezier(0.33, 1.91, 0.64, 0.64);
-
-	&:hover {
-		rotate: 90deg;
-	}
+	transition: rotate 0.7s cubic-bezier(0.33, 1.91, 0.64, 0.64);
 
 	svg {
 		overflow: visible;
@@ -24,4 +20,9 @@
 			);
 		}
 	}
+}
+
+// Include container on hover (better ui) :
+div:hover > ._ {
+	rotate: 90deg;
 }

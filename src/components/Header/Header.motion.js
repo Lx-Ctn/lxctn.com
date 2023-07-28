@@ -17,7 +17,7 @@ export const navVariants = (isIntro, isMobile) => ({
 	initial: isMobile ? { height: 0 } : { y: 0 },
 	animate: {
 		// make height transition on mobile to have a blur transition under :
-		height: isMobile ? "calc(2.1em * 3)" : "", // link : 1em (font-size) * 1.3 (line-height) + 2 * 0.3em (padding) + 0.2em (visual margin for better lisibility) = 2.1em * 3 link
+		height: isMobile ? "calc(2.1em * 4)" : "", // link : 1em (font-size) * 1.3 (line-height) + 2 * 0.3em (padding) + 0.2em (visual margin for better lisibility) = 2.1em * 4 link
 		transition: isIntro
 			? { staggerChildren: 0.08, staggerDirection: -1 }
 			: {
