@@ -3,7 +3,10 @@
 	--active-color: hsl(189, 100%, 41%);
 	--active-bg-color: hsl(341, 100%, 32%);
 
-	position: fixed;
+	position: sticky;
+	top: 0;
+	margin-bottom: 1em;
+
 	width: 100%;
 	z-index: 3;
 

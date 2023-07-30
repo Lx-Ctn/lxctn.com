@@ -10,7 +10,7 @@ export const Home = () => {
 	const reducedMotion = useSelector(get.reducedMotion);
 
 	return (
-		<div
+		<motion.div
 			className={`${css._} ${location.pathname === "/contact" ? css.contact : ""}`}
 			{...(!reducedMotion && homePageAnimation)}
 		>
@@ -20,7 +20,7 @@ export const Home = () => {
 			{/* Outlet to render HomeElement or Contact as sub-route :
 				-> to keep Avatar on screen and alow a smooth transition */}
 			<Outlet />
-		</div>
+		</motion.div>
 	);
 };
 

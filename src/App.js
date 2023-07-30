@@ -19,11 +19,11 @@ export function App() {
 
 	return (
 		<motion.div className="App" key="app">
-			<DelayRender delay={340}>
-				<Header />
-			</DelayRender>
+			<Header />
 			<Main />
-			<ShowTheme />
+			<DelayRender delay={700}>
+				<ShowTheme />
+			</DelayRender>
 		</motion.div>
 	);
 }
