@@ -50,10 +50,10 @@
 
 		margin: 0 min(4em + 1.5vw, 120px + 3em); //  .sideNav width + 1em
 
-		font-size: 1rem;
+		font-size: 0.9rem;
 
 		.navContainer {
-			max-width: 800px;
+			max-width: 700px;
 			display: flex;
 			justify-content: space-evenly;
 			margin: auto;
@@ -63,7 +63,7 @@
 			}
 
 			a {
-				padding: 1em 0.3em;
+				padding: 1rem 0.3em;
 				white-space: nowrap;
 
 				&:after {

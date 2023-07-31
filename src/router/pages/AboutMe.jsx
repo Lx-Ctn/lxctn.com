@@ -1,8 +1,9 @@
+import css from "./AboutMe.module.scss";
 import { motion } from "framer-motion";
 
 export const AboutMe = () => {
 	return (
-		<motion.div {...AboutMePageAnimation}>
+		<motion.div className={css._} {...AboutMePageAnimation}>
 			<h1>Hello !</h1>
 			<p>It's me ^^</p>
 		</motion.div>

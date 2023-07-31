@@ -24,7 +24,7 @@ export const navVariants = (isIntro, isMobile) => ({
 		// make height transition on mobile to have a blur transition under :
 		height: isMobile ? "calc(2.1em * 4)" : "", // link : 1em (font-size) * 1.3 (line-height) + 2 * 0.3em (padding) + 0.2em (visual margin for better lisibility) = 2.1em * 4 link
 		transition: isIntro
-			? { staggerChildren: 0.08, staggerDirection: -1, delayChildren: ANIMATIONS_DELAY.FIRST_APPEARANCE }
+			? { staggerChildren: 0.2, staggerDirection: -1, delayChildren: ANIMATIONS_DELAY.FIRST_APPEARANCE }
 			: {
 					type: "spring",
 					bounce: 0.4,
@@ -45,7 +45,10 @@ export const linkVariants = (isIntro, isMobile) => ({
 		opacity: 1,
 		y: 0,
 		x: 0,
-		transition: { type: "spring", duration: isIntro ? 1 : 0.3 },
+		transition: {
+			type: "spring",
+			duration: isIntro ? 1 : 0.3,
+		},
 	},
 	exit: isMobile ? { opacity: 0, y: "-1em", transition: { type: "spring", duration: 0.2 } } : {},
 });
