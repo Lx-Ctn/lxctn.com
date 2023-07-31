@@ -1,60 +1,36 @@
 import css from "./Home.module.scss";
-import { Fragment } from "react";
-import { useOutlet, useLocation } from "react-router-dom";
-import { Avatar, AnimatedTitle } from "../../components";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatedTitle } from "../../components";
+import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import { get } from "../../store/selectors";
+import { Link } from "react-router-dom";
 
 export const Home = () => {
 	const reducedMotion = useSelector(get.reducedMotion);
-	const location = useLocation();
-	const isContactPage = location.pathname === "/contact";
-	const isAboutMePage = location.pathname === "/aboutme";
-
-	return (
-		<motion.div
-			className={`${css._} ${isContactPage ? css.contact : isAboutMePage ? css.aboutme : ""}`}
-			{...(!reducedMotion && homePageAnimation)}
-		>
-			<div className={`${css.avatar_container} ${reducedMotion ? css.reducedMotion : ""}`}>
-				<Avatar />
-			</div>
-			{/* Outlet to render HomeElement or Contact as sub-route :
-				-> to keep Avatar on screen and alow a smooth transition */}
-			<Outlet />
-		</motion.div>
-	);
-};
-
-const Outlet = () => {
-	const routeElement = useOutlet();
-	return (
-		<AnimatePresence mode="wait">
-			<Fragment key={window.location.pathname}>{routeElement}</Fragment>
-		</AnimatePresence>
-	);
-};
-
-export const HomeElement = () => {
-	const reducedMotion = useSelector(get.reducedMotion);
 	const isIntro = useSelector(get.isIntro);
-	return reducedMotion ? (
-		<h1>Lx Design</h1>
-	) : (
-		<motion.div className={css.home} {...homeElementAnimation(isIntro)}>
-			<AnimatedTitle />
+
+	return (
+		<motion.div className={css._} {...homeAnimation(isIntro)}>
+			{reducedMotion ? <h1>Lx Design</h1> : <AnimatedTitle />}
+			<motion.section>
+				<p>I'm a web designer, front-end developer, specialized in React</p>
+				<Link to="aboutme">Learn more about me</Link>
+			</motion.section>
+
+			<motion.section>
+				<p>I've done terrible things...</p>
+				<Link to="work">Check my work</Link>
+			</motion.section>
+
+			<motion.section>
+				<p>Want your own terrible thing ?</p>
+				<Link to="contact">Contact me</Link>
+			</motion.section>
 		</motion.div>
 	);
 };
 
-const homePageAnimation = {
-	initial: { scale: 0.4, opacity: 0 },
-	animate: { scale: 1, opacity: 1 },
-	exit: { scale: 0.4, opacity: 0, transition: { duration: 0.2 } },
-	transition: { duration: 0.4 },
-};
-const homeElementAnimation = isIntro => ({
+const homeAnimation = isIntro => ({
 	initial: { scale: 0.4, opacity: 0 },
 	animate: { scale: 1, opacity: 1 },
 	exit: { scale: 0.4, opacity: 0, transition: { duration: 0.2 } },

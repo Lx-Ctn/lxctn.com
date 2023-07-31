@@ -2,7 +2,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { App } from "../App";
-import { Home, HomeElement, Contact, AboutMe, WorkPage, ErrorPage, projects } from "./pages";
+import { HomeContainer, Home, Contact, AboutMe, WorkPage, ErrorPage, projects } from "./pages";
 import { Spinner } from "./pages/Work";
 
 const router = createBrowserRouter([
@@ -13,11 +13,11 @@ const router = createBrowserRouter([
 		children: [
 			{
 				path: "/",
-				element: <Home />,
+				element: <HomeContainer />,
 				children: [
 					{
 						path: "/",
-						element: <HomeElement />,
+						element: <Home />,
 					},
 					{
 						path: "contact",

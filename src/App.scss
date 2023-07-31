@@ -1,18 +1,15 @@
-main {
-	--distance-from-header: 4em;
-	min-height: calc(100vh - var(--distance-from-header));
-
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-
-	padding: 0 1em;
+body {
+	--secondary-color: hsl(0, 50%, 20%);
 }
 
-h1 {
+h1,
+h2 {
 	color: #0083a1;
 	font-weight: 100;
 	font-size: 2.5em;
+}
+h2 {
+	font-size: 2em;
 }
 
 a {
@@ -41,5 +38,36 @@ a {
 	&:hover:after {
 		scale: 1 1;
 		transition: scale 0.3s cubic-bezier(0.2, 1.8, 0.6, 0.7);
+	}
+}
+
+///
+///
+main {
+	--distance-from-header: 4em;
+	min-height: calc(100vh - var(--distance-from-header));
+	width: 100%;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	padding: 0 1em;
+}
+
+section {
+	position: relative;
+	margin: 1em 0;
+	padding: 1em 0 2em 0;
+
+	&::after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 2px;
+		border-bottom: 1px solid var(--secondary-color);
+		border-radius: 50%;
 	}
 }
