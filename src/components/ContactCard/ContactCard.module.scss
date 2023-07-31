@@ -5,24 +5,4 @@
 	max-width: 800px;
 	margin: 2em;
 	padding: 1em 2em;
-
-	h1 {
-		font-size: clamp(1em, 9vw, 2.5em);
-		font-weight: 100;
-		transition: color 1.3s;
-
-		span {
-			position: relative;
-		}
-
-		.highlight {
-			transition: color 1.3s;
-		}
-		&:hover {
-			color: hsla(185 100% 25% / 25%);
-		}
-		&:hover .highlight {
-			color: hsl(185, 100%, 25%);
-		}
-	}
 }

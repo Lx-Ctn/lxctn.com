@@ -10,3 +10,4 @@ export { HamburgerIcon } from "./HamburgerIcon/HamburgerIcon";
 export { Checkbox } from "./Checkbox/Checkbox";
 export { ParameterMenu } from "./ParameterMenu/ParameterMenu";
 export { HomeIcon } from "./HomeIcon/HomeIcon";
+export { Pseudo } from "./Pseudo/Pseudo";

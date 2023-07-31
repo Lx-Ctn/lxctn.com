@@ -1,11 +1,13 @@
 import css from "./AboutMe.module.scss";
 import { motion } from "framer-motion";
+import { Pseudo } from "../../components";
 
 export const AboutMe = () => {
 	return (
 		<motion.div className={css._} {...AboutMePageAnimation}>
 			<h1>Hello !</h1>
-			<p>It's me ^^</p>
+			<p>I'm</p>
+			<Pseudo />
 		</motion.div>
 	);
 };
