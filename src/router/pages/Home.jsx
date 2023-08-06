@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import { get } from "../../store/selectors";
 import { Link } from "react-router-dom";
+import { ShiningFrame } from "../../components";
 
 export const Home = () => {
 	const reducedMotion = useSelector(get.reducedMotion);
@@ -14,19 +15,30 @@ export const Home = () => {
 			{reducedMotion ? <h1>Lx Design</h1> : <AnimatedTitle />}
 			<motion.section>
 				<p>I'm a web designer, front-end developer, specialized in React</p>
-				<Link to="aboutme">Learn more about me</Link>
+				<ButtonLink to="aboutme">Learn more about me</ButtonLink>
 			</motion.section>
 
 			<motion.section>
 				<p>I've done terrible things...</p>
-				<Link to="work">Check my work</Link>
+				<ButtonLink to="work">Check my work</ButtonLink>
 			</motion.section>
 
 			<motion.section>
 				<p>Want your own terrible thing ?</p>
-				<Link to="contact">Contact me</Link>
+				<ButtonLink to="contact">Contact me</ButtonLink>
 			</motion.section>
 		</motion.div>
+	);
+};
+
+const ButtonLink = ({ to, children }) => {
+	return (
+		<button>
+			<ShiningFrame />
+			<Link className="button" to={to}>
+				{children}
+			</Link>
+		</button>
 	);
 };
 

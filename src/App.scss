@@ -1,5 +1,8 @@
 body {
-	--secondary-color: hsl(0, 50%, 20%);
+	--main-color: hsl(187deg 100% 50%);
+	--dark-color: #003f54;
+	--secondary-color: hsl(347deg 100% 50%);
+	--secondary-color-dark: hsl(347deg, 50%, 20%);
 }
 
 h1,
@@ -12,12 +15,42 @@ h2 {
 	font-size: 2em;
 }
 
+p {
+	font-size: 0.9em;
+}
+
+button {
+	position: relative;
+	appearance: none;
+	background: none;
+	border: none;
+	cursor: pointer;
+
+	margin: 0.5em;
+	padding: 0.2em 0.7em 0.3em 0.7em;
+
+	font-family: inherit;
+	font-size: 0.9em;
+	color: var(--dark-color);
+	&:hover {
+		color: #0083a1;
+	}
+
+	transition: scale 0.3s;
+	&:hover {
+		scale: 1.05;
+	}
+}
+
 a {
 	text-decoration: none;
-	color: #003f54;
+	color: inherit;
+}
 
+a:not(.button) {
 	position: relative;
 	transition: scale 0.2s, color 0.2s;
+	color: var(--dark-color);
 
 	&:hover {
 		scale: 1.05;
@@ -67,7 +100,7 @@ section {
 		left: 0;
 		width: 100%;
 		height: 2px;
-		border-bottom: 1px solid var(--secondary-color);
+		border-bottom: 1px solid var(--secondary-color-dark);
 		border-radius: 50%;
 	}
 }
