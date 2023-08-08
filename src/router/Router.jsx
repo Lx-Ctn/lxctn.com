@@ -3,7 +3,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { App } from "../App";
 import { HomeContainer, Home, Contact, AboutMe, WorkPage, ErrorPage, projects } from "./pages";
-import { Spinner } from "./pages/Work";
 
 const router = createBrowserRouter([
 	{
@@ -43,7 +42,7 @@ const router = createBrowserRouter([
 					},
 					{
 						index: true,
-						element: <Spinner />,
+						element: projects.all,
 					},
 				],
 			},
