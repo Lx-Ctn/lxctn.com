@@ -4,12 +4,15 @@ import { useSelector } from "react-redux";
 import { get } from "../store/selectors";
 
 const displayedWords = ["Design", "Web", "Games", "Branding", "Code", "Design"];
-const delayBetweenWords = 500;
+const delayBetweenWords = 700;
+const maxWords = displayedWords.length - 1;
 
 const AnimatedTitle = () => {
-	const [count, setCount] = useState(0);
+	const isIntro = useSelector(get.isIntro);
+	const [count, setCount] = useState(isIntro ? 0 : maxWords);
+
 	useEffect(() => {
-		if (count < displayedWords.length - 1) {
+		if (count < maxWords) {
 			const waitNextWord = setTimeout(() => {
 				setCount(count => count + 1);
 			}, delayBetweenWords);
@@ -19,12 +22,14 @@ const AnimatedTitle = () => {
 		}
 	}, [setCount, count]);
 
+	const restartAnimation = () => {
+		if (count === maxWords) setCount(0);
+	};
+
 	const currentWord = displayedWords[count];
-	const reduceMotion = useSelector(get.reducedMotion);
-	return reduceMotion ? (
-		<h1>Lx {currentWord}</h1>
-	) : (
-		<motion.h1 {...titleVariants(currentWord.length)}>
+
+	return (
+		<motion.h1 {...titleVariants(currentWord.length)} onHoverStart={restartAnimation}>
 			Lx{" "}
 			<AnimatePresence mode="wait">
 				<motion.span key={count} {...wordVariants}>
