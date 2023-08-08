@@ -22,7 +22,7 @@ export const Pseudo = ({ inLineLimit = 0, ...props }) => {
 const Lx = ({ isInLine }) => {
 	const customDirection = isInLine
 		? { x: ["0em", "1.4em"], y: [0, 0], times: [0.1, 0.9] }
-		: { x: [0, 0], y: ["0em", "0.67em"], times: [0.3, 1] };
+		: { x: [0, 0], y: ["0em", "0.5em"], times: [0.3, 1] };
 	return (
 		<>
 			<motion.span variants={fadeVariant} custom={customDirection}>
@@ -57,7 +57,7 @@ const Lx = ({ isInLine }) => {
 const Ctn = ({ isInLine }) => {
 	const customDirection = isInLine
 		? { x: ["0em", "-1em"], y: [0, 0], times: [0.1, 0.9] }
-		: { x: [0, 0], y: ["0em", "-0.6em"], times: [0.3, 1] };
+		: { x: [0, 0], y: ["0em", "-0.47em"], times: [0.3, 1] };
 	return (
 		<motion.span variants={fadeVariant} custom={customDirection}>
 			<motion.span
