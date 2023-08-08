@@ -13,7 +13,7 @@
 		content: "";
 		position: absolute;
 		inset: 0;
-		border: 1px solid var(--secondary-color-dark);
+		border: 2px solid var(--secondary-color-dark);
 		border-radius: var(--radius);
 		transition: opacity 0.3s;
 	}
@@ -56,10 +56,11 @@
 		left: 50%;
 		width: 100vmax;
 		height: 50%;
-		filter: blur(0.1em);
+		filter: blur(0.2em);
 		translate: -50% -50%;
 		background: linear-gradient(90deg, var(--main-color) 50%, var(--secondary-color) 50%);
 		rotate: var(--rotate-from);
+		transition: rotate 0.3s;
 	}
 	&::after {
 		content: "";
@@ -73,7 +74,7 @@
 
 *:hover > ._ {
 	&::before {
-		opacity: 0.4;
+		opacity: 0.2;
 	}
 	.halo {
 		opacity: 1;
@@ -86,5 +87,8 @@
 	.spinning_frame::before {
 		rotate: var(--rotate-to);
 		transition: rotate 0.9s cubic-bezier(0.7, 0, 0.8, 1);
+	}
+	.spinning_frame::after {
+		inset: 1.5px;
 	}
 }
