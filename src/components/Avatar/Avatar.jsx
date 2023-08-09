@@ -40,15 +40,18 @@ const AnimatedAvatar = () => {
 		};
 	};
 
-	const giveMadEyes = () => {
+	const turnHead = () => {
+		const head = ref.current.querySelector("." + css.head);
+		head.animate(turnHeadAnimation, { duration: 800 });
+
 		const eyes = ref.current.querySelector(".madEyes");
-		eyes.animate(madAnimation, { duration: 800 });
+		eyes.animate(madAnimation, { duration: 1200, delay: 200 });
 	};
 
 	return (
 		<motion.div
 			ref={ref}
-			onClick={giveMadEyes}
+			onClick={turnHead}
 			className={css._}
 			initial={isIntro && { scale: 0.8, opacity: 0 }}
 			animate={{ scale: 1, opacity: 1, transition: { duration: 0.3, delay: 0.1 } }}
@@ -60,15 +63,22 @@ const AnimatedAvatar = () => {
 				alt="Brush behind Lx avatar"
 			/>
 			<ImageWebp webp={webpTorso} jpg={jpgAvatar} alt="Torso of Lx avatar" />
-			<ImageWebp style={translate({ all: 2 })} webp={webpHead} jpg={jpgAvatar} alt="head of Lx avatar" />
-			<ImageWebp
-				className={"madEyes"}
-				style={translate({ top: 2.2, bottom: 2.7, all: 3 })}
-				webp={webpEyes}
-				jpg={jpgAvatar}
-				alt="Eyes of Lx avatar"
-			/>
-			<ImageWebp style={translate({ all: 2 })} webp={webpEyesMask} jpg={jpgAvatar} alt="Mask for Lx avatar" />
+			<div className={css.head}>
+				<ImageWebp style={translate({ all: 2 })} webp={webpHead} jpg={jpgAvatar} alt="head of Lx avatar" />
+				<ImageWebp
+					className={"madEyes"}
+					style={translate({ top: 2.2, bottom: 2.7, all: 3 })}
+					webp={webpEyes}
+					jpg={jpgAvatar}
+					alt="Eyes of Lx avatar"
+				/>
+				<ImageWebp
+					style={translate({ all: 2 })}
+					webp={webpEyesMask}
+					jpg={jpgAvatar}
+					alt="Mask for Lx avatar"
+				/>
+			</div>
 		</motion.div>
 	);
 };
@@ -84,7 +94,19 @@ const getWindowRatio = coor => {
 	return { x, y: y > 1 ? 1 : y < -1 ? -1 : y };
 };
 
+const turnHeadAnimation = [
+	{ offset: 0.2, rotate: "-3deg" },
+	{ offset: 0.4, rotate: "3deg" },
+	{ offset: 0.6, rotate: "-3deg" },
+	{ offset: 0.8, rotate: "3deg" },
+];
 const madAnimation = [
-	{ offset: 0.45, transform: "translateY(-1%)" },
-	{ offset: 0.55, transform: "translateY(-1%)" },
+	{ offset: 0.11, transform: "translate(0%, 0.7%)" },
+	{ offset: 0.22, transform: "translate(-0.9%, 0%)" },
+	{ offset: 0.33, transform: "translate(0%, -0.7%)" },
+	{ offset: 0.44, transform: "translate(0.7%, 0%)" },
+	{ offset: 0.55, transform: "translate(0%, 0.7%)" },
+	{ offset: 0.66, transform: "translate(-0.9%, 0%)" },
+	{ offset: 0.77, transform: "translate(0%, -0.7%)" },
+	{ offset: 0.88, transform: "translate(0.7%, 0%)" },
 ];
