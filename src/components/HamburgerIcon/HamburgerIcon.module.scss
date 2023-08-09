@@ -22,45 +22,45 @@
 			transition: transform 0.6s cubic-bezier(0.33, 1.91, 0.64, 0.64), stroke-width 0.2s;
 		}
 	}
+}
 
-	&:hover {
-		path:nth-child(1) {
-			transform: translateY(-15%);
-		}
-		path:nth-child(2) {
-			--stroke-width-quotien: calc(1 / 1.6); // Correct stroke-width with scale
-			transform: scale(1.6);
-			@media screen and (max-width: 500px) {
-				--stroke-width-quotien: calc(1 / 1.5 / 1.6);
-			}
-		}
-		path:nth-child(3) {
-			transform: translateY(15%);
+*:hover > ._ {
+	path:nth-child(1) {
+		transform: translateY(-15%);
+	}
+	path:nth-child(2) {
+		--stroke-width-quotien: calc(1 / 1.6); // Correct stroke-width with scale
+		transform: scale(1.6);
+		@media screen and (max-width: 500px) {
+			--stroke-width-quotien: calc(1 / 1.5 / 1.6);
 		}
 	}
+	path:nth-child(3) {
+		transform: translateY(15%);
+	}
+}
 
-	&.open {
-		path {
-			transform-origin: center;
-		}
-		path:nth-child(1) {
-			transform: rotate(45deg) translateY(28%);
-		}
-		path:nth-child(2) {
-			transform: scale(0, 1);
-			transition: transform 0.15s;
-		}
-		path:nth-child(3) {
-			transform: rotate(-45deg) translateY(-28%);
-		}
+._.open {
+	path {
+		transform-origin: center;
+	}
+	path:nth-child(1) {
+		transform: rotate(45deg) translateY(28%);
+	}
+	path:nth-child(2) {
+		transform: scale(0, 1);
+		transition: transform 0.15s;
+	}
+	path:nth-child(3) {
+		transform: rotate(-45deg) translateY(-28%);
+	}
+}
 
-		&:hover {
-			path:nth-child(1) {
-				transform: rotate(35deg) translateY(28%);
-			}
-			path:nth-child(3) {
-				transform: rotate(-35deg) translateY(-28%);
-			}
-		}
+*:hover > ._.open {
+	path:nth-child(1) {
+		transform: rotate(35deg) translateY(28%);
+	}
+	path:nth-child(3) {
+		transform: rotate(-35deg) translateY(-28%);
 	}
 }

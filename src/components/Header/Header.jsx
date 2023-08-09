@@ -12,7 +12,12 @@ import {
 } from "./Header.motion";
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { closeMobileMenu, toggleParameterMenu, closeParameterMenu } from "../../store/headerSlice";
+import {
+	toggleMobileMenu,
+	closeMobileMenu,
+	toggleParameterMenu,
+	closeParameterMenu,
+} from "../../store/headerSlice";
 import { introEnded } from "../../store/appSlice";
 import { get } from "../../store/selectors";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -57,7 +62,7 @@ export default function Header() {
 			<BackdropGradientBlur blur="12px" color="#fff6" fromEnd="2em" style={{ bottom: "-1.5em" }} />
 			<AnimatePresence>
 				{isMobile ? (
-					<Hamburger key="hamburger" {...{ isIntro, isAnimating }} />
+					<Hamburger key="hamburger" {...{ isIntro, isAnimating, isMobileMenuOpen, isParameterMenuOpen }} />
 				) : (
 					<Nav key="nav" {...{ isIntro, isAnimating }} />
 				)}
@@ -66,21 +71,32 @@ export default function Header() {
 				<Logo {...{ isIntro, isMobile, isAnimating }} />
 				<ParameterButton isAnimating={isAnimating} />
 			</div>
-			<AnimatePresence>{isMobileMenuOpen && <Nav isMobile isAnimating={isAnimating} />}</AnimatePresence>
+			<AnimatePresence>{isMobileMenuOpen && <Nav isMobile {...{ isAnimating }} />}</AnimatePresence>
 			<AnimatePresence>{isParameterMenuOpen && <ParameterMenu />}</AnimatePresence>
 		</motion.header>
 	);
 }
 
-const Hamburger = ({ isIntro, isAnimating }) => (
-	<motion.div
-		className={`${css.sideNav} ${css.hamburger}`}
-		variants={isAnimating && hamburgerVariants(isIntro)}
-		{...animPropsNames}
-	>
-		<HamburgerIcon />
-	</motion.div>
-);
+const Hamburger = ({ isIntro, isAnimating, isMobileMenuOpen, isParameterMenuOpen }) => {
+	const dispatch = useDispatch();
+
+	const handleClick = () => {
+		if (isParameterMenuOpen && !isMobileMenuOpen) {
+			dispatch(closeParameterMenu());
+			setTimeout(() => dispatch(toggleMobileMenu()), 250);
+		} else dispatch(toggleMobileMenu());
+	};
+	return (
+		<motion.div
+			className={`${css.sideNav} ${css.hamburger}`}
+			onClick={handleClick}
+			variants={isAnimating && hamburgerVariants(isIntro)}
+			{...animPropsNames}
+		>
+			<HamburgerIcon />
+		</motion.div>
+	);
+};
 
 const CustomLink = ({ children, motionPosition, link, isIntro, isMobile, isAnimating }) => (
 	<motion.div
@@ -98,6 +114,7 @@ const CustomLink = ({ children, motionPosition, link, isIntro, isMobile, isAnima
 const Nav = ({ isIntro, isMobile, isAnimating }) => {
 	const dispatch = useDispatch();
 	const endIntro = isIntro && (() => dispatch(introEnded()));
+
 	return (
 		<motion.nav
 			className={isMobile ? css.navMobile : ""}
