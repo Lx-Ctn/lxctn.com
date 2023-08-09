@@ -11,6 +11,8 @@
 	justify-content: center;
 	align-items: center;
 
+	cursor: url("../../assets/Mad.svg") 4 2, pointer;
+
 	picture {
 		position: absolute;
 		width: 100%;
@@ -25,6 +27,5 @@
 	position: absolute;
 	width: 100%;
 	aspect-ratio: 1;
-	translate: -50% 0;
-	transform-origin: right;
+	display: flex;
 }
