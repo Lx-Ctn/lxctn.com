@@ -6,7 +6,7 @@ export const AboutMe = () => {
 	return (
 		<motion.div className={css._} {...AboutMePageAnimation}>
 			<h1>Hello !</h1>
-			<p>I'm</p>
+			<p className={css.prePseudo}>I'm</p>
 			<Pseudo />
 		</motion.div>
 	);

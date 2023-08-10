@@ -5,7 +5,7 @@ import { Pseudo } from "../Pseudo/Pseudo";
 export const ContactCard = () => {
 	return (
 		<motion.div className={css._}>
-			<Pseudo inLineLimit={555} />
+			<Pseudo inLineLimit={358} />
 			<p>
 				Tel : <a href="tel:0658529939">06 58 52 99 39</a>
 			</p>

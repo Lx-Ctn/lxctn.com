@@ -2,15 +2,20 @@
 	display: grid;
 	grid-template-rows: 1fr; // will be animated via motion from "0fr" to "1fr", but if prefered-reduce-motion === true : need base of "1fr"
 
-	font-size: 0.8em;
+	justify-content: center;
 
 	& > .wrapper {
 		overflow-x: hidden; // need to hide when container is at "0fr"
 		padding: 0.7em;
+		max-width: 40em;
 
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
 		gap: 0 0.3em;
 	}
+}
+
+.mobile {
+	font-size: 0.8em;
 }

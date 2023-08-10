@@ -1,5 +1,5 @@
 :root {
-	font-size: calc(10px + 2vw);
+	font-size: calc(10px + 1vw);
 	font-family: "K2D", sans-serif;
 	font-weight: 400;
 	text-align: center;
@@ -22,6 +22,13 @@
 	font-family: AlbertSans;
 	src: url(./assets/fonts/AlbertSans-VariableFont_wght.ttf) format("truetype-variations");
 	font-weight: 100 900;
+}
+
+:root,
+body {
+	position: relative;
+	overflow-x: hidden;
+	overflow-x: clip;
 }
 
 body {

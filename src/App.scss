@@ -17,10 +17,6 @@ h2 {
 	font-size: 2em;
 }
 
-p {
-	font-size: 0.9em;
-}
-
 button {
 	position: relative;
 	appearance: none;
@@ -32,7 +28,7 @@ button {
 	padding: 0.2em 0.7em 0.3em 0.7em;
 
 	font-family: inherit;
-	font-size: 0.9em;
+	font-size: 0.95em;
 	color: var(--dark-color);
 	&:hover {
 		color: #0083a1;

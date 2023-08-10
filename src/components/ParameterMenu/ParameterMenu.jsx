@@ -8,8 +8,14 @@ import { get } from "../../store/selectors";
 
 export const ParameterMenu = ({ ...props }) => {
 	const reducedMotion = useSelector(get.reducedMotion);
+	const isMobile = useSelector(get.isMobile);
 	return (
-		<motion.div className={css._} variants={!reducedMotion && paramMenuVariants} {...animPropsNames} {...props}>
+		<motion.div
+			className={`${css._} ${isMobile ? css.mobile : ""}`}
+			variants={!reducedMotion && paramMenuVariants}
+			{...animPropsNames}
+			{...props}
+		>
 			<div className={css.wrapper}>
 				{[0, 0, 0, 0].map((_, i) => (
 					<Checkbox

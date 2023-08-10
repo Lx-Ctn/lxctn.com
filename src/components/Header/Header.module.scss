@@ -36,7 +36,7 @@
 	}
 
 	.sideNav {
-		width: min(3em + 1.5vw, 120px + 2em); // 1em + 2*padding
+		width: clamp(31px + 2em, (0.4 * 8.5vw) + 40px, 51px + 2em); // 1em + 2*padding
 		padding: 1em;
 		cursor: pointer;
 
@@ -48,12 +48,10 @@
 		left: 0;
 		right: 0;
 
-		margin: 0 min(4em + 1.5vw, 120px + 3em); //  .sideNav width + 1em
-
-		font-size: 0.9rem;
+		margin: 0 clamp(31px + 3em, (0.4 * 8.5vw) + 40px + 1em, 51px + 3em); //  .sideNav width + 1em
 
 		.navContainer {
-			max-width: 700px;
+			max-width: 25em;
 			display: flex;
 			justify-content: space-evenly;
 			margin: auto;
@@ -63,7 +61,7 @@
 			}
 
 			a {
-				padding: 1rem 0.3em;
+				padding: 1.2rem 0.3em;
 				white-space: nowrap;
 
 				&:after {
@@ -97,7 +95,7 @@
 }
 
 .mobile {
-	font-size: 1.6em;
+	font-size: 1.5em;
 
 	.logoLx {
 		translate: calc(50vw - 43%) 0; // allow logo animation on resize
