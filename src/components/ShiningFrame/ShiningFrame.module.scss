@@ -48,6 +48,7 @@
 
 	border-radius: var(--radius);
 	overflow: hidden;
+	transform: translate3d(0, 0, 0); // Fix safari bug with overflow: hidden + border-radius + animation
 
 	&::before {
 		content: "";
@@ -74,7 +75,7 @@
 
 *:hover > ._ {
 	&::before {
-		opacity: 0.2;
+		opacity: 0.4;
 	}
 	.halo {
 		opacity: 1;
