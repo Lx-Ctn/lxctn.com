@@ -5,11 +5,11 @@
 	width: 100%;
 
 	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
+	flex-direction: column;
+	align-items: center;
 
 	.avatar_container {
-		margin-top: 25vh;
+		margin-top: 25vmin;
 		z-index: 2;
 
 		position: relative;
@@ -17,10 +17,11 @@
 		justify-content: center;
 		align-items: center;
 
-		width: var(--avatar-size);
+		width: 100%;
 		height: var(--avatar-size);
 
 		scale: 1;
+		transform-origin: top center;
 		transition: margin-top 0.4s, scale 0.4s;
 		&.reducedMotion {
 			transition: none;
@@ -28,11 +29,11 @@
 	}
 	&.aboutme .avatar_container {
 		scale: 1.3;
-		margin-top: 10vh;
+		margin-top: 3.4em;
 	}
 	&.contact .avatar_container {
 		scale: 0.67;
-		margin-top: 7vh;
+		margin-top: 7vmin;
 	}
 
 	&.contact h1 {

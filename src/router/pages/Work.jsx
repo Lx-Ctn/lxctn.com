@@ -112,7 +112,7 @@ const cardContainerTransition = {
 };
 const getCardTransition = () => ({
 	initial: { scale: 0.4, rotate: -20, opacity: 0 },
-	animate: { scale: 1, rotate: 10 * Math.random() - 5, opacity: 1 },
+	animate: { scale: 1, rotate: 0, opacity: 1 },
 	exit: { scale: 0.4, opacity: 0, transition: { duration: 0.2 } },
 	transition: { duration: 0.4 },
 });
