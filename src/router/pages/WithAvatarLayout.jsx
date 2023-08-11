@@ -1,4 +1,4 @@
-import css from "./HomeContainer.module.scss";
+import css from "./WithAvatarLayout.module.scss";
 import { Fragment } from "react";
 import { useOutlet, useLocation } from "react-router-dom";
 import { Avatar } from "../../components";
@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useSelector } from "react-redux";
 import { get } from "../../store/selectors";
 
-export const HomeContainer = () => {
+export const WithAvatarLayout = () => {
 	const reducedMotion = useSelector(get.reducedMotion);
 	const location = useLocation();
 	const isContactPage = location.pathname === "/contact";
@@ -15,7 +15,7 @@ export const HomeContainer = () => {
 	return (
 		<motion.div
 			className={`${css._} ${isContactPage ? css.contact : isAboutMePage ? css.aboutme : ""}`}
-			{...(!reducedMotion && homeContainerAnimation)}
+			{...(!reducedMotion && withAvatarLayoutAnimation)}
 		>
 			<div className={`${css.avatar_container} ${reducedMotion ? css.reducedMotion : ""}`}>
 				<Avatar />
@@ -38,7 +38,7 @@ const Outlet = () => {
 	);
 };
 
-const homeContainerAnimation = {
+const withAvatarLayoutAnimation = {
 	initial: { scale: 0.4, opacity: 0 },
 	animate: { scale: 1, opacity: 1 },
 	exit: { scale: 0.4, opacity: 0, transition: { duration: 0.2 } },

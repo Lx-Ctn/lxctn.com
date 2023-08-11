@@ -1,8 +1,7 @@
-//import * as ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 
 import { App } from "../App";
-import { HomeContainer, Home, Contact, AboutMe, WorkPage, ErrorPage, projects } from "./pages";
+import { WithAvatarLayout, Home, Contact, AboutMe, WorkPage, ErrorPage, projects } from "./pages";
 
 const router = createBrowserRouter([
 	{
@@ -11,11 +10,10 @@ const router = createBrowserRouter([
 		errorElement: <ErrorPage />,
 		children: [
 			{
-				path: "/",
-				element: <HomeContainer />,
+				element: <WithAvatarLayout />,
 				children: [
 					{
-						path: "/",
+						index: true,
 						element: <Home />,
 					},
 					{
@@ -23,8 +21,20 @@ const router = createBrowserRouter([
 						element: <Contact />,
 					},
 					{
+						path: "contact/*",
+						element: <Navigate to="/contact" replace={true} />,
+					},
+					{
 						path: "aboutme",
 						element: <AboutMe />,
+					},
+					{
+						path: "aboutme/*",
+						element: <Navigate to="/aboutme" replace={true} />,
+					},
+					{
+						path: "*",
+						element: <Navigate to="/" replace={true} />,
 					},
 				],
 			},
@@ -33,18 +43,37 @@ const router = createBrowserRouter([
 				element: <WorkPage />,
 				children: [
 					{
+						index: true,
+						element: projects.all,
+					},
+
+					{
 						path: "web",
 						element: projects.web,
 					},
+					{
+						path: "web/*",
+						element: <Navigate to="../web" replace={true} />,
+					},
+
 					{
 						path: "design",
 						element: projects.design,
 					},
 					{
-						index: true,
-						element: projects.all,
+						path: "design/*",
+						element: <Navigate to="../design" replace={true} />,
+					},
+
+					{
+						path: "*",
+						element: <Navigate to="" replace={true} />,
 					},
 				],
+			},
+			{
+				//path: "work/:projectName",
+				//element: <Contact />,
 			},
 		],
 	},

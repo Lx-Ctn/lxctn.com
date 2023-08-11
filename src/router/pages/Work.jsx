@@ -3,7 +3,7 @@ import { Fragment } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSelector } from "react-redux";
 import { get } from "../../store/selectors";
-import { NavLink, useOutlet } from "react-router-dom";
+import { NavLink, Outlet, useOutlet } from "react-router-dom";
 import projectsData from "../../assets/projectsData";
 import { ShiningFrame } from "../../components";
 

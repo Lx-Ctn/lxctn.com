@@ -1,4 +1,4 @@
-export { HomeContainer } from "./HomeContainer.jsx";
+export { WithAvatarLayout } from "./WithAvatarLayout.jsx";
 export { Home } from "./Home.jsx";
 export { Contact } from "./Contact.jsx";
 export { AboutMe } from "./AboutMe.jsx";
