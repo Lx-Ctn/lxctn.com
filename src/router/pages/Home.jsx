@@ -53,13 +53,24 @@ const homeAnimation = isIntro => ({
 	animate: {
 		scale: 1,
 		opacity: 1,
-		transition: { duration: 0.4, delay: isIntro ? 0.7 : 0, staggerChildren: 0.1 },
+		transition: {
+			duration: 0.4,
+			delay: isIntro ? 0.7 : 0,
+			when: isIntro ? "beforeChildren" : false,
+			staggerChildren: 0.15,
+			delayChildren: isIntro ? 1 : 0.15,
+		},
 	},
 	exit: { scale: 0.4, opacity: 0, transition: { duration: 0.2 } },
 	//transition: { duration: 0.4, delay: isIntro ? 0.7 : 0 },
 });
 const sectionAnimation = isIntro => ({
-	initial: { scale: 0.4, opacity: 0 },
-	animate: { scale: 1, opacity: 1, transition: isIntro ? { duration: 1.2, delay: 1.5 } : { duration: 0.4 } },
+	initial: { scale: 0.4, opacity: 0, y: isIntro ? "150%" : 0 },
+	animate: {
+		scale: 1,
+		opacity: 1,
+		y: 0,
+		transition: isIntro ? { type: "spring", duration: 1.3 } : { type: "spring" },
+	},
 	exit: { scale: 0.4, opacity: 0, transition: { duration: 0.2 } },
 });
