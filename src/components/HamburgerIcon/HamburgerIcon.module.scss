@@ -1,21 +1,11 @@
 ._ {
-	--stroke-width-quotien: 1;
-	@media screen and (max-width: 500px) {
-		--stroke-width-quotien: calc(1 / 1.5);
-	}
-
 	svg {
 		overflow: visible;
 
 		path {
 			fill: none;
 			stroke: #0083a1;
-			//min-height: 0vw;
-			stroke-width: clamp(
-				var(--stroke-width-quotien) * 7px,
-				var(--stroke-width-quotien) * (15px - 0.7vw),
-				var(--stroke-width-quotien) * 13px
-			);
+			stroke-width: var(--svg-stroke-width);
 
 			transform: translate(0);
 			transform-origin: center;
@@ -46,11 +36,8 @@ div:hover > ._ {
 			transform: translateY(-15%);
 		}
 		path:nth-child(2) {
-			--stroke-width-quotien: calc(1 / 1.6); // Correct stroke-width with scale
+			stroke-width: calc(var(--svg-stroke-width) / 1.6); // Correct stroke-width with scale
 			transform: scale(1.6);
-			@media screen and (max-width: 500px) {
-				--stroke-width-quotien: calc(1 / 1.5 / 1.6);
-			}
 		}
 		path:nth-child(3) {
 			transform: translateY(15%);

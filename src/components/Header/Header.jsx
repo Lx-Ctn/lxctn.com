@@ -24,6 +24,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 //
 export const HEADER_MOBILE_BREAKPOINT = 500;
+export const HEADER_MOBILE_NAV_HIGHT = `${4 * 2.1 * 1.5}rem`; // link : 1em (font-size) * 1.3 (line-height) + 2 * 0.3em (padding) + 0.2em (visual margin for better lisibility) = 2.1em * 4 links
 
 export default function Header() {
 	const headerRef = useRef();
@@ -37,6 +38,8 @@ export default function Header() {
 	const isParameterMenuOpen = useSelector(get.isParameterMenuOpen);
 
 	useEffect(() => {
+		isMobileMenuOpen && document.body.style.setProperty("--header-mobile-nav-height", HEADER_MOBILE_NAV_HIGHT);
+
 		const isOutsiteHeader = ({ target }) => !headerRef.current.contains(target);
 		const handleCloseOutside = {
 			nav: event => isOutsiteHeader(event) && dispatch(closeMobileMenu()),
@@ -47,6 +50,7 @@ export default function Header() {
 		return () => {
 			window.removeEventListener("click", handleCloseOutside.nav);
 			window.removeEventListener("click", handleCloseOutside.param);
+			document.body.style.setProperty("--header-mobile-nav-height", "0em");
 		};
 	}, [isMobileMenuOpen, isParameterMenuOpen, dispatch]);
 
@@ -163,9 +167,8 @@ const Logo = ({ isIntro, isMobile, isAnimating }) => {
 
 const ParameterButton = ({ isAnimating }) => {
 	const dispatch = useDispatch();
-	const toggleParam = () => {
-		dispatch(toggleParameterMenu());
-	};
+	const toggleParam = () => dispatch(toggleParameterMenu());
+
 	return (
 		<motion.div className={`${css.sideNav}`} onClick={toggleParam}>
 			<GearIcon variants={isAnimating && gearVariants} />

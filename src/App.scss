@@ -3,6 +3,22 @@ body {
 	--dark-color: #003f54;
 	--secondary-color: hsl(347deg 100% 50%);
 	--secondary-color-dark: hsl(347deg, 50%, 20%);
+
+	--header-height: 5em;
+	--header-mobile-nav-height: 0em;
+
+	--svg-stroke-width: 8px;
+}
+
+::selection {
+	background-color: hsl(344deg 100% 41%);
+	color: #fff;
+}
+
+.under-header {
+	translate: 0 calc(var(--header-height, 5em) + var(--header-mobile-nav-height, 0em));
+	transition: translate 0.2s;
+	width: 100%;
 }
 
 h1,
@@ -60,6 +76,8 @@ a:not(.button) {
 		position: absolute;
 		bottom: 0;
 		width: 100%;
+		height: 1px;
+		clip-path: inset(30% 0 0 0);
 		left: 0;
 		border-bottom: 1px solid hsl(200, 47%, 50%);
 		border-radius: 50%;
@@ -76,8 +94,7 @@ a:not(.button) {
 ///
 ///
 main {
-	--distance-from-header: 4em;
-	min-height: calc(100vh - var(--distance-from-header));
+	min-height: calc(100vh - var(--header-height));
 	width: 100%;
 
 	display: flex;
@@ -98,7 +115,8 @@ section {
 		bottom: 0;
 		left: 0;
 		width: 100%;
-		height: 2px;
+		height: 1px;
+		clip-path: inset(50% 0 0 0); // hide fantom border in safari
 		border-bottom: 1px solid var(--secondary-color-dark);
 		border-radius: 50%;
 	}

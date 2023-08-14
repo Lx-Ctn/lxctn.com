@@ -1,6 +1,8 @@
 ._ {
 	--avatar-size: 20vmin;
 
+	margin-top: 7vmin;
+
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -23,5 +25,6 @@
 
 		border-radius: 50%;
 		border-bottom: 1px solid var(--main-color);
+		clip-path: inset(50% 0 0 0);
 	}
 }

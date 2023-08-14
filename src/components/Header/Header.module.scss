@@ -3,9 +3,11 @@
 	--active-color: hsl(189, 100%, 41%);
 	--active-bg-color: hsl(341, 100%, 32%);
 
-	position: sticky;
-	top: 0;
-	margin-bottom: 1em;
+	--side-nav-size: clamp(31px + 2em, (0.4 * 8.5vw) + 40px, 51px + 2em);
+
+	position: fixed;
+	//top: 0;
+	//margin-bottom: 1em;
 
 	width: 100%;
 	z-index: 3;
@@ -36,7 +38,7 @@
 	}
 
 	.sideNav {
-		width: clamp(31px + 2em, (0.4 * 8.5vw) + 40px, 51px + 2em); // 1em + 2*padding
+		width: var(--side-nav-size);
 		padding: 1em;
 		cursor: pointer;
 
@@ -48,9 +50,13 @@
 		left: 0;
 		right: 0;
 
-		margin: 0 clamp(31px + 3em, (0.4 * 8.5vw) + 40px + 1em, 51px + 3em); //  .sideNav width + 1em
+		height: var(--side-nav-size);
+		margin: 0 calc(var(--side-nav-size) + 1em);
+
+		display: flex;
 
 		.navContainer {
+			width: 100%;
 			max-width: 25em;
 			display: flex;
 			justify-content: space-evenly;
@@ -61,7 +67,7 @@
 			}
 
 			a {
-				padding: 1.2rem 0.3em;
+				padding: 1em 0.3em;
 				white-space: nowrap;
 
 				&:after {
@@ -72,7 +78,7 @@
 
 					&:after {
 						border-color: var(--active-color);
-						scale: 0.7;
+						scale: 0.7 1;
 					}
 					&:hover:after {
 						scale: 1;
@@ -98,7 +104,7 @@
 	font-size: 1.5em;
 
 	.logoLx {
-		translate: calc(50vw - 43%) 0; // allow logo animation on resize
+		translate: calc(50vw - 43%) -3px; // allow logo animation on resize
 		transition: scale 1s, translate 0.5s 0.2s; // add delay on translate to let the nav bar exit before the logo slide in
 		&.reducedMotion {
 			transition: scale 1s;

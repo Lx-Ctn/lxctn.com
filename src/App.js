@@ -10,27 +10,28 @@ import { usePrefersReducedMotion } from "./utils/handleReducedMotion";
 import { Header } from "./components";
 import { DelayRender } from "./components/utils";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { ShowTheme } from "./utils/colorTheme";
 
 export function App() {
 	useResponsive();
 	usePrefersReducedMotion();
-
 	return (
-		<motion.div className="App" key="app">
+		<>
 			<Header />
-			<Main />
-			<DelayRender delay={700}>
-				<ShowTheme />
-			</DelayRender>
-		</motion.div>
+			<div className="under-header">
+				<Main />
+				<DelayRender delay={700}>
+					<ShowTheme />
+				</DelayRender>
+			</div>
+		</>
 	);
 }
 
 const Main = () => {
 	const routeElement = useOutlet();
-	const pathname = useMatches()[1].pathname;
+	const { pathname } = useMatches()[1];
 	return (
 		<AnimatePresence mode="wait">
 			<main key={pathname}>{routeElement}</main>

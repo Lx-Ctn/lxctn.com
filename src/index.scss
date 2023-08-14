@@ -37,19 +37,12 @@ body {
 	background-color: #fff;
 	/*background-color: #011;*/
 
-	#root {
+	#app {
 		min-height: 100vh;
+		width: 100%;
+
 		display: flex;
+		flex-direction: column;
 		align-items: center;
-		justify-content: center;
-
-		.App {
-			min-height: 100vh;
-			width: 100%;
-
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-		}
 	}
 }

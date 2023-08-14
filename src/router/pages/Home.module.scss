@@ -1,4 +1,7 @@
 ._ {
+	margin-top: calc(37vh - (var(--avatar-size) / 2));
+	transform-origin: top;
+
 	h1 {
 		text-align: start;
 
