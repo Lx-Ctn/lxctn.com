@@ -12,3 +12,4 @@ export { ParameterMenu } from "./ParameterMenu/ParameterMenu";
 export { HomeIcon } from "./HomeIcon/HomeIcon";
 export { Pseudo } from "./Pseudo/Pseudo";
 export { ShiningFrame } from "./ShiningFrame/ShiningFrame";
+export { Footer } from "./Footer/Footer";

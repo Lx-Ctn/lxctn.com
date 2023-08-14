@@ -1,0 +1,46 @@
+._ {
+	--side-nav-size: clamp(31px + 2em, (0.4 * 8.5vw) + 40px, 51px + 2em);
+
+	position: relative;
+	font-size: 0.8em;
+	padding: 1em;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	.sideNav {
+		width: var(--side-nav-size);
+		padding: 1em 0.4em 1em 1.6em;
+		background-color: var(--background-color);
+
+		.logoLx {
+			min-width: 31px;
+			transition: scale 1s;
+		}
+
+		&:hover {
+			.logoLx {
+				scale: 1.05;
+			}
+		}
+
+		&::before {
+			content: "";
+			position: absolute;
+			z-index: -1;
+			top: 3.4em;
+			left: 50%;
+			height: 1px;
+			width: 70%;
+			translate: -50% 0;
+			border-top: 1px solid var(--secondary-color-dark);
+			border-radius: 50%;
+			clip-path: inset(1% 0 50% 0);
+		}
+	}
+
+	.copyright {
+		font-size: 0.8em;
+	}
+}

@@ -7,11 +7,8 @@ import Router from "./router/Router";
 import { useResponsive } from "./utils/useResponsive";
 import { usePrefersReducedMotion } from "./utils/handleReducedMotion";
 
-import { Header } from "./components";
-import { DelayRender } from "./components/utils";
-
-import { AnimatePresence } from "framer-motion";
-import { ShowTheme } from "./utils/colorTheme";
+import { Header, Footer } from "./components";
+import { motion, AnimatePresence } from "framer-motion";
 
 export function App() {
 	useResponsive();
@@ -21,9 +18,7 @@ export function App() {
 			<Header />
 			<div className="under-header">
 				<Main />
-				<DelayRender delay={700}>
-					<ShowTheme />
-				</DelayRender>
+				<Footer />
 			</div>
 		</>
 	);
@@ -34,7 +29,7 @@ const Main = () => {
 	const { pathname } = useMatches()[1];
 	return (
 		<AnimatePresence mode="wait">
-			<main key={pathname}>{routeElement}</main>
+			<motion.main key={pathname}>{routeElement}</motion.main>
 		</AnimatePresence>
 	);
 };
