@@ -33,12 +33,13 @@ export default function Header() {
 	const isIntro = useSelector(get.isIntro); // To change animation after the first render
 	const isMobile = useSelector(get.isMobile);
 
-	// Handle closeable menus :
+	const isAnimating = !useSelector(get.reducedMotion);
+
 	const isMobileMenuOpen = useSelector(get.isMobileMenuOpen);
 	const isParameterMenuOpen = useSelector(get.isParameterMenuOpen);
 
 	useEffect(() => {
-		isMobileMenuOpen && document.body.style.setProperty("--header-mobile-nav-height", HEADER_MOBILE_NAV_HIGHT);
+		// close menus when we click outsite of it :
 
 		const isOutsiteHeader = ({ target }) => !headerRef.current.contains(target);
 		const handleCloseOutside = {
@@ -50,11 +51,16 @@ export default function Header() {
 		return () => {
 			window.removeEventListener("click", handleCloseOutside.nav);
 			window.removeEventListener("click", handleCloseOutside.param);
-			document.body.style.setProperty("--header-mobile-nav-height", "0em");
 		};
 	}, [isMobileMenuOpen, isParameterMenuOpen, dispatch]);
 
-	const isAnimating = !useSelector(get.reducedMotion);
+	//
+	useEffect(() => {
+		// Keep content in view when mobile nav is open to see where we go instead of covering it :
+
+		isMobileMenuOpen && document.body.style.setProperty("--header-mobile-nav-height", HEADER_MOBILE_NAV_HIGHT);
+		return () => document.body.style.setProperty("--header-mobile-nav-height", "0em");
+	}, [isMobileMenuOpen, dispatch]);
 
 	return (
 		<motion.header

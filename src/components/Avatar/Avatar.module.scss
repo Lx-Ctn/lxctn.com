@@ -12,6 +12,7 @@
 	align-items: center;
 
 	cursor: url("../../assets/Mad.svg") 4 2, pointer;
+	user-select: none;
 
 	picture {
 		position: absolute;

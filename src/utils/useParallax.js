@@ -91,7 +91,9 @@ export const useParallax = (ref, transitionClassname) => {
 
 // Get the center of the element :
 const getRefCoor = ref => {
-	const refRect = ref.current.getBoundingClientRect();
+	if (!ref.current) return { x: 0, y: 0 };
+
+	const refRect = ref.current?.getBoundingClientRect();
 	const x = (refRect.left + refRect.right) / 2;
 	const y = (refRect.top + refRect.bottom) / 2;
 	return { x, y };

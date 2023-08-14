@@ -3,22 +3,21 @@ body {
 	--dark-color: #003f54;
 	--secondary-color: hsl(347deg 100% 50%);
 	--secondary-color-dark: hsl(347deg, 50%, 20%);
+	--background-color: #fff;
 
 	--header-height: 5em;
 	--header-mobile-nav-height: 0em;
 
 	--svg-stroke-width: 8px;
+
+	@media (width < 500px) {
+		--header-height: 6em;
+	}
 }
 
 ::selection {
 	background-color: hsl(344deg 100% 41%);
 	color: #fff;
-}
-
-.under-header {
-	translate: 0 calc(var(--header-height, 5em) + var(--header-mobile-nav-height, 0em));
-	transition: translate 0.2s;
-	width: 100%;
 }
 
 h1,
@@ -93,8 +92,21 @@ a:not(.button) {
 
 ///
 ///
+///
+///
+
+.under-header {
+	translate: 0 calc(var(--header-height, 5em) + var(--header-mobile-nav-height, 0em));
+	min-height: calc(100vh - var(--header-height, 5em));
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	transition: translate 0.2s;
+}
+
 main {
-	min-height: calc(100vh - var(--header-height));
 	width: 100%;
 
 	display: flex;
@@ -109,7 +121,7 @@ section {
 	margin: 1em 0;
 	padding: 1em 0 2em 0;
 
-	&::after {
+	&:not(:last-of-type):after {
 		content: "";
 		position: absolute;
 		bottom: 0;
