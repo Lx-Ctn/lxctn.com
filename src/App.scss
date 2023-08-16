@@ -96,14 +96,16 @@ a:not(.button) {
 ///
 
 .under-header {
-	translate: 0 calc(var(--header-height, 5em) + var(--header-mobile-nav-height, 0em));
+	margin-top: var(--header-height, 5em);
+	translate: 0 var(--header-mobile-nav-height, 0em);
 	min-height: calc(100vh - var(--header-height, 5em));
 	width: 100%;
+
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 
-	transition: translate 0.2s;
+	transition: translate 0.2s, margin-top 0.2s, min-height 0.2s;
 }
 
 main {
