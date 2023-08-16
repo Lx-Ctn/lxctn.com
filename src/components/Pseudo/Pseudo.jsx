@@ -26,7 +26,7 @@ const Lx = ({ isInLine }) => {
 	return (
 		<>
 			<motion.span variants={fadeVariant} custom={customDirection}>
-				<motion.span variants={fadeVariant} custom={{ opacity: [1, 0], times: [0.4, 0.6] }}>
+				<motion.span variants={fadeVariant} custom={{ opacity: [1, 0, 0], times: [0.4, 0.6, 1] }}>
 					A
 				</motion.span>
 				<motion.span
@@ -36,7 +36,7 @@ const Lx = ({ isInLine }) => {
 				>
 					l
 				</motion.span>
-				<motion.span variants={fadeVariant} custom={{ opacity: [1, 0], times: [0.6, 0.8] }}>
+				<motion.span variants={fadeVariant} custom={{ opacity: [1, 0, 0], times: [0.6, 0.8, 1] }}>
 					e
 				</motion.span>
 				<motion.span
@@ -47,7 +47,7 @@ const Lx = ({ isInLine }) => {
 					x
 				</motion.span>
 			</motion.span>
-			<motion.span variants={fadeVariant} custom={{ opacity: [1, 0], times: [0, 0.3] }}>
+			<motion.span variants={fadeVariant} custom={{ opacity: [1, 0, 0], times: [0, 0.3, 1] }}>
 				andre
 			</motion.span>
 		</>
@@ -67,7 +67,7 @@ const Ctn = ({ isInLine }) => {
 			>
 				C
 			</motion.span>
-			<motion.span variants={fadeVariant} custom={{ opacity: [1, 0], times: [0, 0.4] }}>
+			<motion.span variants={fadeVariant} custom={{ opacity: [1, 0, 0], times: [0, 0.4, 1] }}>
 				O
 			</motion.span>
 			<motion.span
@@ -77,7 +77,7 @@ const Ctn = ({ isInLine }) => {
 			>
 				T
 			</motion.span>
-			<motion.span variants={fadeVariant} custom={{ opacity: [1, 0], times: [0, 0.4] }}>
+			<motion.span variants={fadeVariant} custom={{ opacity: [1, 0, 0], times: [0, 0.4, 1] }}>
 				TI
 			</motion.span>
 			<motion.span
