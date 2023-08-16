@@ -1,8 +1,11 @@
 body {
 	--main-color: hsl(187deg 100% 50%);
 	--dark-color: #003f54;
+	--very-light-main-color: hsl(187deg 100% 90%);
+
 	--secondary-color: hsl(347deg 100% 50%);
 	--secondary-color-dark: hsl(347deg, 50%, 20%);
+
 	--background-color: #fff;
 
 	--header-height: 5em;
@@ -16,7 +19,8 @@ body {
 }
 
 ::selection {
-	background-color: hsl(344deg 100% 41%);
+	background: hsl(344deg 100% 41%);
+	-webkit-text-fill-color: initial;
 	color: #fff;
 }
 
@@ -87,6 +91,21 @@ a:not(.button) {
 	&:hover:after {
 		scale: 1 1;
 		transition: scale 0.3s cubic-bezier(0.2, 1.8, 0.6, 0.7);
+	}
+}
+
+em {
+	font-weight: bold;
+	font-style: normal;
+	background: linear-gradient(90deg, var(--main-color), var(--secondary-color));
+	background-size: 250% 90%;
+	background-repeat: no-repeat;
+	background-position: 100%;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+
+	&::selection {
+		text-shadow: 0 0 0.2em black;
 	}
 }
 

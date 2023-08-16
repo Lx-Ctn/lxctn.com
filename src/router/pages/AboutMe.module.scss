@@ -1,6 +1,5 @@
 ._ {
-	position: absolute;
-	top: 1em;
+	margin-top: -28vmin;
 
 	h1 {
 		margin-bottom: 37vmin;
@@ -8,5 +7,9 @@
 
 	.prePseudo {
 		margin-bottom: -0.5em;
+	}
+
+	section {
+		padding: 4em 0;
 	}
 }

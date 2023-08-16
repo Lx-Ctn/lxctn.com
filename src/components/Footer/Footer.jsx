@@ -8,11 +8,15 @@ import { get } from "../../store/selectors";
 import LogoLx from "../LogoLx/LogoLx";
 import { useLocation } from "react-router-dom";
 
+// If some page are full screen, it's better to cancel footer animation as it's stay displayed.
+const FULL_SCREEN_PAGES = ["/contact"];
+
 export const Footer = () => {
 	//consoleSignature();
+
 	const isIntro = useSelector(get.isIntro);
 	const pathname = useLocation().pathname;
-	const animatedPathname = ["/contact", "/aboutme"].includes(pathname) ? "sameKey=noTransition" : pathname;
+	const animatedPathname = FULL_SCREEN_PAGES.includes(pathname) ? "sameKey=noTransition" : pathname;
 
 	const thisYear = new Date().getFullYear();
 
