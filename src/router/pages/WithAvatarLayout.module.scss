@@ -1,6 +1,7 @@
 ._ {
 	--avatar-size: 30vmin;
 	--avatar-top: calc(37vh - (var(--avatar-size) / 2));
+	--avatar-top: calc(37svh - (var(--avatar-size) / 2));
 
 	position: relative;
 	width: 100%;

@@ -118,6 +118,7 @@ em {
 	margin-top: var(--header-height, 5em);
 	translate: 0 var(--header-mobile-nav-height, 0em);
 	min-height: calc(100vh - var(--header-height, 5em));
+	min-height: calc(100dvh - var(--header-height, 5em));
 	width: 100%;
 
 	display: flex;
