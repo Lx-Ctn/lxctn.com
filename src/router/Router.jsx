@@ -1,7 +1,16 @@
-import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Navigate, redirect } from "react-router-dom";
 
 import { App } from "../App";
 import { WithAvatarLayout, Home, Contact, AboutMe, WorkPage, ErrorPage, projects } from "./pages";
+
+const useServerHashPath = () => {
+	// Using a client routing, i need to redirect all page requests from the server to the root where is the app.
+	// Resquested path is then add as hash on the url to apply the correct redirection here :
+
+	const { hash } = window.location;
+	if (hash) return redirect(hash.split("#").at(-1));
+	return null;
+};
 
 const router = createBrowserRouter([
 	{
@@ -14,6 +23,7 @@ const router = createBrowserRouter([
 				children: [
 					{
 						index: true,
+						loader: useServerHashPath,
 						element: <Home />,
 					},
 					{
