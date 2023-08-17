@@ -8,7 +8,21 @@
 	cursor: pointer;
 
 	span {
-		position: relative;
+		display: inline-block;
+
+		&.letterSpacing {
+			// Correct letter spacing change from display: inline-block;
+
+			&.l {
+				margin-right: -0.05em;
+			}
+			&.x {
+				margin-inline: -0.05em;
+			}
+			&.t {
+				margin-inline: -0.05em;
+			}
+		}
 	}
 
 	.highlight {
