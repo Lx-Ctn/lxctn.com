@@ -11,8 +11,11 @@
 	justify-content: center;
 	align-items: center;
 
-	cursor: url("../../assets/Mad.svg") 4 2, pointer;
 	user-select: none;
+
+	@media (prefers-reduced-motion: no-preference) {
+		cursor: url("../../assets/Mad.svg") 4 2, pointer;
+	}
 
 	picture {
 		position: absolute;

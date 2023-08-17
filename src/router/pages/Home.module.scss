@@ -2,10 +2,10 @@
 	margin-top: calc(37vh - (var(--avatar-size) / 2));
 	margin-top: calc(37svh - (var(--avatar-size) / 2));
 	transform-origin: top;
-	//transition: margin-top 0.4s;
 
 	h1 {
 		text-align: start;
+		display: inline-block;
 
 		min-width: 5ch;
 		overflow: visible;

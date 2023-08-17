@@ -1,16 +1,20 @@
 import css from "./Work.module.scss";
 import { Fragment } from "react";
+
 import { motion, AnimatePresence } from "framer-motion";
+import { animPropsNames } from "../../utils/animation";
+
 import { useSelector } from "react-redux";
 import { get } from "../../store/selectors";
 import { NavLink, useOutlet } from "react-router-dom";
+
 import projectsData from "../../assets/projectsData";
 import { ShiningFrame } from "../../components";
 
 export const WorkPage = () => {
 	const reducedMotion = useSelector(get.reducedMotion);
 	return (
-		<motion.div className={css._} {...(!reducedMotion && workPageTransition)}>
+		<motion.div className={css._} variants={workPageTransition} {...(!reducedMotion && animPropsNames)}>
 			<h1>Look at what i've done</h1>
 			<nav>
 				<CustomLink link={""}>All</CustomLink>
@@ -44,7 +48,7 @@ const MotionOutlet = () => {
 const CardContainer = ({ getProjects }) => {
 	const data = getProjects();
 	return (
-		<motion.div className={css.cardContainer} variants={cardContainerTransition} {...variantsNames}>
+		<motion.div className={css.cardContainer} variants={cardContainerTransition}>
 			{data?.map(project => (
 				<Card key={project.id} {...project} />
 			))}
@@ -55,7 +59,7 @@ const CardContainer = ({ getProjects }) => {
 const Card = project => {
 	const getImg = () => false;
 	return (
-		<motion.div className={css.card} variants={getCardTransition()} whileHover={{ rotate: 0 }}>
+		<motion.div className={css.card} variants={getCardTransition}>
 			<ShiningFrame angle={{ from: "-40deg", to: "140deg" }} />
 			<h2>{project.title}</h2>
 			{getImg() ? <img src={project.img.url} alt={project.img.alt}></img> : <NoImg alt={project.img.alt} />}
@@ -101,24 +105,16 @@ export const projects = {
 
 const workPageTransition = {
 	initial: { scale: 0.4, opacity: 0 },
-	animate: { scale: 1, opacity: 1 },
+	animate: { scale: 1, opacity: 1, transition: { duration: 0.3, delayChildren: 0.15 } },
 	exit: { scale: 0.4, opacity: 0, transition: { duration: 0.2 } },
-	transition: { duration: 0.4 },
 };
 const cardContainerTransition = {
 	initial: { scale: 0.4, opacity: 0 },
-	animate: { scale: 1, opacity: 1, transition: { duration: 0.4, staggerChildren: 0.15 } },
+	animate: { scale: 1, opacity: 1, transition: { duration: 0.2, staggerChildren: 0.15 } },
 	exit: { scale: 0.4, opacity: 0, transition: { duration: 0.2 } },
 };
-const getCardTransition = () => ({
+const getCardTransition = {
 	initial: { scale: 0.4, rotate: -20, opacity: 0 },
-	animate: { scale: 1, rotate: 0, opacity: 1 },
+	animate: { scale: 1, rotate: 0, opacity: 1, transition: { duration: 0.3 } },
 	exit: { scale: 0.4, opacity: 0, transition: { duration: 0.2 } },
-	transition: { duration: 0.4 },
-});
-const variantsNames = {
-	initial: "initial",
-	animate: "animate",
-	exit: "exit",
-	transition: "transition",
 };

@@ -1,17 +1,19 @@
 import css from "./Home.module.scss";
-import { AnimatedTitle } from "../../components";
 import { motion } from "framer-motion";
+import { animPropsNames } from "../../utils/animation";
+
 import { useSelector } from "react-redux";
 import { get } from "../../store/selectors";
 import { Link } from "react-router-dom";
-import { ShiningFrame } from "../../components";
+
+import { ShiningFrame, AnimatedTitle } from "../../components";
 
 export const Home = () => {
 	const reducedMotion = useSelector(get.reducedMotion);
 	const isIntro = useSelector(get.isIntro);
 
 	return (
-		<motion.div className={css._} variants={homeAnimation(isIntro)} {...animNames}>
+		<motion.div className={css._} variants={homeAnimation(isIntro)} {...(!reducedMotion && animPropsNames)}>
 			{reducedMotion ? <h1>Lx Design</h1> : <AnimatedTitle />}
 			<motion.section variants={sectionAnimation(isIntro)}>
 				<p>I'm a web designer, front-end developer, specialized in React</p>
@@ -42,12 +44,6 @@ const ButtonLink = ({ to, children }) => {
 	);
 };
 
-const animNames = {
-	initial: "initial",
-	animate: "animate",
-	exit: "exit",
-	transition: "transition",
-};
 const homeAnimation = isIntro => ({
 	initial: { scale: 0.4, opacity: 0 },
 	animate: {
@@ -62,8 +58,8 @@ const homeAnimation = isIntro => ({
 		},
 	},
 	exit: { scale: 0.4, opacity: 0, transition: { duration: 0.2 } },
-	//transition: { duration: 0.4, delay: isIntro ? 0.7 : 0 },
 });
+
 const sectionAnimation = isIntro => ({
 	initial: { scale: 0.4, opacity: 0, y: isIntro ? "150%" : 0 },
 	animate: {

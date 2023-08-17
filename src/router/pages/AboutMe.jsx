@@ -3,15 +3,20 @@ import { motion } from "framer-motion";
 import { animPropsNames, scrollPropsNames } from "../../utils/animation";
 import { Pseudo, Em } from "../../components";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { get } from "../../store/selectors";
 
 export const AboutMe = () => {
 	const [isLauching, setIsLauching] = useState(true);
 	const onAnimationComplete = () => setIsLauching(false);
+
+	const reducedMotion = useSelector(get.reducedMotion);
+
 	return (
 		<motion.div
 			className={css._}
 			variants={AboutMePageAnimation}
-			{...animPropsNames}
+			{...(!reducedMotion && animPropsNames)}
 			onAnimationComplete={onAnimationComplete}
 		>
 			<h1>Hello !</h1>
@@ -20,6 +25,7 @@ export const AboutMe = () => {
 			{contents.map((content, i) => (
 				<Section
 					key={i}
+					reducedMotion={reducedMotion}
 					direction={i % 2 === 0 ? "50%" : "-50%"}
 					delay={isLauching ? 0.3 + i / contents.length : 0} // staggering after main content on launch, then 0 when entering viewport
 				>
@@ -51,10 +57,10 @@ const contents = [
 	</p>,
 ];
 
-const Section = ({ direction, children, delay }) => {
+const Section = ({ direction, children, delay, reducedMotion }) => {
 	const variants = slideInAnimation(direction, delay);
 	return (
-		<motion.section variants={variants} {...scrollPropsNames} viewport={{ amount: 0.5 }}>
+		<motion.section variants={variants} {...(!reducedMotion && scrollPropsNames)} viewport={{ amount: 0.5 }}>
 			{children}
 		</motion.section>
 	);
