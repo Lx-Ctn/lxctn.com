@@ -89,7 +89,7 @@ export const hamburgerVariants = isIntro => ({
 });
 
 export const gearVariants = {
-	initial: { x: "calc(100% + 1em)", rotate: 180 },
+	initial: { x: "100%", rotate: 180 },
 	animate: {
 		x: 0,
 		rotate: 0,

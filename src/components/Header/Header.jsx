@@ -176,8 +176,8 @@ const ParameterButton = ({ isAnimating }) => {
 	const toggleParam = () => dispatch(toggleParameterMenu());
 
 	return (
-		<motion.div className={`${css.sideNav}`} onClick={toggleParam}>
-			<GearIcon variants={isAnimating && gearVariants} />
+		<motion.div className={`${css.sideNav}`} onClick={toggleParam} variants={isAnimating && gearVariants}>
+			<GearIcon />
 		</motion.div>
 	);
 };

@@ -13,7 +13,12 @@ export const useResponsive = () => {
 			dispatch(setHeaderMobile());
 		};
 		window.addEventListener("resize", updateScreenWidth);
-		return () => window.removeEventListener("resize", updateScreenWidth);
+		window.addEventListener("orientationchange", updateScreenWidth);
+
+		return () => {
+			window.removeEventListener("resize", updateScreenWidth);
+			window.removeEventListener("orientationchange", updateScreenWidth);
+		};
 	}, [dispatch]);
 
 	const appWidth = useSelector(get.appWidth);
