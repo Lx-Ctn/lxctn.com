@@ -27,12 +27,17 @@ const AnimatedTitle = () => {
 	};
 
 	const currentWord = displayedWords[count];
+	console.log({ currentWord, displayedWords, count });
 
 	return (
 		<motion.h1 {...titleVariants(currentWord.length)} onHoverStart={restartAnimation}>
 			Lx{" "}
-			<AnimatePresence mode="wait">
-				<motion.span key={count} {...wordVariants}>
+			<AnimatePresence mode="sync">
+				<motion.span
+					key={count}
+					{...wordVariants}
+					style={{ position: "absolute", left: "2ch", paddingBottom: "0.1em" }}
+				>
 					{currentWord}
 				</motion.span>
 			</AnimatePresence>
@@ -50,7 +55,7 @@ const titleVariants = length => ({
 });
 const wordVariants = {
 	initial: { clipPath: "inset(0 100% 0 0)" },
-	animate: { clipPath: "inset(0 0% 0 0)" },
-	exit: { clipPath: "inset(0 100% 0 0)" },
-	transition: { duration: 0.1 },
+	animate: { clipPath: "inset(0 0% 0 0)", transition: { duration: 0.25, delay: 0.09 } },
+	exit: { clipPath: "inset(0 0 0 100%)" },
+	transition: { duration: 0.25 },
 };
