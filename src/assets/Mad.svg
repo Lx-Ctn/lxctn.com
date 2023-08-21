@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="17" height="17" style="rotate: 30deg; transform-origin: center" xmlns="http://www.w3.org/2000/svg"
+<svg width="16" height="16" style="rotate: 30deg; transform-origin: center;" xmlns="http://www.w3.org/2000/svg"
    viewBox="0 0 200 200">
    <defs>
       <style>
          path {
             fill: none;
             stroke: black;
-            stroke-width: 17px;
+            stroke-width: 18px;
             stroke-linecap: round;
          }
 
          .around path {
             stroke: #fff;
-            stroke-width: 40px;
+            stroke-width: 45px;
          }
       </style>
    </defs>

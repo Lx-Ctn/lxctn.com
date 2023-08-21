@@ -50,6 +50,6 @@
 }
 
 // Include container on hover (better ui) :
-div:hover > ._:not(.open) {
+button:hover > ._:not(.open) {
 	rotate: 90deg;
 }

@@ -5,4 +5,13 @@
 	max-width: 800px;
 	margin: 2em;
 	padding: 1em 2em;
+
+	p {
+		margin: 0.1em 0;
+
+		a {
+			padding-inline: 0.2em;
+			padding-bottom: 0.1em;
+		}
+	}
 }

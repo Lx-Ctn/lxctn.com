@@ -26,7 +26,7 @@ export function App() {
 
 const Main = () => {
 	const routeElement = useOutlet();
-	const { pathname } = useMatches()[1];
+	const { pathname } = useMatches()[1]; // Get only the first segment
 	return (
 		<AnimatePresence mode="wait">
 			<motion.main key={pathname}>{routeElement}</motion.main>

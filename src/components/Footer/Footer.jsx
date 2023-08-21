@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { get } from "../../store/selectors";
 
 import LogoLx from "../LogoLx/LogoLx";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 // If some page are full screen, it's better to cancel footer animation as it's stay displayed.
 const FULL_SCREEN_PAGES = ["/contact"];
@@ -20,6 +20,7 @@ export const Footer = () => {
 
 	const pathname = useLocation().pathname;
 	const animatedPathname = FULL_SCREEN_PAGES.includes(pathname) ? "sameKey=noTransition" : pathname;
+	const navigate = useNavigate();
 
 	const thisYear = new Date().getFullYear();
 
@@ -32,11 +33,11 @@ export const Footer = () => {
 				variants={!reducedMotion && footerAnimation(isIntro)}
 				{...animPropsNames}
 			>
-				<div className={css.sideNav}>
+				<button aria-label="Logo Lx : Home button" className={css.sideNav} onClick={() => navigate("/")}>
 					<div className={css.logoLx}>
 						<LogoLx />
 					</div>
-				</div>
+				</button>
 				<p className={css.copyright}>Lx Design © {thisYear}. All rights reserved.</p>
 			</motion.footer>
 		</AnimatePresence>

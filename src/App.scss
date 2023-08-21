@@ -1,27 +1,14 @@
-body {
-	--main-color: hsl(187deg 100% 50%);
-	--dark-color: #003f54;
-	--very-light-main-color: hsl(187deg 100% 90%);
-
-	--secondary-color: hsl(347deg 100% 50%);
-	--secondary-color-dark: hsl(347deg, 50%, 20%);
-
-	--background-color: #fff;
-
-	--header-height: 5em;
-	--header-mobile-nav-height: 0em;
-
-	--svg-stroke-width: 8px;
-
-	@media (width < 500px) {
-		--header-height: 6em;
-	}
-}
-
 ::selection {
 	background: hsl(344deg 100% 41%);
 	-webkit-text-fill-color: initial;
 	color: #fff;
+}
+
+:focus-visible {
+	outline: 2px solid var(--secondary-color);
+	outline-offset: -1px;
+	margin: 0 0.1em;
+	border-radius: 2em;
 }
 
 h1,
@@ -36,8 +23,11 @@ h2 {
 	font-size: 2em;
 }
 
-button {
+button,
+.button {
 	position: relative;
+	display: inline-block;
+
 	appearance: none;
 	background: none;
 	border: none;
@@ -64,7 +54,8 @@ a {
 	color: inherit;
 }
 
-a:not(.button) {
+a:not(.button),
+nav button {
 	position: relative;
 	transition: scale 0.2s, color 0.2s;
 	color: var(--dark-color);
@@ -78,18 +69,26 @@ a:not(.button) {
 		content: "";
 		position: absolute;
 		bottom: 0;
-		width: 100%;
-		height: 1px;
-		clip-path: inset(30% 0 0 0);
 		left: 0;
+
+		width: 100%;
+
+		height: 2px;
+		clip-path: inset(66% 0 0 0);
 		border-bottom: 1px solid hsl(200, 47%, 50%);
 		border-radius: 50%;
 		scale: 0 1;
+		@media (-webkit-max-device-pixel-ratio: 1.99) {
+			scale: 0 1.5;
+		}
 		transition: scale 0.2s;
 	}
 
 	&:hover:after {
 		scale: 1 1;
+		@media (-webkit-max-device-pixel-ratio: 1.99) {
+			scale: 1 1.5;
+		}
 		transition: scale 0.3s cubic-bezier(0.2, 1.8, 0.6, 0.7);
 	}
 }
@@ -149,9 +148,13 @@ section {
 		bottom: 0;
 		left: 0;
 		width: 100%;
-		height: 1px;
-		clip-path: inset(50% 0 0 0); // hide fantom border in safari
+
+		height: 2px;
+		clip-path: inset(66% 0 0 0); // hide fantom border in safari
 		border-bottom: 1px solid var(--secondary-color-dark);
 		border-radius: 50%;
+		@media (-webkit-max-device-pixel-ratio: 1.99) {
+			scale: 1 1.3;
+		}
 	}
 }

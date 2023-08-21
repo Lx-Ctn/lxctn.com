@@ -1,15 +1,38 @@
 :root {
+	--main-color: hsl(187deg 100% 50%);
+	--dark-color: hsl(195, 100%, 16%);
+	--very-light-main-color: hsl(187deg 100% 90%);
+
+	--secondary-color: hsl(347deg 100% 50%);
+	--secondary-color-dark: hsl(347deg, 50%, 20%);
+
+	--background-color: #fff;
+
+	--header-height: 5em;
+	@media (width < 500px) {
+		--header-height: 6em;
+	}
+	--header-mobile-nav-height: 0em;
+
+	--svg-stroke-width: 8px;
+
 	font-size: calc(10px + 1vw);
 	font-family: "K2D", sans-serif;
 	font-weight: 400;
 	text-align: center;
-	color: hsl(195, 100%, 16%);
+	color: var(--dark-color, hsl(195, 100%, 16%));
+
+	scrollbar-gutter: stable both-edges;
+	&::-webkit-scrollbar {
+		width: 0;
+	}
 }
 
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	-webkit-tap-highlight-color: transparent;
 }
 
 @font-face {

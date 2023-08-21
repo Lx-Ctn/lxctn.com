@@ -25,7 +25,7 @@
 }
 
 // Include container on hover (better ui) :
-div:hover > div > ._ {
+button:hover > div > ._ {
 	.lPath {
 		d: path(var(--curved-l-path));
 	}

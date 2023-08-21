@@ -35,12 +35,10 @@ export const Home = () => {
 
 const ButtonLink = ({ to, children }) => {
 	return (
-		<button>
+		<Link className="button" to={to}>
 			<ShiningFrame />
-			<Link className="button" to={to}>
-				{children}
-			</Link>
-		</button>
+			{children}
+		</Link>
 	);
 };
 

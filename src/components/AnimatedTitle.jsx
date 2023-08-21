@@ -27,7 +27,6 @@ const AnimatedTitle = () => {
 	};
 
 	const currentWord = displayedWords[count];
-	console.log({ currentWord, displayedWords, count });
 
 	return (
 		<motion.h1 {...titleVariants(currentWord.length)} onHoverStart={restartAnimation}>

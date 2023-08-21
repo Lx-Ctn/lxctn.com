@@ -38,6 +38,8 @@
 	}
 
 	.sideNav {
+		display: block;
+		margin: 0;
 		width: var(--side-nav-size);
 		padding: 1em;
 		cursor: pointer;
@@ -79,9 +81,15 @@
 					&:after {
 						border-color: var(--active-color);
 						scale: 0.7 1;
+						@media (-webkit-max-device-pixel-ratio: 1.99) {
+							scale: 0.7 1.5;
+						}
 					}
 					&:hover:after {
 						scale: 1;
+						@media (-webkit-max-device-pixel-ratio: 1.99) {
+							scale: 1 1.5;
+						}
 					}
 
 					svg {

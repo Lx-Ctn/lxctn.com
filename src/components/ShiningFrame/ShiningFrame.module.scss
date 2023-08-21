@@ -15,6 +15,8 @@
 		inset: 0;
 		border: 2px solid var(--secondary-color-dark);
 		border-radius: var(--radius);
+
+		opacity: 0.7;
 		transition: opacity 0.3s;
 	}
 }
@@ -44,7 +46,7 @@
 
 .spinning_frame {
 	position: absolute;
-	inset: 0;
+	inset: 0px;
 
 	border-radius: var(--radius);
 	overflow: hidden;
@@ -69,13 +71,13 @@
 		inset: 1px;
 
 		background-color: var(--background-color);
-		border-radius: var(--radius);
+		border-radius: calc(var(--radius) - 1px);
 	}
 }
 
 *:hover > ._ {
 	&::before {
-		opacity: 0.4;
+		opacity: 0.3;
 	}
 	.halo {
 		opacity: 1;
@@ -90,6 +92,7 @@
 		transition: rotate 0.9s cubic-bezier(0.7, 0, 0.8, 1);
 	}
 	.spinning_frame::after {
-		inset: 1.5px;
+		inset: 1.3px;
+		border-radius: calc(var(--radius) - 1.5px);
 	}
 }

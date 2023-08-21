@@ -30,7 +30,7 @@
 	}
 }
 
-div:hover > ._ {
+button:hover > ._ {
 	&:not(.open) {
 		path:nth-child(1) {
 			transform: translateY(-15%);

@@ -97,14 +97,15 @@ const Hamburger = ({ isIntro, isAnimating, isMobileMenuOpen, isParameterMenuOpen
 		} else dispatch(toggleMobileMenu());
 	};
 	return (
-		<motion.div
+		<motion.button
+			aria-label="Navigation menu"
 			className={`${css.sideNav} ${css.hamburger}`}
 			onClick={handleClick}
 			variants={isAnimating && hamburgerVariants(isIntro)}
 			{...animPropsNames}
 		>
 			<HamburgerIcon />
-		</motion.div>
+		</motion.button>
 	);
 };
 
@@ -156,7 +157,8 @@ const Logo = ({ isIntro, isMobile, isAnimating }) => {
 	const endIntro = isIntro && isMobile && (() => dispatch(introEnded()));
 
 	return (
-		<motion.div
+		<motion.button
+			aria-label="Logo Lx : Home button"
 			className={`${css.sideNav} ${css.logoLx} ${isAnimating ? "" : css.reducedMotion}`}
 			onClick={() => navigate("/")}
 		>
@@ -167,7 +169,7 @@ const Logo = ({ isIntro, isMobile, isAnimating }) => {
 			) : (
 				<LogoLx color={undefined} />
 			)}
-		</motion.div>
+		</motion.button>
 	);
 };
 
@@ -176,8 +178,13 @@ const ParameterButton = ({ isAnimating }) => {
 	const toggleParam = () => dispatch(toggleParameterMenu());
 
 	return (
-		<motion.div className={`${css.sideNav}`} onClick={toggleParam} variants={isAnimating && gearVariants}>
+		<motion.button
+			aria-label="Parameter menu"
+			className={`${css.sideNav}`}
+			onClick={toggleParam}
+			variants={isAnimating && gearVariants}
+		>
 			<GearIcon />
-		</motion.div>
+		</motion.button>
 	);
 };
