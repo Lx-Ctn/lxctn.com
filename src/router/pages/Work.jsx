@@ -1,12 +1,13 @@
 import css from "./Work.module.scss";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 
 import { motion, AnimatePresence } from "framer-motion";
 import { animPropsNames } from "../../utils/animation";
 
 import { useSelector } from "react-redux";
 import { get } from "../../store/selectors";
-import { NavLink, useOutlet } from "react-router-dom";
+import { NavLink, Link, useOutlet, useLoaderData } from "react-router-dom";
+import { resetScroll } from "../Router";
 
 import projectsData from "../../assets/projectsData";
 import { ShiningFrame } from "../../components";
@@ -38,6 +39,7 @@ const CustomLink = ({ children, link }) => (
 const MotionOutlet = () => {
 	const routeElement = useOutlet();
 	const pathname = window.location.pathname;
+	resetScroll();
 	return (
 		<AnimatePresence mode="wait">
 			<Fragment key={pathname}>{routeElement}</Fragment>
@@ -45,11 +47,11 @@ const MotionOutlet = () => {
 	);
 };
 
-const CardContainer = ({ getProjects }) => {
-	const data = getProjects();
+export const CardContainer = () => {
+	const [projectsList] = useState(useLoaderData());
 	return (
 		<motion.div className={css.cardContainer} variants={cardContainerTransition}>
-			{data?.map(project => (
+			{projectsList?.map(project => (
 				<Card key={project.id} {...project} />
 			))}
 		</motion.div>
@@ -59,11 +61,13 @@ const CardContainer = ({ getProjects }) => {
 const Card = project => {
 	const getImg = () => false;
 	return (
-		<motion.div className={css.card} variants={getCardTransition}>
-			<ShiningFrame angle={{ from: "-40deg", to: "140deg" }} />
-			<h2>{project.title}</h2>
-			{getImg() ? <img src={project.img.url} alt={project.img.alt}></img> : <NoImg alt={project.img.alt} />}
-			<p>{project.description}</p>
+		<motion.div className={css.card} variants={cardTransition}>
+			<Link to={`/work/${project.slug}`} className="button">
+				<ShiningFrame angle={{ from: "-40deg", to: "140deg" }} />
+				<h2>{project.title}</h2>
+				{getImg() ? <img src={project.img.url} alt={project.img.alt}></img> : <NoImg alt={project.img.alt} />}
+				<p>{project.description}</p>
+			</Link>
 		</motion.div>
 	);
 };
@@ -106,15 +110,15 @@ export const projects = {
 const workPageTransition = {
 	initial: { scale: 0.4, opacity: 0 },
 	animate: { scale: 1, opacity: 1, transition: { duration: 0.3, delayChildren: 0.15 } },
-	exit: { scale: 0.4, opacity: 0, transition: { duration: 0.2 } },
+	exit: { scale: 0.4, opacity: 0, transition: { duration: 0.2, when: "afterChildren" } },
 };
 const cardContainerTransition = {
 	initial: { scale: 0.4, opacity: 0 },
 	animate: { scale: 1, opacity: 1, transition: { duration: 0.2, staggerChildren: 0.15 } },
-	exit: { scale: 0.4, opacity: 0, transition: { duration: 0.2 } },
+	exit: { scale: 0.4, opacity: 0, transition: { duration: 0.2, delay: 0.1, staggerChildren: 0.04 } },
 };
-const getCardTransition = {
+const cardTransition = {
 	initial: { scale: 0.4, rotate: -20, opacity: 0 },
 	animate: { scale: 1, rotate: 0, opacity: 1, transition: { duration: 0.3 } },
-	exit: { scale: 0.4, opacity: 0, transition: { duration: 0.2 } },
+	exit: { scale: 0.4, rotate: -20, opacity: 0, transition: { duration: 0.15 } },
 };

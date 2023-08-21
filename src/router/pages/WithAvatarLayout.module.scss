@@ -5,6 +5,7 @@
 
 	position: relative;
 	width: 100%;
+	transform-origin: center var(--avatar-top);
 
 	display: flex;
 	flex-direction: column;
@@ -23,7 +24,7 @@
 		height: var(--avatar-size);
 
 		scale: 1;
-		transform-origin: top center;
+		transform-origin: center top;
 		transition: translate 0.4s, scale 0.4s;
 		&.reducedMotion {
 			transition: none;
@@ -44,9 +45,5 @@
 		.avatar_container {
 			scale: 0.67;
 		}
-	}
-
-	&.contact h1 {
-		margin-top: 0;
 	}
 }

@@ -1,8 +1,11 @@
 import css from "./WithAvatarLayout.module.scss";
-import { Fragment } from "react";
-import { useOutlet, useLocation } from "react-router-dom";
-import { Avatar } from "../../components";
 import { motion, AnimatePresence } from "framer-motion";
+import { Avatar } from "../../components";
+
+import { useOutlet, useLocation } from "react-router-dom";
+import { resetScroll } from "../Router";
+
+import { Fragment } from "react";
 import { useSelector } from "react-redux";
 import { get } from "../../store/selectors";
 
@@ -29,7 +32,6 @@ export const WithAvatarLayout = () => {
 
 const Outlet = () => {
 	const routeElement = useOutlet();
-	const resetScroll = () => window.scrollTo({ top: 0, behavior: "smooth" });
 	resetScroll();
 	return (
 		<AnimatePresence mode="wait">

@@ -1,7 +1,17 @@
 import { createBrowserRouter, RouterProvider, Navigate, redirect } from "react-router-dom";
 
 import { App } from "../App";
-import { WithAvatarLayout, Home, Contact, AboutMe, WorkPage, ErrorPage, projects } from "./pages";
+import {
+	WithAvatarLayout,
+	Home,
+	Contact,
+	AboutMe,
+	WorkPage,
+	ErrorPage,
+	CardContainer,
+	ProjectPage,
+} from "./pages";
+import { projectLoader, projectsListLoader } from "./handleProjetsData";
 
 const useServerHashPath = () => {
 	// Using a client routing, i need to redirect all page requests from the server to the root where is the app.
@@ -54,12 +64,14 @@ const router = createBrowserRouter([
 				children: [
 					{
 						index: true,
-						element: projects.all,
+						loader: projectsListLoader.all,
+						element: <CardContainer />,
 					},
 
 					{
 						path: "web",
-						element: projects.web,
+						loader: projectsListLoader.web,
+						element: <CardContainer />,
 					},
 					{
 						path: "web/*",
@@ -68,7 +80,8 @@ const router = createBrowserRouter([
 
 					{
 						path: "design",
-						element: projects.design,
+						loader: projectsListLoader.design,
+						element: <CardContainer />,
 					},
 					{
 						path: "design/*",
@@ -82,8 +95,9 @@ const router = createBrowserRouter([
 				],
 			},
 			{
-				//path: "work/:projectName",
-				//element: <Contact />,
+				path: "work/:projectName",
+				loader: projectLoader,
+				element: <ProjectPage />,
 			},
 		],
 	},
@@ -91,3 +105,5 @@ const router = createBrowserRouter([
 
 const Router = () => <RouterProvider router={router} />;
 export default Router;
+
+export const resetScroll = () => window.scrollTo({ top: 0, behavior: "smooth" });
