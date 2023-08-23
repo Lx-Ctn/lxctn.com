@@ -52,10 +52,6 @@ const router = createBrowserRouter([
 						path: "aboutme/*",
 						element: <Navigate to="/aboutme" replace={true} />,
 					},
-					{
-						path: "*",
-						element: <Navigate to="/" replace={true} />,
-					},
 				],
 			},
 			{
@@ -98,6 +94,10 @@ const router = createBrowserRouter([
 				path: "work/:projectName",
 				loader: projectLoader,
 				element: <ProjectPage />,
+			},
+			{
+				path: "*",
+				element: <Navigate to="/" replace={true} />,
 			},
 		],
 	},

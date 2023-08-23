@@ -8,7 +8,8 @@ import { useResponsive } from "./utils/useResponsive";
 import { usePrefersReducedMotion } from "./utils/handleReducedMotion";
 
 import { Header, Footer } from "./components";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
+import { useSafeRouting } from "./utils/useSafeRouting";
 
 export function App() {
 	useResponsive();
@@ -27,16 +28,18 @@ export function App() {
 const Main = () => {
 	const routeElement = useOutlet();
 	const { pathname } = useMatches()[1]; // Get only the first segment
+	useSafeRouting();
+
 	return (
 		<AnimatePresence mode="wait">
-			<motion.main key={pathname}>{routeElement}</motion.main>
+			<main key={pathname}>{routeElement}</main>
 		</AnimatePresence>
 	);
 };
 
 const AppContainer = () => (
 	<Provider store={store}>
-		<Router />
+		<Router key="router" />
 	</Provider>
 );
 export default AppContainer;
