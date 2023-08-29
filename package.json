@@ -1,7 +1,7 @@
 {
 	"name": "lxctn.com",
 	"description": "Lx Design : Alexandre Cottin personal website & portfolio in Web & graphic design",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"private": true,
 	"dependencies": {
 		"@reduxjs/toolkit": "^1.9.1",
