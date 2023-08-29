@@ -7,7 +7,7 @@ import Router from "./router/Router";
 import { useResponsive } from "./utils/useResponsive";
 import { usePrefersReducedMotion } from "./utils/handleReducedMotion";
 
-import { Header, Footer } from "./components";
+import { Header, Footer, UnderConstruction } from "./components";
 import { AnimatePresence } from "framer-motion";
 import { useSafeRouting } from "./utils/useSafeRouting";
 
@@ -17,6 +17,7 @@ export function App() {
 	return (
 		<>
 			<Header />
+			<UnderConstruction />
 			<div className="under-header">
 				<Main />
 				<Footer />

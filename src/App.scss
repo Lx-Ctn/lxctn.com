@@ -55,7 +55,8 @@ a {
 }
 
 a:not(.button),
-nav button {
+nav button,
+button.link {
 	position: relative;
 	transition: scale 0.2s, color 0.2s;
 	color: var(--dark-color);

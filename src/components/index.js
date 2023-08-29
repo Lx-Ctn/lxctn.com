@@ -14,3 +14,4 @@ export { Pseudo } from "./Pseudo/Pseudo";
 export { ShiningFrame } from "./ShiningFrame/ShiningFrame";
 export { Footer } from "./Footer/Footer";
 export { Em } from "./Em";
+export { UnderConstruction } from "./UnderConstruction/UnderConstruction";
