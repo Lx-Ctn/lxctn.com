@@ -12,6 +12,9 @@ package-lock.json
 # production
 /build
 
+#images
+/src/assets/images
+
 # misc
 /.vscode
 .DS_Store

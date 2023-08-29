@@ -10,7 +10,7 @@ import { NavLink, Link, useOutlet, useLoaderData } from "react-router-dom";
 import { resetScroll } from "../Router";
 
 import projectsData from "../../assets/projectsData";
-import { ShiningFrame } from "../../components";
+import { ShiningFrame, ImageWebp } from "../../components";
 
 export const WorkPage = () => {
 	const reducedMotion = useSelector(get.reducedMotion);
@@ -23,7 +23,7 @@ export const WorkPage = () => {
 				<CustomLink link={"design"}>Graphic Design</CustomLink>
 			</nav>
 			<MotionOutlet />
-			<p>Voilà....</p>
+			<p>Voilà !</p>
 		</motion.div>
 	);
 };
@@ -59,20 +59,38 @@ export const CardContainer = () => {
 };
 
 const Card = project => {
-	const getImg = () => false;
 	return (
 		<motion.div className={css.card} variants={cardTransition}>
 			<Link to={`/work/${project.slug}`} className="button">
 				<ShiningFrame angle={{ from: "-40deg", to: "140deg" }} />
 				<h2>{project.title}</h2>
-				{getImg() ? <img src={project.img.url} alt={project.img.alt}></img> : <NoImg alt={project.img.alt} />}
+				<Img imgData={project.img ?? {}} />
 				<p>{project.description}</p>
 			</Link>
 		</motion.div>
 	);
 };
 
-const NoImg = ({ alt }) => <div className={css.noImg} />;
+const Img = ({ imgData }) => {
+	const getSrcset = (url, source) => {
+		return source
+			? Object.keys(source).reduce(
+					(srcset, size) => `${srcset}, ${require(`../../assets/images/${url + source[size]}`)} ${size}`,
+					""
+			  )
+			: "";
+	};
+	return imgData.webp || imgData.jpg ? (
+		<ImageWebp
+			webp={getSrcset(imgData.url, imgData.webp)}
+			jpg={getSrcset(imgData.url, imgData.jpg)}
+			alt={imgData.alt}
+			sizes={"15em"}
+		/>
+	) : (
+		<div className={css.noImg}>{imgData.alt}</div>
+	);
+};
 
 export const Spinner = () => {
 	return (
