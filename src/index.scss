@@ -36,14 +36,35 @@
 }
 
 @font-face {
+	font-family: K2D;
+	src: url(./assets/fonts/K2D-Thin.ttf) format("truetype");
+	font-display: swap;
+	font-weight: 100;
+}
+@font-face {
+	font-family: K2D;
+	src: url(./assets/fonts/K2D-Regular.ttf) format("truetype");
+	font-display: swap;
+	font-weight: 400;
+}
+@font-face {
+	font-family: K2D;
+	src: url(./assets/fonts/K2D-Bold.ttf) format("truetype");
+	font-display: swap;
+	font-weight: 700;
+}
+
+@font-face {
 	font-family: Exo;
 	src: url(./assets/fonts/Exo-VariableFont_wght.ttf) format("truetype-variations");
+	font-display: swap;
 	font-weight: 100 900;
 }
 
 @font-face {
 	font-family: AlbertSans;
 	src: url(./assets/fonts/AlbertSans-VariableFont_wght.ttf) format("truetype-variations");
+	font-display: swap;
 	font-weight: 100 900;
 }
 
