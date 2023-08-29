@@ -2,11 +2,11 @@ import css from "./Work.module.scss";
 import { Fragment, useState } from "react";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { animPropsNames } from "../../utils/animation";
+import { animPropsNames, noAnimPropsNames } from "../../utils/animation";
 
 import { useSelector } from "react-redux";
 import { get } from "../../store/selectors";
-import { NavLink, Link, useOutlet, useLoaderData } from "react-router-dom";
+import { NavLink, useLoaderData, useOutlet, useNavigate } from "react-router-dom";
 import { resetScroll } from "../Router";
 
 import projectsData from "../../assets/projectsData";
@@ -22,8 +22,10 @@ export const WorkPage = () => {
 				<CustomLink link={"web"}>Web</CustomLink>
 				<CustomLink link={"design"}>Graphic Design</CustomLink>
 			</nav>
-			<MotionOutlet />
-			<p>Voilà !</p>
+			<motion.div className={css.outletContainer} variants={outletContainerTransition}>
+				<MotionOutlet />
+			</motion.div>
+			{/* <p>Voilà !</p> */}
 		</motion.div>
 	);
 };
@@ -48,9 +50,15 @@ const MotionOutlet = () => {
 };
 
 export const CardContainer = () => {
+	const reducedMotion = useSelector(get.reducedMotion);
 	const [projectsList] = useState(useLoaderData());
+
 	return (
-		<motion.div className={css.cardContainer} variants={cardContainerTransition}>
+		<motion.div
+			className={css.cardContainer}
+			variants={cardContainerTransition}
+			{...(reducedMotion ? noAnimPropsNames : animPropsNames)}
+		>
 			{projectsList?.map(project => (
 				<Card key={project.id} {...project} />
 			))}
@@ -59,15 +67,23 @@ export const CardContainer = () => {
 };
 
 const Card = project => {
+	const navigate = useNavigate();
+	const navigateToProject = e => {
+		e.preventDefault();
+		navigate(`/work/${project.slug}`);
+	};
 	return (
-		<motion.div className={css.card} variants={cardTransition}>
-			<Link to={`/work/${project.slug}`} className="button">
-				<ShiningFrame angle={{ from: "-40deg", to: "140deg" }} />
-				<h2>{project.title}</h2>
-				<Img imgData={project.img ?? {}} />
-				<p>{project.description}</p>
-			</Link>
-		</motion.div>
+		<motion.a
+			className={`${css.card} button`}
+			href={`/work/${project.slug}`}
+			onClick={navigateToProject}
+			variants={cardTransition}
+		>
+			<ShiningFrame angle={{ from: "-40deg", to: "140deg" }} />
+			<h2>{project.title}</h2>
+			<Img imgData={project.img ?? {}} />
+			<p>{project.description}</p>
+		</motion.a>
 	);
 };
 
@@ -127,16 +143,23 @@ export const projects = {
 
 const workPageTransition = {
 	initial: { scale: 0.4, opacity: 0 },
-	animate: { scale: 1, opacity: 1, transition: { duration: 0.3, delayChildren: 0.15 } },
-	exit: { scale: 0.4, opacity: 0, transition: { duration: 0.2, when: "afterChildren" } },
+	animate: { scale: 1, opacity: 1, transition: { type: "spring", duration: 0.6, delayChildren: 0.15 } },
+	exit: { scale: 0.4, opacity: 0, transition: { duration: 0.18, delay: 0.07 } },
+};
+const outletContainerTransition = {
+	exit: { scale: 2, opacity: 0, transition: { duration: 0.15 } },
 };
 const cardContainerTransition = {
 	initial: { scale: 0.4, opacity: 0 },
-	animate: { scale: 1, opacity: 1, transition: { duration: 0.2, staggerChildren: 0.15 } },
-	exit: { scale: 0.4, opacity: 0, transition: { duration: 0.2, delay: 0.1, staggerChildren: 0.04 } },
+	animate: { scale: 1, opacity: 1, transition: { duration: 0.2, staggerChildren: 0.1, staggerDirection: -1 } },
+	exit: {
+		scale: 0.4,
+		opacity: 0,
+		transition: { duration: 0.2, delay: 0.1, staggerChildren: 0.025, staggerDirection: -1 },
+	},
 };
 const cardTransition = {
-	initial: { scale: 0.4, rotate: -20, opacity: 0 },
-	animate: { scale: 1, rotate: 0, opacity: 1, transition: { duration: 0.3 } },
-	exit: { scale: 0.4, rotate: -20, opacity: 0, transition: { duration: 0.15 } },
+	initial: { scale: 0.5, rotate: -13, opacity: 0 },
+	animate: { scale: 1, rotate: 0, opacity: 1, transition: { type: "spring", duration: 0.9 } },
+	exit: { scale: 0.6, rotate: 13, opacity: 0, transition: { duration: 0.13 } },
 };

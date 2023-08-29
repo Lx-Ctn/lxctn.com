@@ -25,12 +25,12 @@ export const WithAvatarLayout = () => {
 			</div>
 			{/* Outlet to render HomeElement or Contact as sub-route :
 				-> to keep Avatar on screen and alow a smooth transition */}
-			<Outlet />
+			<MotionOutlet />
 		</motion.div>
 	);
 };
 
-const Outlet = () => {
+const MotionOutlet = () => {
 	const routeElement = useOutlet();
 	resetScroll();
 	return (

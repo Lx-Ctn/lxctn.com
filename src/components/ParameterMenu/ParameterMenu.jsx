@@ -1,7 +1,7 @@
 import css from "./ParameterMenu.module.scss";
 import { motion } from "framer-motion";
 import { childVariants, paramMenuVariants } from "./ParameterMenu.motion";
-import { animPropsNames } from "../Header/Header.motion";
+import { animPropsNames } from "../../utils/animation";
 import { Checkbox } from "../Checkbox/Checkbox";
 import { useSelector } from "react-redux";
 import { get } from "../../store/selectors";

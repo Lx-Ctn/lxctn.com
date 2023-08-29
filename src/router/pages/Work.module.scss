@@ -94,9 +94,15 @@
 	margin: auto;
 }
 
+.outletContainer {
+	transform-origin: top;
+}
+
 .cardContainer {
 	display: flex;
 	flex-wrap: wrap;
+
+	transform-origin: top;
 }
 
 .card {
@@ -105,10 +111,12 @@
 
 	margin: 1em;
 	padding: 0.7em;
+	padding-bottom: 1em;
 
 	font-size: 0.7em;
 
 	scale: 1;
+	transform-origin: center;
 	transition: scale 0.3s;
 	&:hover {
 		scale: 1.04;

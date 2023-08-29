@@ -6,8 +6,6 @@
 	--side-nav-size: clamp(31px + 2em, (0.4 * 8.5vw) + 40px, 51px + 2em);
 
 	position: fixed;
-	//top: 0;
-	//margin-bottom: 1em;
 
 	width: 100%;
 	z-index: 3;
@@ -24,7 +22,7 @@
 
 	.logoLx {
 		transition: scale 1s, translate 0.5s; // each have they own origine ;)
-		&.reduceMotion {
+		&.reducedMotion {
 			transition: scale 1s;
 		}
 
@@ -106,6 +104,25 @@
 	}
 
 	transition: font-size 0.2s;
+
+	&::before,
+	&::after {
+		//content: "";
+		position: absolute;
+		height: 2px;
+		bottom: -2px;
+		width: 50%;
+		border-bottom: 2px dotted var(--dark-color);
+		border-radius: 50%;
+		opacity: 30%;
+		clip-path: inset(50% 0 0 0);
+	}
+	&::before {
+		right: -25%;
+	}
+	&::after {
+		left: -25%;
+	}
 }
 
 .mobile {

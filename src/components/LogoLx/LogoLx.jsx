@@ -70,7 +70,7 @@ const LogoLx = ({ color, intro, waving, setIsAnimationEnded, ...props }) => {
 				setIsAnimationEnded?.(true);
 			}, 600);
 		return () => clearTimeout(timedAnimEnd);
-	});
+	}, [intro, setIsAnimationEnded]);
 
 	const lVariants = {
 		initial: waving ? { d: L_PATH } : { d: CURVED_L_PATH },

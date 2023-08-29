@@ -1,6 +1,6 @@
 import css from "./Home.module.scss";
 import { motion } from "framer-motion";
-import { animPropsNames } from "../../utils/animation";
+import { animPropsNames, noAnimPropsNames } from "../../utils/animation";
 
 import { useSelector } from "react-redux";
 import { get } from "../../store/selectors";
@@ -11,9 +11,12 @@ import { ShiningFrame, AnimatedTitle } from "../../components";
 export const Home = () => {
 	const reducedMotion = useSelector(get.reducedMotion);
 	const isIntro = useSelector(get.isIntro);
-
 	return (
-		<motion.div className={css._} variants={homeAnimation(isIntro)} {...(!reducedMotion && animPropsNames)}>
+		<motion.div
+			className={css._}
+			variants={homeAnimation(isIntro)}
+			{...(reducedMotion ? noAnimPropsNames : animPropsNames)}
+		>
 			{reducedMotion ? <h1>Lx Design</h1> : <AnimatedTitle />}
 			<motion.section variants={sectionAnimation(isIntro)}>
 				<p>I'm a web designer, front-end developer, specialized in React</p>

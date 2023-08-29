@@ -49,18 +49,32 @@ const contents = [
 	<p>
 		I'm a <Em>web designer</Em>, front-end developer, specialized in <Em>React</Em>
 	</p>,
-	<p>
-		I'm a <Em>graphic designer</Em>, front-end developer, specialized in <Em>React</Em>
-	</p>,
-	<p>
-		I'm a <Em>motion designer</Em>, front-end developer, specialized in <Em>React</Em>
-	</p>,
+	<div>
+		<p>
+			En provenance du monde du <Em>graphisme</Em>, j'ai embrassé le domaine du <Em>web design</Em> il y a
+			quelques années. Ma fascination pour la <Em>programmation</Em> remonte à longtemps, et tandis que je
+			poursuivais ma carrière de graphiste, j'ai entrepris une formation en ligne accélérée pour me rapprocher
+			du domaine du web. Cependant, ce n'est qu'après avoir réalisé des projets de sites web avec WordPress
+			suite à des commandes que j'ai réellement plongé dans cette discipline.
+		</p>
+		<p>
+			Je me suis trouvé profondément frustré en tant que designer de ne pas avoir de compétences en
+			développement. Cela m'a poussé à stopper mon activité de graphiste et à m'immerger dans une formation
+			intensive en <Em>développement web</Em>, une démarche qui perdure depuis. Je nourris une grande impatience
+			à l'idée de faire de cette passion mon métier et à rejoindre une équipe où je pourrais partager mes
+			compétences et les faire évoluer.
+		</p>
+		<p>Au plaisir,</p>
+		<p>Alexandre Cottin</p>
+	</div>,
 ];
 
 const Section = ({ direction, children, delay, reducedMotion }) => {
 	const variants = slideInAnimation(direction, delay);
-	return (
-		<motion.section variants={variants} {...(!reducedMotion && scrollPropsNames)} viewport={{ amount: 0.5 }}>
+	return reducedMotion ? (
+		<section>{children}</section>
+	) : (
+		<motion.section variants={variants} {...scrollPropsNames} viewport={{ amount: 0.5 }}>
 			{children}
 		</motion.section>
 	);

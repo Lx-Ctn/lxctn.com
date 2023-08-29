@@ -5,19 +5,10 @@ export const ANIMATIONS_DELAY = {
 	SIDE_NAV: 1.2, // First appearance delay + wait for nav animation
 	EXIT: 0.5, // s
 };
-
-export const animPropsNames = {
-	initial: "initial",
-	animate: "animate",
-	exit: "exit",
-	transition: "transition",
-};
-
 export const headerVariants = {
 	initial: {},
 	animate: {},
 	exit: {},
-	transition: {},
 };
 
 export const navVariants = (isIntro, isMobile) => ({

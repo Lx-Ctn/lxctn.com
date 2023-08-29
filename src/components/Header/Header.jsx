@@ -8,8 +8,9 @@ import {
 	hamburgerVariants,
 	linkVariants,
 	gearVariants,
-	animPropsNames,
 } from "./Header.motion";
+import { animPropsNames } from "../../utils/animation";
+
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -65,7 +66,7 @@ export default function Header() {
 	return (
 		<motion.header
 			ref={headerRef}
-			className={`${css._} ${isMobile ? css.mobile : null} ${isIntro ? css.intro : null}`}
+			className={`${css._} ${isMobile ? css.mobile : ""} ${isIntro ? css.intro : ""}`}
 			variants={headerVariants}
 			{...animPropsNames}
 		>
@@ -183,6 +184,7 @@ const ParameterButton = ({ isAnimating }) => {
 			className={`${css.sideNav}`}
 			onClick={toggleParam}
 			variants={isAnimating && gearVariants}
+			{...animPropsNames}
 		>
 			<GearIcon />
 		</motion.button>
