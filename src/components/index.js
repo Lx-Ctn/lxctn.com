@@ -9,3 +9,9 @@ export { BackdropGradientBlur } from "./BackdropGradientBlur/BackdropGradientBlu
 export { HamburgerIcon } from "./HamburgerIcon/HamburgerIcon";
 export { Checkbox } from "./Checkbox/Checkbox";
 export { ParameterMenu } from "./ParameterMenu/ParameterMenu";
+export { HomeIcon } from "./HomeIcon/HomeIcon";
+export { Pseudo } from "./Pseudo/Pseudo";
+export { ShiningFrame } from "./ShiningFrame/ShiningFrame";
+export { Footer } from "./Footer/Footer";
+export { Em } from "./Em";
+export { UnderConstruction } from "./UnderConstruction/UnderConstruction";

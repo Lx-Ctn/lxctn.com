@@ -1,13 +1,18 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { get } from "../store/selectors";
 
 const displayedWords = ["Design", "Web", "Games", "Branding", "Code", "Design"];
-const delayBetweenWords = 500;
+const delayBetweenWords = 700;
+const maxWords = displayedWords.length - 1;
 
 const AnimatedTitle = () => {
-	const [count, setCount] = useState(0);
+	const isIntro = useSelector(get.isIntro);
+	const [count, setCount] = useState(isIntro ? 0 : maxWords);
+
 	useEffect(() => {
-		if (count < displayedWords.length - 1) {
+		if (count < maxWords) {
 			const waitNextWord = setTimeout(() => {
 				setCount(count => count + 1);
 			}, delayBetweenWords);
@@ -17,13 +22,21 @@ const AnimatedTitle = () => {
 		}
 	}, [setCount, count]);
 
+	const restartAnimation = () => {
+		if (count === maxWords) setCount(0);
+	};
+
 	const currentWord = displayedWords[count];
 
 	return (
-		<motion.h1 {...titleVariants(currentWord.length)}>
+		<motion.h1 {...titleVariants(currentWord.length)} onHoverStart={restartAnimation}>
 			Lx{" "}
-			<AnimatePresence mode="wait">
-				<motion.span key={count} {...wordVariants}>
+			<AnimatePresence mode="sync">
+				<motion.span
+					key={count}
+					{...wordVariants}
+					style={{ position: "absolute", left: "2ch", paddingBottom: "0.1em" }}
+				>
 					{currentWord}
 				</motion.span>
 			</AnimatePresence>
@@ -41,7 +54,7 @@ const titleVariants = length => ({
 });
 const wordVariants = {
 	initial: { clipPath: "inset(0 100% 0 0)" },
-	animate: { clipPath: "inset(0 0% 0 0)" },
-	exit: { clipPath: "inset(0 100% 0 0)" },
-	transition: { duration: 0.1 },
+	animate: { clipPath: "inset(0 0% 0 0)", transition: { duration: 0.25, delay: 0.09 } },
+	exit: { clipPath: "inset(0 0 0 100%)" },
+	transition: { duration: 0.25 },
 };

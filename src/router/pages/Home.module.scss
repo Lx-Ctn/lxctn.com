@@ -1,0 +1,15 @@
+._ {
+	margin-top: calc(37vh - (var(--avatar-size) / 2));
+	margin-top: calc(37svh - (var(--avatar-size) / 2));
+	transform-origin: top;
+
+	h1 {
+		text-align: start;
+		display: inline-block;
+
+		min-width: 5ch;
+		overflow: visible;
+		white-space: nowrap;
+		margin: 0 auto 15vh auto;
+	}
+}

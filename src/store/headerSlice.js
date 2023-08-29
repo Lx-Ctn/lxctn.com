@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import { HEADER_MOBILE_BREAKPOINT } from "../components/Header/Header";
 
 const initialHeaderState = {
-	isIntro: true,
 	isMobile: window.innerWidth < HEADER_MOBILE_BREAKPOINT,
 	isMobileMenuOpen: false,
 	isParameterMenuOpen: false,
@@ -12,9 +11,6 @@ const headerSlice = createSlice({
 	name: "header",
 	initialState: initialHeaderState,
 	reducers: {
-		introEnded: state => {
-			state.isIntro = false;
-		},
 		setHeaderMobile: state => {
 			if (window.innerWidth < HEADER_MOBILE_BREAKPOINT) {
 				state.isMobile = true;
@@ -37,12 +33,6 @@ const headerSlice = createSlice({
 		},
 	},
 });
-export const {
-	introEnded,
-	setHeaderMobile,
-	toggleMobileMenu,
-	closeMobileMenu,
-	toggleParameterMenu,
-	closeParameterMenu,
-} = headerSlice.actions;
+export const { setHeaderMobile, toggleMobileMenu, closeMobileMenu, toggleParameterMenu, closeParameterMenu } =
+	headerSlice.actions;
 export default headerSlice.reducer;

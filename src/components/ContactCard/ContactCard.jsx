@@ -1,10 +1,11 @@
-import Styles from "./ContactCard.module.scss";
+import css from "./ContactCard.module.scss";
 import { motion } from "framer-motion";
+import { Pseudo } from "../Pseudo/Pseudo";
 
 export const ContactCard = () => {
 	return (
-		<motion.div className={Styles.container}>
-			<h1>Alexandre COTTIN</h1>
+		<motion.div className={css._}>
+			<Pseudo inLineLimit={358} />
 			<p>
 				Tel : <a href="tel:0658529939">06 58 52 99 39</a>
 			</p>

@@ -1,4 +1,4 @@
-.container {
+._ {
 	border: 1px solid #0099df;
 	border-radius: 2em;
 
@@ -6,7 +6,12 @@
 	margin: 2em;
 	padding: 1em 2em;
 
-	h1 {
-		font-weight: 100;
+	p {
+		margin: 0.1em 0;
+
+		a {
+			padding-inline: 0.2em;
+			padding-bottom: 0.1em;
+		}
 	}
 }

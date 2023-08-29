@@ -3,14 +3,14 @@ import LogoLx from "../LogoLx/LogoLx";
 import { AnimatePresence } from "framer-motion";
 
 const AppLoader = ({ LazyApp }) => {
-	const [isLoaded, setIsLoading] = useState(false);
+	const [isLoaded, setIsLoaded] = useState(false);
 	const [isAnimationCompleted, setIsAnimationEnded] = useState(false);
 
 	useEffect(() => {
 		const loadApp = async () => {
 			try {
 				await LazyApp;
-				setIsLoading(true);
+				setIsLoaded(true);
 			} catch (error) {
 				console.error("AppLoader : ", error);
 			}

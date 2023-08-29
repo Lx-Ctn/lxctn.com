@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16" height="16" style="rotate: 30deg; transform-origin: center;" xmlns="http://www.w3.org/2000/svg"
+   viewBox="0 0 200 200">
+   <defs>
+      <style>
+         path {
+            fill: none;
+            stroke: black;
+            stroke-width: 18px;
+            stroke-linecap: round;
+         }
+
+         .around path {
+            stroke: #fff;
+            stroke-width: 45px;
+         }
+      </style>
+   </defs>
+   <g class="around">
+      <path d="m75,25 q 0 50, -50 50" />
+      <path d="m25,120 q 50 0, 50 50" />
+      <path d="m170,120 q -50 0, -50 50" />
+      <path d="m170,75 q -50 0, -50 -50" />
+   </g>
+
+   <path d="m75,25 q 0 50, -50 50" />
+   <path d="m25,120 q 50 0, 50 50" />
+   <path d="m170,120 q -50 0, -50 50" />
+   <path d="m170,75 q -50 0, -50 -50" />
+</svg>

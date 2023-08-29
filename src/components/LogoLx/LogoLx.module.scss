@@ -22,11 +22,14 @@
 	path {
 		transition: d 0.4s linear;
 	}
+}
 
-	&:hover .lPath {
+// Include container on hover (better ui) :
+button:hover ._ {
+	.lPath {
 		d: path(var(--curved-l-path));
 	}
-	&:hover .xPath {
+	.xPath {
 		d: path(var(--curved-x-path));
 	}
 }

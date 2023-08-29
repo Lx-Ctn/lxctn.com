@@ -1,6 +1,5 @@
 import css from "./Header.module.scss";
 import { LogoLx, GearIcon, BackdropGradientBlur, HamburgerIcon, ParameterMenu } from "../../components";
-import { DelayRender } from "../utils/DelayRender";
 import { motion, AnimatePresence } from "framer-motion";
 import {
 	headerVariants,
@@ -9,28 +8,40 @@ import {
 	hamburgerVariants,
 	linkVariants,
 	gearVariants,
-	SIDE_NAV_DELAY,
-	animPropsNames,
 } from "./Header.motion";
-import { useEffect, useRef, useState } from "react";
+import { animPropsNames } from "../../utils/animation";
+
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { introEnded, closeMobileMenu, toggleParameterMenu, closeParameterMenu } from "../../store/headerSlice";
+import {
+	toggleMobileMenu,
+	closeMobileMenu,
+	toggleParameterMenu,
+	closeParameterMenu,
+} from "../../store/headerSlice";
+import { introEnded } from "../../store/appSlice";
+import { get } from "../../store/selectors";
+import { NavLink, useNavigate } from "react-router-dom";
 
 //
 export const HEADER_MOBILE_BREAKPOINT = 500;
+export const HEADER_MOBILE_NAV_HIGHT = `${4 * 2.1 * 1.5}rem`; // link : 1em (font-size) * 1.3 (line-height) + 2 * 0.3em (padding) + 0.2em (visual margin for better lisibility) = 2.1em * 4 links
 
 export default function Header() {
 	const headerRef = useRef();
 	const dispatch = useDispatch();
 
-	const isIntro = useSelector(state => state.header.isIntro); // To change animation after the first render
-	const isMobile = useSelector(state => state.header.isMobile);
+	const isIntro = useSelector(get.isIntro); // To change animation after the first render
+	const isMobile = useSelector(get.isMobile);
 
-	// Handle closeable menus :
-	const isMobileMenuOpen = useSelector(state => state.header.isMobileMenuOpen);
-	const isParameterMenuOpen = useSelector(state => state.header.isParameterMenuOpen);
+	const isAnimating = !useSelector(get.reducedMotion);
+
+	const isMobileMenuOpen = useSelector(get.isMobileMenuOpen);
+	const isParameterMenuOpen = useSelector(get.isParameterMenuOpen);
 
 	useEffect(() => {
+		// close menus when we click outsite of it :
+
 		const isOutsiteHeader = ({ target }) => !headerRef.current.contains(target);
 		const handleCloseOutside = {
 			nav: event => isOutsiteHeader(event) && dispatch(closeMobileMenu()),
@@ -42,111 +53,140 @@ export default function Header() {
 			window.removeEventListener("click", handleCloseOutside.nav);
 			window.removeEventListener("click", handleCloseOutside.param);
 		};
-	});
+	}, [isMobileMenuOpen, isParameterMenuOpen, dispatch]);
 
-	// Get Parameter menu height before display to animate it's arrival :
-	const [paramMenuHeight, setParamMenuHeight] = useState(null);
-	!isParameterMenuOpen && paramMenuHeight && setParamMenuHeight(null);
-	console.log("Header :", paramMenuHeight);
+	//
+	useEffect(() => {
+		// Keep content in view when mobile nav is open to see where we go instead of covering it :
+
+		isMobileMenuOpen && document.body.style.setProperty("--header-mobile-nav-height", HEADER_MOBILE_NAV_HIGHT);
+		return () => document.body.style.setProperty("--header-mobile-nav-height", "0em");
+	}, [isMobileMenuOpen, dispatch]);
 
 	return (
 		<motion.header
 			ref={headerRef}
-			className={`${css._} ${isMobile && css.mobile} ${isIntro && css.intro}`}
+			className={`${css._} ${isMobile ? css.mobile : ""} ${isIntro ? css.intro : ""}`}
 			variants={headerVariants}
 			{...animPropsNames}
 		>
 			<BackdropGradientBlur blur="12px" color="#fff6" fromEnd="2em" style={{ bottom: "-1.5em" }} />
-			<AnimatePresence>{!isMobile && <Nav key="nav" isIntro={isIntro} />}</AnimatePresence>
-			<AnimatePresence>{isMobile && <Hamburger key="hamburger" isIntro={isIntro} />}</AnimatePresence>
-			<div className={css.container}>
-				<Logo {...{ isIntro, isMobile }} />
-				<ParameterButton />
-			</div>
-			<AnimatePresence>{isMobileMenuOpen && <Nav isMobile />}</AnimatePresence>
 			<AnimatePresence>
-				{isParameterMenuOpen && (
-					<ParameterMenu paramMenuHeight={paramMenuHeight} setParamMenuHeight={setParamMenuHeight} />
+				{isMobile ? (
+					<Hamburger key="hamburger" {...{ isIntro, isAnimating, isMobileMenuOpen, isParameterMenuOpen }} />
+				) : (
+					<Nav key="nav" {...{ isIntro, isAnimating }} />
 				)}
 			</AnimatePresence>
+			<div className={css.container}>
+				<Logo {...{ isIntro, isMobile, isAnimating }} />
+				<ParameterButton isAnimating={isAnimating} />
+			</div>
+			<AnimatePresence>{isMobileMenuOpen && <Nav isMobile {...{ isAnimating }} />}</AnimatePresence>
+			<AnimatePresence>{isParameterMenuOpen && <ParameterMenu />}</AnimatePresence>
 		</motion.header>
 	);
 }
 
-const Hamburger = ({ isIntro }) => (
-	<motion.div className={`${css.sideNav} ${css.hamburger}`} {...hamburgerVariants(isIntro)}>
-		<HamburgerIcon />
+const Hamburger = ({ isIntro, isAnimating, isMobileMenuOpen, isParameterMenuOpen }) => {
+	const dispatch = useDispatch();
+
+	const handleClick = () => {
+		if (isParameterMenuOpen && !isMobileMenuOpen) {
+			dispatch(closeParameterMenu());
+			setTimeout(() => dispatch(toggleMobileMenu()), 250);
+		} else dispatch(toggleMobileMenu());
+	};
+	return (
+		<motion.button
+			aria-label="Navigation menu"
+			className={`${css.sideNav} ${css.hamburger}`}
+			onClick={handleClick}
+			variants={isAnimating && hamburgerVariants(isIntro)}
+			{...animPropsNames}
+		>
+			<HamburgerIcon />
+		</motion.button>
+	);
+};
+
+const CustomLink = ({ children, motionPosition, link, isIntro, isMobile, isAnimating }) => (
+	<motion.div
+		key={isAnimating} // need to force rerender : a bug in framer-motion keep last initial state when isAnimating prop change
+		className={css.navLink}
+		custom={motionPosition}
+		variants={isAnimating && linkVariants(isIntro, isMobile)}
+	>
+		<NavLink className={({ isActive }) => (isActive ? css.active : null)} to={link}>
+			{children}
+		</NavLink>
 	</motion.div>
 );
 
-const Link = ({ children, motionPosition, link, isIntro, isMobile }) => (
-	<motion.a
-		className="nav-link"
-		custom={motionPosition}
-		variants={linkVariants(isIntro, isMobile)}
-		href={link}
-		target="_blank"
-		rel="noopener noreferrer"
-	>
-		{children}
-	</motion.a>
-);
-
-const Nav = ({ isIntro, isMobile }) => {
+const Nav = ({ isIntro, isMobile, isAnimating }) => {
 	const dispatch = useDispatch();
+	const endIntro = isIntro && (() => dispatch(introEnded()));
 
 	return (
 		<motion.nav
 			className={isMobile ? css.navMobile : ""}
-			variants={navVariants(isIntro, isMobile)}
+			variants={isAnimating && navVariants(isIntro, isMobile)}
 			{...animPropsNames}
-			onAnimationComplete={() => {
-				isIntro && dispatch(introEnded());
-			}}
+			onAnimationComplete={endIntro}
 		>
 			<div className={css.navContainer}>
-				<Link {...{ isIntro, isMobile }} motionPosition="20vw" link="https://lxctn.com/">
-					Who's Lx ?
-				</Link>
-				<Link {...{ isIntro, isMobile }} motionPosition={0} link="https://lxctn.com/work">
+				<CustomLink {...{ isIntro, isMobile, isAnimating }} motionPosition="25vw" link="/">
+					Hi !
+				</CustomLink>
+				<CustomLink {...{ isIntro, isMobile, isAnimating }} motionPosition="10vw" link="/aboutme">
+					Lx ?
+				</CustomLink>
+				<CustomLink {...{ isIntro, isMobile, isAnimating }} motionPosition="-10vw" link="/work">
 					Work
-				</Link>
-				<Link {...{ isIntro, isMobile }} motionPosition="-20vw" link="https://lxctn.com/contact">
+				</CustomLink>
+				<CustomLink {...{ isIntro, isMobile, isAnimating }} motionPosition="-25vw" link="/contact">
 					Contact
-				</Link>
+				</CustomLink>
 			</div>
 		</motion.nav>
 	);
 };
 
-const Logo = ({ isIntro, isMobile }) => {
+const Logo = ({ isIntro, isMobile, isAnimating }) => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const endIntro = isIntro && isMobile && (() => dispatch(introEnded()));
+
 	return (
-		<motion.div className={`${css.sideNav} ${css.logoLx}`}>
-			<DelayRender delay={SIDE_NAV_DELAY}>
-				<motion.div
-					{...logoVariants(isIntro, isMobile)}
-					onAnimationComplete={() => {
-						isIntro && dispatch(introEnded());
-					}}
-				>
+		<motion.button
+			aria-label="Logo Lx : Home button"
+			className={`${css.sideNav} ${css.logoLx} ${isAnimating ? "" : css.reducedMotion}`}
+			onClick={() => navigate("/")}
+		>
+			{isAnimating ? (
+				<motion.div variants={logoVariants(isIntro, isMobile)} onAnimationComplete={endIntro}>
 					<LogoLx color={undefined} />
 				</motion.div>
-			</DelayRender>
-		</motion.div>
+			) : (
+				<LogoLx color={undefined} />
+			)}
+		</motion.button>
 	);
 };
 
-const ParameterButton = () => {
+const ParameterButton = ({ isAnimating }) => {
 	const dispatch = useDispatch();
-	const toggleParam = () => {
-		dispatch(toggleParameterMenu());
-	};
+	const toggleParam = () => dispatch(toggleParameterMenu());
+
 	return (
-		<motion.div className={`${css.sideNav}`}>
-			<DelayRender delay={SIDE_NAV_DELAY}>
-				<GearIcon {...gearVariants} onClick={toggleParam} />
-			</DelayRender>
-		</motion.div>
+		<motion.button
+			aria-label="Parameter menu"
+			className={`${css.sideNav}`}
+			onClick={toggleParam}
+			variants={isAnimating && gearVariants}
+			{...animPropsNames}
+		>
+			<GearIcon />
+		</motion.button>
 	);
 };

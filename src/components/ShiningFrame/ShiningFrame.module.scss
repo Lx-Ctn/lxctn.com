@@ -1,0 +1,98 @@
+._ {
+	--background-color: #fff;
+	--radius: 2em;
+	--rotate-from: -20deg;
+	--rotate-to: 175deg;
+
+	position: absolute;
+	z-index: -1;
+	inset: 0;
+	border-radius: var(--radius);
+
+	&::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		border: 2px solid var(--secondary-color-dark);
+		border-radius: var(--radius);
+
+		opacity: 0.7;
+		transition: opacity 0.3s;
+	}
+}
+
+.halo {
+	position: absolute;
+	inset: 0;
+	border-radius: var(--radius);
+
+	box-shadow: 0 0 0.8em -0.6em black;
+
+	opacity: 0;
+	transition: opacity 0.5s;
+
+	&::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		border-radius: var(--radius);
+
+		box-shadow: 0.3em -0.1em 0.8em -0.4em var(--main-color), -0.3em 0.1em 0.8em -0.4em var(--secondary-color);
+
+		opacity: 0;
+		transition: opacity 0.5s;
+	}
+}
+
+.spinning_frame {
+	position: absolute;
+	inset: 0px;
+
+	border-radius: var(--radius);
+	overflow: hidden;
+	transform: translate3d(0, 0, 0); // Fix safari bug with overflow: hidden + border-radius + animation
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 100vmax;
+		height: 50%;
+		filter: blur(0.2em);
+		translate: -50% -50%;
+		background: linear-gradient(90deg, var(--main-color) 50%, var(--secondary-color) 50%);
+		rotate: var(--rotate-from);
+		transition: rotate 0.3s;
+	}
+	&::after {
+		content: "";
+		position: absolute;
+		inset: 1px;
+
+		background-color: var(--background-color);
+		border-radius: calc(var(--radius) - 1px);
+	}
+}
+
+*:hover > ._ {
+	&::before {
+		opacity: 0.3;
+	}
+	.halo {
+		opacity: 1;
+		transition: opacity 0.3s;
+		&::after {
+			opacity: 0.8;
+			transition: opacity 0.6s 0.3s;
+		}
+	}
+	.spinning_frame::before {
+		rotate: var(--rotate-to);
+		transition: rotate 0.9s cubic-bezier(0.7, 0, 0.8, 1);
+	}
+	.spinning_frame::after {
+		inset: 1.3px;
+		border-radius: calc(var(--radius) - 1.5px);
+	}
+}

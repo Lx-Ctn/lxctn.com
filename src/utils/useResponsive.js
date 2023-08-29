@@ -3,6 +3,7 @@ import { useEffect } from "react";
 
 import { updateAppWidth } from "../store/appSlice";
 import { setHeaderMobile } from "../store/headerSlice";
+import { get } from "../store/selectors";
 
 export const useResponsive = () => {
 	const dispatch = useDispatch();
@@ -12,9 +13,14 @@ export const useResponsive = () => {
 			dispatch(setHeaderMobile());
 		};
 		window.addEventListener("resize", updateScreenWidth);
-		return () => window.removeEventListener("resize", updateScreenWidth);
+		window.addEventListener("orientationchange", updateScreenWidth);
+
+		return () => {
+			window.removeEventListener("resize", updateScreenWidth);
+			window.removeEventListener("orientationchange", updateScreenWidth);
+		};
 	}, [dispatch]);
 
-	const appWidth = useSelector(state => state.app.appWidth);
+	const appWidth = useSelector(get.appWidth);
 	return appWidth;
 };

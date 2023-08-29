@@ -1,0 +1,37 @@
+._ {
+	font-size: clamp(1em, 9vw, 2em);
+	font-weight: 100;
+	transition: color 1.3s;
+
+	margin: 0.3em 0;
+
+	cursor: pointer;
+
+	span {
+		display: inline-block;
+
+		&.letterSpacing {
+			// Correct letter spacing change from display: inline-block;
+
+			&.l {
+				margin-right: -0.05em;
+			}
+			&.x {
+				margin-inline: -0.05em;
+			}
+			&.t {
+				margin-inline: -0.05em;
+			}
+		}
+	}
+
+	.highlight {
+		transition: color 1.3s;
+	}
+	&:hover {
+		color: hsla(185 100% 25% / 25%);
+	}
+	&:hover .highlight {
+		color: hsl(185, 100%, 25%);
+	}
+}

@@ -1,14 +1,5 @@
 ._ {
-	--stroke-width-quotien: 1;
-	@media screen and (max-width: 500px) {
-		--stroke-width-quotien: calc(1 / 1.5);
-	}
-
-	transition: rotate 0.6s cubic-bezier(0.33, 1.91, 0.64, 0.64);
-
-	&:hover {
-		rotate: 90deg;
-	}
+	transition: rotate 0.7s cubic-bezier(0.33, 1.91, 0.64, 0.64);
 
 	svg {
 		overflow: visible;
@@ -17,11 +8,48 @@
 			fill: none;
 			stroke: #0083a1;
 			min-height: 0vw;
-			stroke-width: clamp(
-				var(--stroke-width-quotien) * 7px,
-				var(--stroke-width-quotien) * (15px - 0.7vw),
-				var(--stroke-width-quotien) * 13px
-			);
+			stroke-width: var(--svg-stroke-width);
+
+			opacity: 1;
+			scale: 1;
+			transition: opacity 0.2s, scale 0.2s, transform 0.2s;
+			transform-origin: center;
 		}
 	}
+
+	.closeButton {
+		opacity: 0;
+		scale: 0.8;
+	}
+
+	&.open {
+		path:not(.closeButton) {
+			opacity: 0;
+			scale: 0.4;
+		}
+		.closeButton {
+			opacity: 1;
+			scale: 1;
+		}
+		.closeButton:nth-child(2) {
+			transform: rotate(45deg) translateY(28%);
+		}
+		.closeButton:nth-child(3) {
+			transform: rotate(-45deg) translateY(-28%);
+		}
+
+		&:hover {
+			.closeButton:nth-child(2) {
+				transform: rotate(35deg) translateY(28%);
+			}
+			.closeButton:nth-child(3) {
+				transform: rotate(-35deg) translateY(-28%);
+			}
+		}
+	}
+}
+
+// Include container on hover (better ui) :
+button:hover > ._:not(.open) {
+	rotate: 90deg;
 }

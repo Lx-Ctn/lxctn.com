@@ -1,38 +1,43 @@
 ._ {
-	--stroke-width-quotien: 1;
-	@media screen and (max-width: 500px) {
-		--stroke-width-quotien: calc(1 / 1.5);
-	}
-	transition: transform 0.6s cubic-bezier(0.33, 1.91, 0.64, 0.64);
-
 	svg {
 		overflow: visible;
 
 		path {
 			fill: none;
 			stroke: #0083a1;
-			min-height: 0vw;
-			stroke-width: clamp(
-				var(--stroke-width-quotien) * 7px,
-				var(--stroke-width-quotien) * (15px - 0.7vw),
-				var(--stroke-width-quotien) * 13px
-			);
+			stroke-width: var(--svg-stroke-width);
 
+			transform: translate(0);
 			transform-origin: center;
-			transition: transform 0.6s cubic-bezier(0.33, 1.91, 0.64, 0.64), stroke-width 0.2s;
+			transition: transform 0.6s cubic-bezier(0.33, 1.91, 0.64, 0.64),
+				rotate 0.6s cubic-bezier(0.33, 1.91, 0.64, 0.64), stroke-width 0.2s;
 		}
 	}
 
-	&:hover {
+	&.open {
+		path:nth-child(1) {
+			transform: translateY(28%);
+			rotate: 45deg;
+		}
+		path:nth-child(2) {
+			transform: scale(0, 1);
+			transition: transform 0.15s;
+		}
+		path:nth-child(3) {
+			transform: translateY(-28%);
+			rotate: -45deg;
+		}
+	}
+}
+
+button:hover > ._ {
+	&:not(.open) {
 		path:nth-child(1) {
 			transform: translateY(-15%);
 		}
 		path:nth-child(2) {
-			--stroke-width-quotien: calc(1 / 1.6); // Correct stroke-width with scale
+			stroke-width: calc(var(--svg-stroke-width) / 1.6); // Correct stroke-width with scale
 			transform: scale(1.6);
-			@media screen and (max-width: 500px) {
-				--stroke-width-quotien: calc(1 / 1.5 / 1.6);
-			}
 		}
 		path:nth-child(3) {
 			transform: translateY(15%);
@@ -40,27 +45,11 @@
 	}
 
 	&.open {
-		path {
-			transform-origin: center;
-		}
 		path:nth-child(1) {
-			transform: rotate(45deg) translateY(28%);
-		}
-		path:nth-child(2) {
-			transform: scale(0, 1);
-			transition: transform 0.15s;
+			rotate: 35deg;
 		}
 		path:nth-child(3) {
-			transform: rotate(-45deg) translateY(-28%);
-		}
-
-		&:hover {
-			path:nth-child(1) {
-				transform: rotate(35deg) translateY(28%);
-			}
-			path:nth-child(3) {
-				transform: rotate(-35deg) translateY(-28%);
-			}
+			rotate: -35deg;
 		}
 	}
 }

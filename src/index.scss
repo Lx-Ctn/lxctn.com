@@ -1,48 +1,90 @@
 :root {
-	font-size: calc(10px + 2vmin);
+	--main-color: hsl(187deg 100% 50%);
+	--dark-color: hsl(195, 100%, 16%);
+	--very-light-main-color: hsl(187deg 100% 90%);
+
+	--secondary-color: hsl(347deg 100% 50%);
+	--secondary-color-dark: hsl(347deg, 50%, 20%);
+
+	--background-color: #fff;
+
+	--header-height: 5em;
+	@media (width < 500px) {
+		--header-height: 6em;
+	}
+	--header-mobile-nav-height: 0em;
+
+	--svg-stroke-width: 8px;
+
+	font-size: calc(10px + 1vw);
 	font-family: "K2D", sans-serif;
 	font-weight: 400;
 	text-align: center;
-	color: hsl(195, 100%, 16%);
+	color: var(--dark-color, hsl(195, 100%, 16%));
+
+	scrollbar-gutter: stable both-edges;
+	&::-webkit-scrollbar {
+		width: 0;
+	}
 }
 
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	-webkit-tap-highlight-color: transparent;
+}
+
+@font-face {
+	font-family: K2D;
+	src: url(./assets/fonts/K2D-Thin.ttf) format("truetype");
+	font-display: swap;
+	font-weight: 100;
+}
+@font-face {
+	font-family: K2D;
+	src: url(./assets/fonts/K2D-Regular.ttf) format("truetype");
+	font-display: swap;
+	font-weight: 400;
+}
+@font-face {
+	font-family: K2D;
+	src: url(./assets/fonts/K2D-Bold.ttf) format("truetype");
+	font-display: swap;
+	font-weight: 700;
 }
 
 @font-face {
 	font-family: Exo;
 	src: url(./assets/fonts/Exo-VariableFont_wght.ttf) format("truetype-variations");
+	font-display: swap;
 	font-weight: 100 900;
 }
 
 @font-face {
 	font-family: AlbertSans;
 	src: url(./assets/fonts/AlbertSans-VariableFont_wght.ttf) format("truetype-variations");
+	font-display: swap;
 	font-weight: 100 900;
 }
 
+:root,
 body {
-	min-height: 100vh;
+	position: relative;
+	overflow-x: hidden;
+	overflow-x: clip;
+}
+
+body {
 	width: 100%;
 	background-color: #fff;
 	/*background-color: #011;*/
 
-	#root {
-		min-height: 100vh;
+	#app {
+		width: 100%;
+
 		display: flex;
+		flex-direction: column;
 		align-items: center;
-		justify-content: center;
-
-		.App {
-			min-height: 100vh;
-			width: 100%;
-
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-		}
 	}
 }
