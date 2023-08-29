@@ -1,9 +1,10 @@
 [
 	{
 		"id": 1,
-		"tags": ["web"],
-		"title": "web project",
-		"slug": "web-project",
+		"tags": ["web", "react"],
+		"title": "Lx Design website",
+		"subtitle": "My personal portfolio",
+		"slug": "lx-design-website",
 		"img": {
 			"url": "",
 			"alt": "alt description"
@@ -13,9 +14,10 @@
 
 	{
 		"id": 2,
-		"tags": ["web"],
-		"title": "web project 2",
-		"slug": "web-project-2",
+		"tags": ["web", "react"],
+		"title": "Calculator",
+		"subtitle": "A simple but cool calculator",
+		"slug": "calculator",
 		"img": {
 			"url": "",
 			"alt": "alt description"
@@ -25,9 +27,10 @@
 
 	{
 		"id": 3,
-		"tags": ["design"],
-		"title": "design title",
-		"slug": "design-title",
+		"tags": ["web", "javascript"],
+		"title": "Color library",
+		"subtitle": "A small library to easily handle color variation to create dynamic color theme or complexe color animations for the web.",
+		"slug": "color-library",
 		"img": {
 			"url": "",
 			"alt": "alt description"
@@ -37,13 +40,142 @@
 
 	{
 		"id": 4,
-		"tags": ["web", "design"],
-		"title": "design and web title 2",
-		"slug": "design-and-web-title-2",
+		"tags": ["design"],
+		"title": "Lx Design identity",
+		"subtitle": "My personal logo",
+		"slug": "lx-design-identity",
+		"logo": {
+			"webp": "",
+			"png": "",
+			"alt": "Lx design logo"
+		},
+		"img": {
+			"url": "lx-design/logo-lx-curved-variation-board",
+			"webp": { "250w": "@250.webp", "400w": "@400.webp", "700w": "@700.webp", "1000w": "@1000.webp" },
+			"jpg": { "250w": "@250.jpg", "400w": "@400.jpg", "700w": "@700.jpg", "1000w": "@1000.jpg" },
+			"alt": "alt description"
+		},
+		"description": "description : Lorem ipsum dolor sit amet. Reiciendis, eveniet eligendi, optio deserunt impedit ipsum ullam doloremque omnis exercitationem quaerat atque aut voluptates nobis ad ex fuga beatae neque aperiam!"
+	},
+
+	{
+		"id": 5,
+		"tags": ["web", "game"],
+		"title": "Lx snake",
+		"subtitle": "Snake game remake",
+		"slug": "lx-snake-game",
 		"img": {
 			"url": "",
 			"alt": "alt description"
 		},
+		"description": "description2 : Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum ullam doloremque omnis exercitationem quaerat atque aut voluptates nobis ad ex fuga beatae neque aperiam!"
+	},
+
+	{
+		"id": 6,
+		"tags": ["web"],
+		"title": "Fors website",
+		"subtitle": "Showcase site + complexe e-shop",
+		"slug": "fors-website",
+		"img": {
+			"url": "",
+			"alt": "alt description"
+		},
+		"description": "description2 : Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum ullam doloremque omnis exercitationem quaerat atque aut voluptates nobis ad ex fuga beatae neque aperiam!"
+	},
+
+	{
+		"id": 7,
+		"tags": ["design"],
+		"title": "Fors projects",
+		"subtitle": "Various graphic design projects",
+		"slug": "fors-projects",
+		"img": {
+			"url": "",
+			"alt": "alt description"
+		},
+		"description": "description2 : Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum ullam doloremque omnis exercitationem quaerat atque aut voluptates nobis ad ex fuga beatae neque aperiam!"
+	},
+
+	{
+		"id": 8,
+		"tags": ["design"],
+		"title": "Fors identity",
+		"subtitle": "Brand identity for products categories clarity",
+		"slug": "fors-identity",
+		"img": {
+			"url": "",
+			"alt": "alt description"
+		},
+		"description": "description2 : Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum ullam doloremque omnis exercitationem quaerat atque aut voluptates nobis ad ex fuga beatae neque aperiam!"
+	},
+
+	{
+		"id": 9,
+		"tags": ["web"],
+		"title": "Property-Partners website",
+		"subtitle": "",
+		"slug": "property-partners-website",
+		"img": {
+			"url": "",
+			"alt": "alt description"
+		},
+		"description": "description2 : Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum ullam doloremque omnis exercitationem quaerat atque aut voluptates nobis ad ex fuga beatae neque aperiam!"
+	},
+
+	{
+		"id": 10,
+		"tags": ["web"],
+		"title": "Citron jaune website",
+		"subtitle": "Anouk Thepot personal website",
+		"slug": "citron-jaune-website",
+		"img": {
+			"url": "",
+			"alt": "alt description"
+		},
+		"description": "description2 : Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum ullam doloremque omnis exercitationem quaerat atque aut voluptates nobis ad ex fuga beatae neque aperiam!"
+	},
+
+	{
+		"id": 11,
+		"tags": ["design"],
+		"title": "AT identity",
+		"subtitle": "Personal logo + mascot",
+		"slug": "at-identity",
+		"img": {
+			"url": "",
+			"alt": "alt description"
+		},
+		"description": "description2 : Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum ullam doloremque omnis exercitationem quaerat atque aut voluptates nobis ad ex fuga beatae neque aperiam!"
+	},
+
+	{
+		"id": 12,
+		"tags": ["design"],
+		"title": "Digital House rebranding",
+		"subtitle": "From bad to good",
+		"slug": "digital-house-rebranding",
+		"logo": {
+			"url": "digital-house/digital-house-logo",
+			"webp": { "150w": "@150.webp" },
+			"png": { "150w": "@150.png" },
+			"alt": "Digital House new logo, intermediate version"
+		},
+		"img": {
+			"url": "digital-house/digital-house-logo-situation",
+			"webp": { "250w": "@250.webp", "400w": "@400.webp", "700w": "@700.webp", "1000w": "@1000.webp" },
+			"jpg": { "250w": "@250.jpg", "400w": "@400.jpg", "700w": "@700.jpg", "1000w": "@1000.jpg" },
+			"alt": "Digital House new logo on a corporate building front"
+		},
+		"description": "description2 : Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum ullam doloremque omnis exercitationem quaerat atque aut voluptates nobis ad ex fuga beatae neque aperiam!"
+	},
+
+	{
+		"id": 13,
+		"tags": ["design"],
+		"title": "16 plumes identity",
+		"subtitle": "A young french publishing house",
+		"slug": "16-plumes-identity",
 		"description": "description2 : Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum ullam doloremque omnis exercitationem quaerat atque aut voluptates nobis ad ex fuga beatae neque aperiam!"
 	}
 ]

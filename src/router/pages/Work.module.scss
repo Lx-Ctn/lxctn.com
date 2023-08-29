@@ -99,17 +99,25 @@
 }
 
 .cardContainer {
+	--card-gap: 1em;
+
 	display: flex;
-	flex-wrap: wrap;
+	flex-direction: row-reverse;
+	flex-wrap: wrap-reverse;
+	justify-content: center;
+	gap: var(--card-gap);
 
 	transform-origin: top;
 }
 
 .card {
-	position: relative;
-	flex: 1 1 200px;
+	--card-min-width: 15em;
 
-	margin: 1em;
+	position: relative;
+	flex: 1 0 var(--card-min-width);
+	max-width: calc(2 * var(--card-min-width) + var(--card-gap) / 0.7);
+
+	margin: 0;
 	padding: 0.7em;
 	padding-bottom: 1em;
 

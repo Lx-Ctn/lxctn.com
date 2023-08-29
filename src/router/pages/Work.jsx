@@ -9,7 +9,6 @@ import { get } from "../../store/selectors";
 import { NavLink, useLoaderData, useOutlet, useNavigate } from "react-router-dom";
 import { resetScroll } from "../Router";
 
-import projectsData from "../../assets/projectsData";
 import { ShiningFrame, ImageWebp } from "../../components";
 
 export const WorkPage = () => {
@@ -59,9 +58,12 @@ export const CardContainer = () => {
 			variants={cardContainerTransition}
 			{...(reducedMotion ? noAnimPropsNames : animPropsNames)}
 		>
-			{projectsList?.map(project => (
-				<Card key={project.id} {...project} />
-			))}
+			{projectsList
+				?.slice()
+				.reverse()
+				.map(project => (
+					<Card key={project.id} {...project} />
+				))}
 		</motion.div>
 	);
 };
@@ -119,22 +121,6 @@ export const Spinner = () => {
 	);
 };
 
-const getWebProjects = () => {
-	const webProjects = getDataWithTag("web");
-	return webProjects;
-};
-const getDesignProjects = () => {
-	const designProjects = getDataWithTag("design");
-	return designProjects;
-};
-
-const getDataWithTag = tag => projectsData.filter(project => project.tags.includes(tag));
-
-export const projects = {
-	all: <CardContainer getProjects={() => projectsData} />,
-	web: <CardContainer getProjects={getWebProjects} />,
-	design: <CardContainer getProjects={getDesignProjects} />,
-};
 /*
 
 
