@@ -10,6 +10,7 @@ import { NavLink, useLoaderData, useOutlet, useNavigate } from "react-router-dom
 import { resetScroll } from "../Router";
 
 import { ShiningFrame, ImageWebp } from "../../components";
+import { useBalancedLayout } from "../../utils/useBalancedLayout";
 
 export const WorkPage = () => {
 	const reducedMotion = useSelector(get.reducedMotion);
@@ -51,6 +52,7 @@ const MotionOutlet = () => {
 export const CardContainer = () => {
 	const reducedMotion = useSelector(get.reducedMotion);
 	const [projectsList] = useState(useLoaderData());
+	const balancedProjectList = useBalancedLayout(projectsList);
 
 	return (
 		<motion.div
@@ -58,17 +60,18 @@ export const CardContainer = () => {
 			variants={cardContainerTransition}
 			{...(reducedMotion ? noAnimPropsNames : animPropsNames)}
 		>
-			{projectsList
-				?.slice()
-				.reverse()
-				.map(project => (
-					<Card key={project.id} {...project} />
-				))}
+			{balancedProjectList?.map((lineContainer, key) => (
+				<div key={key} className={css.lineContainer}>
+					{lineContainer.map(project => (
+						<Card key={project.id} {...project} sizes={lineContainer.itemSizes} />
+					))}
+				</div>
+			))}
 		</motion.div>
 	);
 };
 
-const Card = project => {
+const Card = ({ sizes, ...project }) => {
 	const navigate = useNavigate();
 	const navigateToProject = e => {
 		e.preventDefault();
@@ -83,13 +86,13 @@ const Card = project => {
 		>
 			<ShiningFrame angle={{ from: "-40deg", to: "140deg" }} />
 			<h2>{project.title}</h2>
-			<Img imgData={project.img ?? {}} />
+			<Img imgData={project.img ?? {}} sizes={sizes} />
 			<p>{project.description}</p>
 		</motion.a>
 	);
 };
 
-const Img = ({ imgData }) => {
+const Img = ({ imgData, sizes }) => {
 	const getSrcset = (url, source) => {
 		return source
 			? Object.keys(source).reduce(
@@ -103,7 +106,7 @@ const Img = ({ imgData }) => {
 			webp={getSrcset(imgData.url, imgData.webp)}
 			jpg={getSrcset(imgData.url, imgData.jpg)}
 			alt={imgData.alt}
-			sizes={"15em"}
+			sizes={sizes ?? "15em"}
 		/>
 	) : (
 		<div className={css.noImg}>{imgData.alt}</div>
@@ -120,7 +123,6 @@ export const Spinner = () => {
 		/>
 	);
 };
-
 /*
 
 
@@ -137,15 +139,15 @@ const outletContainerTransition = {
 };
 const cardContainerTransition = {
 	initial: { scale: 0.4, opacity: 0 },
-	animate: { scale: 1, opacity: 1, transition: { duration: 0.2, staggerChildren: 0.1, staggerDirection: -1 } },
+	animate: { scale: 1, opacity: 1, transition: { duration: 0.2, staggerChildren: 0.1 } },
 	exit: {
 		scale: 0.4,
 		opacity: 0,
-		transition: { duration: 0.2, delay: 0.1, staggerChildren: 0.025, staggerDirection: -1 },
+		transition: { duration: 0.2, delay: 0.1, staggerChildren: 0.025 },
 	},
 };
 const cardTransition = {
-	initial: { scale: 0.5, rotate: -13, opacity: 0 },
+	initial: { scale: 0.5, rotate: 11, opacity: 0 },
 	animate: { scale: 1, rotate: 0, opacity: 1, transition: { type: "spring", duration: 0.9 } },
-	exit: { scale: 0.6, rotate: 13, opacity: 0, transition: { duration: 0.13 } },
+	exit: { scale: 0.6, rotate: -11, opacity: 0, transition: { duration: 0.13 } },
 };

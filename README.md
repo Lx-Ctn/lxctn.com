@@ -34,15 +34,15 @@ Feel free to fork and play with !
 
 <br>
 
-&#9745;
-&#9744; Card gallery : Custom flex layout to balance items between lines and avoid solo items at the end.
-&#9744; Get `@lxweb/color` library and set all app color
-&#9744; Set up dark mode + save user preference
-&#9744; Write content !
-&#9744; Get `storybook` and set up app ui
-&#9744; Tests
-&#9744; Switch to `TypeScript`
-&#9744; Migrate to `Next`
+&#9745; Card gallery : Custom flex layout to balance items between lines and avoid solo items at the end.<br>
+&#9744; Add loading fallback when img take time on low bandwidth<br>
+&#9744; Get `@lxweb/color` library and set all app color<br>
+&#9744; Set up dark mode + save user preference<br>
+&#9744; Write content !<br>
+&#9744; Get `storybook` and set up app ui<br>
+&#9744; Tests<br>
+&#9744; Switch to `TypeScript`<br>
+&#9744; Migrate to `Next`<br>
 
 <br>
 <h6 align="right"><a href="#top"> back to top ⇧</a></h6>
