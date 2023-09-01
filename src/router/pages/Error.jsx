@@ -1,23 +1,24 @@
+import css from "./Error.module.scss";
 import { useRouteError } from "react-router-dom";
 
 export function ErrorPage() {
 	const error = useRouteError();
-	console.error(error);
-
 	const goBack = () => window.history.back();
 
 	return (
-		<div id="error-page">
-			<h1>Oops!</h1>
+		<div className={css._} id="error-page">
+			<h1 className={css.title}>Oops!</h1>
 			<p>
-				Sorry, a probably miss a <code>;</code> somewhere...
+				Sorry, probably miss a <code className={css.code}>;</code> somewhere...
 			</p>
 
-			<p>
-				<i>{error.statusText || error.message}</i>
+			<p className={css.bigCode}>
+				<code>{error.statusText || error.message}</code>
 			</p>
 
-			<button onClick={goBack}>Go back to previous page</button>
+			<button className={`${css.goBack} link`} onClick={goBack}>
+				Go back to previous page
+			</button>
 		</div>
 	);
 }
