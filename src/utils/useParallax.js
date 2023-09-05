@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 export const useParallax = (ref, transitionClassname) => {
 	const [refCoor, setRefCoor] = useState({ x: 0, y: 0, oldX: 0, oldY: 0 });
 	const [mouseCoor, setMouseCoor] = useState(null);
+	const [threshold, setThreshold] = useState(getTransitionThreshold());
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -30,6 +31,8 @@ export const useParallax = (ref, transitionClassname) => {
 						oldY: mouseCoor.y,
 					}
 			);
+
+			setThreshold(getTransitionThreshold());
 		};
 
 		window.addEventListener("scroll", handleScroll);
@@ -71,7 +74,7 @@ export const useParallax = (ref, transitionClassname) => {
 	// Keep previous coor for comparaison : If close, just work with the new coor, if far, may need a smooth transition
 	const oldX = mouseCoor ? mouseCoor.oldX - refCoor.oldX : 0;
 	const oldY = mouseCoor ? mouseCoor.oldY - refCoor.oldY : 0;
-	const isTransitionNeeded = Math.abs(x - oldX) > 150 || Math.abs(y - oldY) > 150;
+	const isTransitionNeeded = Math.abs(x - oldX) > threshold.x || Math.abs(y - oldY) > threshold.y;
 	isTransitionNeeded && ref.current.classList.add(transitionClassname);
 
 	useEffect(() => {
@@ -97,4 +100,13 @@ const getRefCoor = ref => {
 	const x = (refRect.left + refRect.right) / 2;
 	const y = (refRect.top + refRect.bottom) / 2;
 	return { x, y };
+};
+
+// We tend to move the cursor faster on bigger screen,
+// so we need to adapt the threshold to keep a fluid animation on big screen.
+const getTransitionThreshold = () => {
+	const minThreshold = 130; // px
+	const vw = window.innerWidth;
+	const vh = window.innerHeight;
+	return { x: minThreshold + (4 * vw) / 100, y: minThreshold + (4 * vh) / 100 };
 };
