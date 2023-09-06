@@ -1,5 +1,4 @@
 import css from "./Footer.module.scss";
-import { ShowTheme } from "../../utils/colorTheme";
 import { motion, AnimatePresence } from "framer-motion";
 import { animPropsNames } from "../../utils/animation";
 
@@ -13,8 +12,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 const FULL_SCREEN_PAGES = ["/contact"];
 
 export const Footer = () => {
-	//consoleSignature();
-
 	const isIntro = useSelector(get.isIntro);
 	const reducedMotion = useSelector(get.reducedMotion);
 
@@ -50,32 +47,39 @@ const footerAnimation = isIntro => ({
 	exit: { opacity: 0, y: "100%" },
 });
 
-const consoleSignature = () =>
+//
+//
+const consoleSignature = () => {
 	console.log(
 		`%c
  _
-|L\\
-|L(      __  __
-|L|      \\x\\/x/
-|L|___/\\  }xx{
-(LLLLLL/ /x/\\x\\
+| \\
+| (      __  __
+| |      \\ \\/ /
+| |___/\\  }  {
+(______/ /_/\\_\\
  _____            _
 (  __ \\          (_)
 | (  \\ \\ ___  ___ _  __ _ _ __
 | |   } / _ \\/ __| |/ _, | '_ \\
 | (__/ |  __/\\__ \\ | (_| | | | |
 (_____/ \\___||___/_|\\__, |_| |_|
-                  __/ |
-                 |___/
-
-                ..
-  .          ▄▪▪·
-  ▐   .   ▄▄█▀▀
-  ▐   ▐▄██▀
-  █  ▄███•
-  █.██▀ •█▌
- ▐█▐█▌•   ██
-.▐██▌      ██▌
+                     __/ |
+                    |___/
+%c
+                   .
+               .┌•
+ .           ┌═
+ ╒    .    ╔╙
+ ╞     ╕ ╦╜
+ ╠     ╔╬
+ ╫   ╓╩  ╠
+ ╬  ╬╩    ╠╕
+╞╬╓╬╜      ╠╦
+╚╩╩╜        ╚╩
 `,
-		"background: #212121; color: #00b2d1;"
+		"font-family: monospace; font-weight:bold;",
+		"font-family: monospace; font-weight:bold; color: #00b2d1; "
 	);
+};
+consoleSignature();
