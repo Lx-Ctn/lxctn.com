@@ -22,7 +22,7 @@ export const BackdropGradientBlur = props => {
 		fromEnd,
 		to = "100%",
 		steps = 3,
-		color = "#fff0",
+		background,
 		style = {},
 	} = props;
 
@@ -31,6 +31,7 @@ export const BackdropGradientBlur = props => {
 		`linear-gradient(${direction}, rgba(0, 0, 0, 1) ${
 			fromEnd ? "calc(" + to + " - " + start + "em)" : start + "%"
 		}, transparent ${fromEnd ? "calc(" + to + " - " + end + "em)" : end + "%"})`;
+
 	const getStyle = ({ blur, from, to }) => ({
 		...style,
 		backdropFilter: cssBlur(blur),
@@ -39,33 +40,33 @@ export const BackdropGradientBlur = props => {
 		WebkitMask: cssMask(from, to),
 	});
 
-	const lastStyle = {
+	const backgroundStyle = {
 		...style,
-		background: `linear-gradient(${direction}, ${color} ${from}, transparent ${to})`,
+		background: getSmoothGradient(background, direction, from, to),
 	};
-
-	const allDivs = new Array(steps + 1).fill(0);
+	console.log(getSmoothGradient(background, direction, from, to));
+	const allSteps = new Array(steps).fill(0);
 
 	const delta = fromEnd ? parseFloat(fromEnd) : parseInt(to) - parseInt(from);
 	const interval = delta / (steps + 2);
 	const divSize = 2 * interval;
 
 	return (
-		<>
-			{allDivs.map((_, index) => {
+		<div className={css._}>
+			{allSteps.map((_, index) => {
 				const start = fromEnd ? parseFloat(fromEnd) - index * interval : parseInt(from) + index * interval;
 				const end = fromEnd ? start - divSize : start + divSize;
 				const blurStep = parseInt(blur) - index * (parseInt(blur) / steps);
-				const isLastElement = index === allDivs.length - 1;
 				return (
 					<div
 						key={index}
-						style={isLastElement ? lastStyle : getStyle({ blur: blurStep, from: start, to: end })}
-						className={css._}
+						style={getStyle({ blur: blurStep, from: start, to: end })}
+						className={css.blurStep}
 					/>
 				);
 			})}
-		</>
+			{background ? <div style={backgroundStyle} className={css.background} /> : null}
+		</div>
 	);
 };
 
@@ -85,3 +86,33 @@ BackdropGradientBlur.propTypes = {
 	/** Background-color : need alpha to see backdrop bblur (default: "#fff0") */
 	color: PropTypes.string,
 };
+
+function toHexa(ratio) {
+	const hexaString = Math.round(ratio * 255).toString(16);
+	return hexaString.length < 2 ? "0" + hexaString : hexaString;
+}
+
+// Easing function : thanks to https://easings.net/ :
+function easeInOutSine(ratio) {
+	const easeInOutSine = -(Math.cos(Math.PI * ratio) - 1) / 2;
+	return Math.round(easeInOutSine * 1000) / 1000;
+}
+
+/** CSS gradient have no easing function to smooth the progression and avoid banding artefacts.
+ *
+ * The idea here is to approche the output of a easing function through a serie of steps in the gradient.
+ *
+ * More steps : better "smoothness", but be careful for perfomances  */
+function getSmoothGradient(background, direction, from = 0, to = 100, smoothLvl = 9) {
+	const opacityStart = background.opacity;
+	const steps = smoothLvl - 1;
+	const stepRatio = 1 / steps;
+	const positionDelta = parseInt(to) - parseInt(from);
+	const allStepsWithColor = new Array(steps).fill(background.color);
+	const allGradientSteps = allStepsWithColor.map((color, index) => {
+		const opacityStep = color + toHexa(opacityStart - opacityStart * easeInOutSine(stepRatio * index));
+		const positionStep = parseInt(from) + Math.round(positionDelta * stepRatio * index);
+		return `${opacityStep} ${positionStep}%`;
+	});
+	return `linear-gradient(${direction}, ${allGradientSteps.join(", ")}, transparent ${to})`;
+}

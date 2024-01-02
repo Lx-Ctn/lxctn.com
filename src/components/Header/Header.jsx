@@ -70,7 +70,12 @@ export default function Header() {
 			variants={headerVariants}
 			{...animPropsNames}
 		>
-			<BackdropGradientBlur blur="12px" color="#fff6" fromEnd="2em" style={{ bottom: "-1.5em" }} />
+			<BackdropGradientBlur
+				blur="12px"
+				background={{ color: "#ffffff", opacity: 0.55 }}
+				fromEnd="2em"
+				style={{ bottom: "-1.5em" }}
+			/>
 			<AnimatePresence>
 				{isMobile ? (
 					<Hamburger key="hamburger" {...{ isIntro, isAnimating, isMobileMenuOpen, isParameterMenuOpen }} />
