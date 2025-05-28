@@ -9,18 +9,16 @@ import { introVariants } from "./LogoLx.motion";
 
 *** SVG Path :
 */
-const L_PATH = "M0,185.12C7.3,104.22,14.59,23.32,14.59,23.32c0,0,0,80.9,0,161.8";
-const X_PATH = "M107.98,185.12C74.85,115.49,41.72,45.86,41.72,45.86c0,0,41.19,69.63,82.38,139.26";
+const L_PATH = "M 0 100 C 3.94 56.3 7.88 12.6 7.88 12.6 c 0 0 0 43.7 0 87.4";
+const X_PATH = "M 58.33 100 C 40.43 62.39 22.54 24.77 22.54 24.77 c 0 0 22.25 37.61 44.5 75.23";
 
 const CURVING_DURATION = 0.7; // Duration of curving animation
-const CURVE_INTENSITY = 20;
+const CURVE_INTENSITY = 10.8 + 3; // Curvature
 
-const CURVED_L_PATH = `M 0 185.12 C 7.3 104.22 ${14.59 + CURVE_INTENSITY} 23.32 ${
-	14.59 + CURVE_INTENSITY
-} 23.32 c 0 0 -${CURVE_INTENSITY} 80.9 -${CURVE_INTENSITY} 161.8`;
-const CURVED_X_PATH = `M107.98,185.12 C74.85,115.49,${41.72 + CURVE_INTENSITY},45.86,${
-	41.72 + CURVE_INTENSITY
-},45.86 c0,0,${41.19 - CURVE_INTENSITY},69.63,${82.38 - CURVE_INTENSITY},139.26`;
+// prettier-ignore
+const CURVED_L_PATH = `M 0 100 C 3.94 56.3 ${7.88 + CURVE_INTENSITY} 12.6 ${7.88 + CURVE_INTENSITY} 12.6 c 0 0 -${CURVE_INTENSITY} 43.7 -${CURVE_INTENSITY} 87.4`;
+// prettier-ignore
+const CURVED_X_PATH = `M 58.33 100 C 40.43 62.39 ${22.54 + CURVE_INTENSITY} 24.77 ${22.54 + CURVE_INTENSITY} 24.77 c 0 0 ${22.25 - CURVE_INTENSITY} 37.61 ${44.5 - CURVE_INTENSITY} 75.23`;
 /*
 
 
@@ -96,7 +94,7 @@ const LogoLx = ({ color, intro, waving, setIsAnimationEnded, ...props }) => {
 			variants={intro && introVariants.container}
 			{...props}
 		>
-			<motion.svg width="100%" viewBox="0 0 185.12 185.12">
+			<motion.svg width="100%" viewBox="0 0 100 100">
 				<motion.g variants={intro && introVariants.lContainer}>
 					<motion.path // L
 						className={css.lPath}
@@ -119,7 +117,7 @@ const LogoLx = ({ color, intro, waving, setIsAnimationEnded, ...props }) => {
 
 				<motion.g>
 					<motion.path // X high
-						d="M7.55,185.12C34.79,123.66,101.77,36.81,185.12,0,106.45,38.78,45.89,125.92,23.6,185.11"
+						d="M 4.08 100 C 18.79 66.8 54.98 19.88 100 0 57.5 20.95 24.79 68.02 12.75 100"
 						fill={getLogoColors(color)}
 						variants={intro && introVariants.longX}
 					/>
