@@ -1,6 +1,7 @@
 ._ {
 	--active-color: hsl(350deg 100% 68%);
 	--background-color: #fff;
+	--alpha-main-color: hsla(181deg, 40%, 70%, 25%);
 
 	margin-top: 1em;
 	transform-origin: top;
@@ -139,11 +140,17 @@
 	img {
 		display: block;
 		width: 100%;
+		min-height: 7em;
 
 		border: 2px dotted #ccc;
 		border-radius: 1.3em;
 
 		margin: 1em 0;
+
+		background: linear-gradient(-45deg, transparent 10%, var(--alpha-main-color, #9993) 25%, transparent 50%)
+			no-repeat center;
+		background-size: 200% 100%;
+		animation: background-position 2s 3 linear;
 	}
 	.noImg {
 		display: grid;
@@ -162,5 +169,14 @@
 	p {
 		padding-inline: 0.5em;
 		text-align: justify;
+	}
+}
+
+@keyframes background-position {
+	from {
+		background-position: 200% 0;
+	}
+	to {
+		background-position: 0 0;
 	}
 }

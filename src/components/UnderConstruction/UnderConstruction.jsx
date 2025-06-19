@@ -27,7 +27,7 @@ export const UnderConstruction = () => {
 						<h2>Under construction</h2>
 						<p>There's already lots of things to see, but please be tolerant with me</p>
 						<button>
-							<ShiningFrame /> Ok !
+							<ShiningFrame angle={{ to: "155deg" }} /> Ok !
 						</button>
 						<button className="link">I will juge you</button>
 					</form>

@@ -44,7 +44,6 @@ export const BackdropGradientBlur = props => {
 		...style,
 		background: getSmoothGradient(background, direction, from, to),
 	};
-	console.log(getSmoothGradient(background, direction, from, to));
 	const allSteps = new Array(steps).fill(0);
 
 	const delta = fromEnd ? parseFloat(fromEnd) : parseInt(to) - parseInt(from);
