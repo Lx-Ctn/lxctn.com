@@ -38,6 +38,7 @@ Feel free to fork and play with !
 &#9744; Add loading fallback when img take time on low bandwidth<br>
 &#9744; Get `@lxweb/color` library and set all app color<br>
 &#9744; Set up dark mode + save user preference<br>
+&#9744; Did you know browser parse css selector from right to left -> go classname for performance<br>
 &#9744; Write content !<br>
 &#9744; Get `storybook` and set up app ui<br>
 &#9744; Tests<br>
