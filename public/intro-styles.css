@@ -1,0 +1,112 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: transparent;
+}
+
+#intro {
+   --l-path: "M 0 100 C 3.94 56.3 7.88 12.6 7.88 12.6 c 0 0 0 43.7 0 87.4";
+   --x-path: "M 58.33 100 C 40.43 62.39 22.54 24.77 22.54 24.77 c 0 0 22.25 37.61 44.5 75.23";
+
+   --curved-l-path: "M 0 100 C 3.94 56.3 19.88 12.6 19.88 12.6 c 0 0 -12 43.7 -12 87.4";
+   --curved-x-path: "M 58.33 100 C 40.43 62.39 34.54 24.77 34.54 24.77 c 0 0 10.25 37.61 32.5 75.23";
+
+   --logo-color: #0083a1;
+
+   width: 100vw;
+	height: 100vh;
+	position: absolute;
+	top: 0;
+   left: 0;
+	display: grid;
+	place-items: center;
+}
+
+
+
+.intro-logo {
+   max-width: 10vmin;
+	min-width: 31px; /* if smaller, path animation may flinck and my eyes burns. */
+
+   translate: 10% -5%; /* Logo's center of gravity is not 50/50 */
+   transition: transform 1s;
+}
+.intro-logo:hover {
+   transform: scale(1.1);
+}
+
+.intro-logo > * {
+   fill: var(--logo-color);
+}
+
+rect {
+   transition: clip-path 0.4s linear;
+}
+
+.l-path {
+   clip-path: path(var(--l-path));
+}
+.x-path {
+   clip-path: path(var(--x-path));
+}
+/* 
+
+
+Waving loading animation : 
+*/
+.l-path {
+   animation: waving-l 0.7s infinite alternate ease-in-out;
+}
+.x-path {
+   animation: waving-x 0.7s infinite alternate ease-in-out;
+}
+@keyframes waving-l {
+   to {clip-path: path(var(--curved-l-path));}
+}
+@keyframes waving-x {
+   to {clip-path: path(var(--curved-x-path));}
+}
+/*
+
+
+Intro drawing animation : 
+*/
+.l-mask {
+   clip-path: circle(0% at 0 100%);
+   animation: drawing-l 0.5s ease-in-out forwards;
+}
+.big-x-mask {
+   clip-path: circle(0% at 0 100%);
+   animation: drawing-big-x 0.6s 0.15s ease-in-out forwards;
+}
+.x-mask {
+   clip-path: circle(0% at 100% 100%);
+   animation: drawing-x 0.4s 0.35s ease-in-out forwards;
+}
+
+@keyframes drawing-l {
+   to {clip-path: circle(100% at 0 100%);}
+}
+@keyframes drawing-x {
+   to {clip-path: circle(130% at 100% 100%);}
+}
+@keyframes drawing-big-x {
+   to {clip-path: circle(150% at 0 100%);}
+}
+/*
+
+
+Outtro animation :
+*/
+.intro-logo {
+   transform-origin: 30% 45%; /* Logo's center of gravity is not 50/50 */
+   animation: exit 0.7s forwards;
+   animation-play-state: paused;
+}
+@keyframes exit {
+   to {
+      scale: 1.6;
+      opacity: 0;
+   }
+}

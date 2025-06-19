@@ -1,22 +1,25 @@
-import React, { lazy } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.scss";
 import reportWebVitals from "./reportWebVitals";
+import { Provider } from "react-redux";
+import store from "./store";
 import { AppLoader } from "./components/utils";
-const LazyApp = lazy(() => import("./App"));
-
-/* // Timeout to test the loading animation :
-const LazyApp = lazy(() => {
-	return new Promise(resolve => {
-		setTimeout(() => resolve(import("./App")), 3000);
-	});
-}); */
+import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("app"));
 root.render(
-	<React.StrictMode>
-		<AppLoader LazyApp={LazyApp} />
-	</React.StrictMode>
+	process.env.NODE_ENV === "development" ? (
+		<React.StrictMode>
+			<Provider store={store}>
+				<AppLoader App={App} />
+			</Provider>
+		</React.StrictMode>
+	) : (
+		<Provider store={store}>
+			<AppLoader App={App} />
+		</Provider>
+	)
 );
 
 // If you want to start measuring performance in your app, pass a function

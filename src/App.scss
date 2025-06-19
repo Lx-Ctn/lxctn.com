@@ -114,6 +114,9 @@ em {
 ///
 ///
 
+.is-loading {
+	opacity: 0;
+}
 .under-header {
 	margin-top: var(--header-height, 5em);
 	translate: 0 var(--header-mobile-nav-height, 0em);
