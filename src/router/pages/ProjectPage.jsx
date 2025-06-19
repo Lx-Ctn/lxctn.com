@@ -18,8 +18,10 @@ export const ProjectPage = () => {
 	return (
 		<motion.div className={css._} variants={projectTransition} {...(!reducedMotion && animPropsNames)}>
 			{project.logo && <Img className={css.logo} imgData={project.logo} />}
-			<h1>{project.title}</h1>
-			{project.subtitle && <p>{project.subtitle}</p>}
+			<hgroup>
+				<h1>{project.title}</h1>
+				{project.subtitle && <p>{project.subtitle}</p>}
+			</hgroup>
 			<motion.nav>
 				<button onClick={goBack}>Go back</button>
 				{project.tags.map(tag => (
