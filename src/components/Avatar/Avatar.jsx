@@ -13,32 +13,39 @@ export const Avatar = () => {
 	return reducedMotion ? <FixedAvatar /> : <AnimatedAvatar />;
 };
 
-const avatarUrl = "Avatar/Avatar";
+const images = require.context(`../../assets/Avatar`, false);
 const avatarSources = {
-	eyesMask: "_layered__Eyes_mask",
-	eyes: "_layered__Eyes",
-	head: "_layered__Head",
-	torso: "_layered__Torso",
-	brush: "_layered__Brush",
+	wholeAvatar: "Avatar",
+
+	eyesMask: "Avatar_layered__Eyes_mask",
+	eyes: "Avatar_layered__Eyes",
+	head: "Avatar_layered__Head",
+	torso: "Avatar_layered__Torso",
+	brush: "Avatar_layered__Brush",
 
 	webp: { "150w": "@150.webp", "300w": "@300.webp", "500w": "@500.webp" },
 	png: { "150w": "@150.png", "300w": "@300.png", "500w": "@500.png" },
 	jpg: { "150w": "@150.jpg", "300w": "@300.jpg", "500w": "@500.jpg" },
 };
-
-const getSrcset = (url, source) =>
+const getSrcSet = (url, source) =>
 	source
-		? Object.keys(source).reduce(
-				(srcset, size) => `${srcset}, ${require(`../../assets/${url + source[size]}`)} ${size}`,
-				""
-		  )
+		? Object.keys(source)
+				.map(size => {
+					const imgName = `./${url + source[size]}`;
+					if (!images(imgName)) {
+						console.warn(`Avatar image not found: ${imgName}`);
+						return "";
+					}
+					return `${images(imgName)} ${size}`;
+				})
+				.join(", ")
 		: "";
 
 const FixedAvatar = () => (
 	<div className={css._}>
 		<ImageWebp
-			webp={getSrcset(avatarUrl, avatarSources.webp)}
-			jpg={getSrcset(avatarUrl, avatarSources.jpg)}
+			webp={getSrcSet(avatarSources.wholeAvatar, avatarSources.webp)}
+			jpg={getSrcSet(avatarSources.wholeAvatar, avatarSources.jpg)}
 			sizes={"30vmin"}
 			alt="Lx avatar"
 		/>
@@ -70,15 +77,15 @@ const AnimatedAvatar = () => {
 		>
 			<ImageWebp
 				style={translate({ all: -2.3, coor })}
-				webp={getSrcset(avatarUrl + avatarSources.brush, avatarSources.webp)}
-				png={getSrcset(avatarUrl + avatarSources.brush, avatarSources.png)}
+				webp={getSrcSet(avatarSources.brush, avatarSources.webp)}
+				png={getSrcSet(avatarSources.brush, avatarSources.png)}
 				sizes={"30vmin"}
 				alt="Brush behind Lx avatar"
 				loadingListener={loading.listener}
 			/>
 			<ImageWebp
-				webp={getSrcset(avatarUrl + avatarSources.torso, avatarSources.webp)}
-				png={getSrcset(avatarUrl + avatarSources.torso, avatarSources.png)}
+				webp={getSrcSet(avatarSources.torso, avatarSources.webp)}
+				png={getSrcSet(avatarSources.torso, avatarSources.png)}
 				sizes={"30vmin"}
 				alt="Torso of Lx avatar"
 				loadingListener={loading.listener}
@@ -86,8 +93,8 @@ const AnimatedAvatar = () => {
 			<div className={css.head}>
 				<ImageWebp
 					style={translate({ all: 2, coor })}
-					webp={getSrcset(avatarUrl + avatarSources.head, avatarSources.webp)}
-					png={getSrcset(avatarUrl + avatarSources.head, avatarSources.png)}
+					webp={getSrcSet(avatarSources.head, avatarSources.webp)}
+					png={getSrcSet(avatarSources.head, avatarSources.png)}
 					sizes={"30vmin"}
 					alt="head of Lx avatar"
 					loadingListener={loading.listener}
@@ -95,16 +102,16 @@ const AnimatedAvatar = () => {
 				<ImageWebp
 					className={"madEyes"}
 					style={translate({ top: 2.2, bottom: 2.7, all: 3, coor })}
-					webp={getSrcset(avatarUrl + avatarSources.eyes, avatarSources.webp)}
-					png={getSrcset(avatarUrl + avatarSources.eyes, avatarSources.png)}
+					webp={getSrcSet(avatarSources.eyes, avatarSources.webp)}
+					png={getSrcSet(avatarSources.eyes, avatarSources.png)}
 					sizes={"30vmin"}
 					alt="Eyes of Lx avatar"
 					loadingListener={loading.listener}
 				/>
 				<ImageWebp
 					style={translate({ all: 2, coor })}
-					webp={getSrcset(avatarUrl + avatarSources.eyesMask, avatarSources.webp)}
-					png={getSrcset(avatarUrl + avatarSources.eyesMask, avatarSources.png)}
+					webp={getSrcSet(avatarSources.eyesMask, avatarSources.webp)}
+					png={getSrcSet(avatarSources.eyesMask, avatarSources.png)}
 					sizes={"30vmin"}
 					alt="Mask for Lx avatar"
 					loadingListener={loading.listener}
