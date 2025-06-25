@@ -1,0 +1,32 @@
+.light {
+	width: 1.7em;
+	circle,
+	line {
+		fill: none;
+		stroke: var(--stroke-color);
+		stroke-width: 8px;
+		stroke-linecap: round;
+	}
+}
+
+.system {
+	width: 1.7em;
+	path,
+	line {
+		fill: none;
+		stroke: var(--stroke-color);
+		stroke-width: 8px;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+}
+.dark {
+	width: 1.7em;
+	circle,
+	path {
+		fill: none;
+		stroke: var(--stroke-color);
+		stroke-width: 8px;
+		stroke-linejoin: round;
+	}
+}
