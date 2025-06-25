@@ -1,0 +1,128 @@
+._ {
+	--active-label-bg-color: rgb(0, 176, 208);
+	--active-label-text-color: hsl(0, 0%, 100%);
+
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+
+	border: 1px solid #cbb;
+	border-radius: 1.5em;
+	padding: 0.6em 0.6em 0.5em 0;
+	margin-left: 0.85em; // icon width / 2
+	margin-bottom: 0.4em;
+
+	background-color: #fff8;
+
+	.currentIcon {
+		height: 2.125em;
+		min-width: 2.125em;
+		flex-shrink: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		padding: 0.1em;
+		margin-left: -1.05em; // icon width / 2
+		margin-right: 0.6em;
+
+		border: 1px solid #cbb;
+		border-radius: 2em;
+		background-color: #fff;
+		font-size: 0.8em;
+		color: hsl(195, 100%, 16%);
+		--stroke-color: hsl(195, 100%, 16%);
+
+		path {
+			transition: fill 0.15s;
+		}
+	}
+
+	.content {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+
+		.contentHeader {
+			margin-top: 0.2em;
+			margin-bottom: 0.2em;
+			display: flex;
+			align-items: center;
+		}
+
+		legend {
+			margin-bottom: 0.1em;
+		}
+
+		p {
+			text-align: start;
+			max-width: 30ch;
+			font-size: 0.8em;
+			color: rgb(0, 99, 126);
+		}
+	}
+
+	.toggle {
+		//width: calc(1.7em * var(--nb-of-values));
+		position: relative;
+		display: inline-grid;
+		grid-auto-flow: column;
+		grid-auto-columns: 1fr;
+
+		border: 1px solid rgb(0, 99, 126);
+		border-radius: 3em;
+		margin-right: 0.3em;
+		padding-block: 0.1em;
+
+		input[type="radio"] {
+			visibility: hidden;
+			position: absolute;
+		}
+
+		label {
+			display: grid;
+			place-items: center;
+			padding: 0.15em 0.3em;
+			margin: 0;
+			text-align: center;
+			cursor: pointer;
+
+			color: hsl(195, 100%, 16%);
+			--stroke-color: hsl(195, 100%, 16%);
+			font-size: 0.8em;
+		}
+
+		.currentValue {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			width: calc(100% / var(--nb-of-values));
+			z-index: 2;
+			transition: translate 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+
+			div {
+				position: absolute;
+				inset: 0.15em;
+
+				display: flex;
+				justify-content: center;
+				align-items: center;
+
+				border-radius: 3em;
+				background-color: var(--active-label-bg-color);
+				text-align: center;
+				font-size: 0.8em;
+				color: var(--active-label-text-color);
+				--stroke-color: var(--active-label-text-color);
+
+				opacity: 0;
+				transition: opacity 0.3s cubic-bezier(0.77, 0, 0.175, 1) 0.15s;
+				will-change: opacity;
+
+				&.active {
+					opacity: 1;
+				}
+			}
+		}
+	}
+}
