@@ -4,6 +4,7 @@ import Router from "./router/Router";
 
 import { useResponsive } from "./utils/useResponsive";
 import { usePrefersReducedMotion } from "./utils/handleReducedMotion";
+import { usePrefersColorScheme } from "utils/handleTheme";
 
 import { Header, Footer, UnderConstruction } from "./components";
 import { AnimatePresence } from "framer-motion";
@@ -19,6 +20,7 @@ export default Router;
 export function App() {
 	useResponsive();
 	usePrefersReducedMotion();
+	usePrefersColorScheme();
 	const isLoaded = useSelector(get.isLoaded);
 
 	const { pathname } = useMatches()[1]; // Get only the first segment

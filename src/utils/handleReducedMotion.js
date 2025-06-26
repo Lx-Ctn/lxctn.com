@@ -1,8 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
-import { updateReducedMotion } from "../store/appSlice";
-import { introEnded } from "../store/appSlice";
+import { updateReducedMotion, introEnded } from "../store/appSlice";
 
 const QUERY = "(prefers-reduced-motion: reduce)";
 const mediaQueryList = window.matchMedia(QUERY);

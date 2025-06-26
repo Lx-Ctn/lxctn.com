@@ -2,20 +2,36 @@ import css from "./MultiStateToggle.module.scss";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-const defaultValues = [
+type MultiStateToggleValue = {
+	value: string;
+	icon?: React.ReactNode | string;
+	label: string;
+};
+
+const defaultValues: MultiStateToggleValue[] = [
 	{ value: "on", icon: "✅", label: "On" },
 	{ value: "auto", icon: "❓", label: "Auto" },
 	{ value: "off", icon: "❌", label: "Off" },
 ];
 
-export const MultiStateToggle = ({ title, description, values = defaultValues, defaultValue, ...props }) => {
-	const [currentValue, setCurrentValue] = useState(values.find(({ value }) => value === defaultValue) || "auto");
+export const MultiStateToggle = ({
+	title,
+	description,
+	values = defaultValues,
+	defaultValue,
+	onChange,
+	...props
+}) => {
+	const [currentValue, setCurrentValue] = useState(
+		values.find(({ value }) => value === defaultValue) || defaultValues[1]
+	);
 
 	const nbOfValues = values.length;
 	const currentValueIndex = values.findIndex(({ value }) => value === currentValue.value);
 
 	const handleClick = e => {
 		setCurrentValue(values.find(({ value }) => value === e.target.value));
+		onChange(e.target.value);
 	};
 
 	return (
@@ -23,10 +39,10 @@ export const MultiStateToggle = ({ title, description, values = defaultValues, d
 			<div className={css.currentIcon}>{currentValue.icon || currentValue.label}</div>
 			<div className={css.content}>
 				<div className={css.contentHeader}>
-					<div className={css.toggle} style={{ "--nb-of-values": nbOfValues }}>
+					<div className={css.toggle} style={{ "--nb-of-values": nbOfValues } as React.CSSProperties}>
 						{values.map(({ value, icon, label }) => (
 							<label key={value}>
-								<motion.input
+								<input
 									type="radio"
 									name={title}
 									value={value}

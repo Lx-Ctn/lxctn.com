@@ -29,7 +29,11 @@ const AnimatedTitle = () => {
 	const currentWord = displayedWords[count];
 
 	return (
-		<motion.h1 {...titleVariants(currentWord.length)} onHoverStart={restartAnimation}>
+		<motion.h1
+			{...titleVariants(currentWord.length)}
+			onHoverStart={restartAnimation}
+			style={{ position: "relative" }}
+		>
 			Lx{" "}
 			<AnimatePresence mode="sync">
 				<motion.span

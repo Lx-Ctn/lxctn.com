@@ -2,11 +2,16 @@ export const paramMenuVariants = {
 	initial: { gridTemplateRows: "0fr" },
 	animate: {
 		gridTemplateRows: "1fr",
-		transition: { duration: 0.3, delayChildren: 0.07, staggerChildren: 0.08, staggerDirection: 1 },
+		transition: {
+			duration: 0.3,
+			delayChildren: 0.07,
+			staggerChildren: 0.08,
+			staggerDirection: 1,
+		},
 	},
 	exit: {
 		gridTemplateRows: "0fr",
-		transition: { type: "tween", delay: 0.1, staggerChildren: 0.05, staggerDirection: -1 },
+		transition: { delay: 0.1, staggerChildren: 0.05, staggerDirection: -1 },
 	},
 };
 
