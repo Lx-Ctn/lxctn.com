@@ -6,36 +6,6 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { get } from "../../store/selectors";
 
-export const AboutMe = () => {
-	const [isLauching, setIsLauching] = useState(true);
-	const onAnimationComplete = () => setIsLauching(false);
-
-	const reducedMotion = useSelector(get.reducedMotion);
-
-	return (
-		<motion.div
-			className={css._}
-			variants={AboutMePageAnimation}
-			{...(!reducedMotion && animPropsNames)}
-			onAnimationComplete={onAnimationComplete}
-		>
-			<h1>Hello !</h1>
-			<p className={css.prePseudo}>I'm</p>
-			<Pseudo />
-			{contents.map((content, i) => (
-				<Section
-					key={i}
-					reducedMotion={reducedMotion}
-					direction={i % 2 === 0 ? "50%" : "-50%"}
-					delay={isLauching ? 0.3 + i / contents.length : 0} // staggering after main content on launch, then 0 when entering viewport
-				>
-					{content}
-				</Section>
-			))}
-		</motion.div>
-	);
-};
-
 const contents = [
 	<p>
 		I'm a <Em>web designer</Em>, front-end developer, specialized in <Em>React</Em>
@@ -49,7 +19,7 @@ const contents = [
 	<p>
 		I'm a <Em>web designer</Em>, front-end developer, specialized in <Em>React</Em>
 	</p>,
-	<div>
+	<>
 		<p>
 			En provenance du monde du <Em>graphisme</Em>, j'ai embrassé le domaine du <Em>web design</Em> il y a
 			quelques années. Ma fascination pour la <Em>programmation</Em> remonte à longtemps, et tandis que je
@@ -66,11 +36,43 @@ const contents = [
 		</p>
 		<p>Au plaisir,</p>
 		<p>Alexandre Cottin</p>
-	</div>,
+	</>,
 ];
+
+export const AboutMe = () => {
+	const [isLauching, setIsLauching] = useState(true);
+	const onAnimationComplete = () => setIsLauching(false);
+
+	const reducedMotion = useSelector(get.reducedMotion);
+	const appWidth = useSelector(get.appWidth);
+
+	return (
+		<motion.div
+			className={css._}
+			variants={AboutMePageAnimation}
+			{...(!reducedMotion && animPropsNames)}
+			onAnimationComplete={onAnimationComplete}
+		>
+			<h1>Hello !</h1>
+			<p className={css.prePseudo}>I'm</p>
+			<Pseudo />
+			{contents.map((content, i) => (
+				<Section
+					key={i}
+					reducedMotion={reducedMotion}
+					direction={i % 2 === 0 ? appWidth / 3 : appWidth / -3} // Bug with framer-motion, it doesn't like % values
+					delay={isLauching ? 0.3 + i / contents.length : 0} // staggering after main content on launch, then 0 when entering viewport
+				>
+					{content}
+				</Section>
+			))}
+		</motion.div>
+	);
+};
 
 const Section = ({ direction, children, delay, reducedMotion }) => {
 	const variants = slideInAnimation(direction, delay);
+
 	return reducedMotion ? (
 		<section>{children}</section>
 	) : (

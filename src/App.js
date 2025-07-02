@@ -6,7 +6,7 @@ import { useResponsive } from "./utils/useResponsive";
 import { usePrefersReducedMotion } from "./utils/handleReducedMotion";
 import { usePrefersColorScheme } from "utils/handleTheme";
 
-import { Header, Footer, UnderConstruction } from "./components";
+import { Header, Footer } from "./components";
 import { AnimatePresence } from "framer-motion";
 import { useSafeRouting } from "./utils/useSafeRouting";
 
@@ -35,7 +35,6 @@ export function App() {
 	return isLoaded ? (
 		<>
 			<Header />
-			<UnderConstruction />
 			<div className="under-header">
 				<Main />
 				<Footer />
