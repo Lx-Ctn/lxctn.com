@@ -72,7 +72,7 @@ export default function Header() {
 		>
 			<BackdropGradientBlur
 				blur="12px"
-				background={{ color: "#ffffff", opacity: 0.55 }}
+				background={{ color: "--background-color", opacity: 0.55 }}
 				fromEnd="2em"
 				style={{ bottom: "-1.5em" }}
 			/>
