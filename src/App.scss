@@ -1,11 +1,11 @@
 ::selection {
-	background: hsl(344deg 100% 41%);
+	background: var(--selection-background-color);
 	-webkit-text-fill-color: initial;
-	color: #fff;
+	color: var(--selection-text-color);
 }
 
 :focus-visible {
-	outline: 2px solid var(--secondary-color);
+	outline: 2px solid var(--accent-color);
 	outline-offset: -1px;
 	margin: 0 0.1em;
 	border-radius: 2em;
@@ -13,11 +13,13 @@
 
 h1,
 h2 {
-	color: #0083a1;
+	color: var(--title-main-color);
 	font-weight: 100;
 	font-size: 2.5em;
 	line-height: 1;
 	margin: 0.7rem 1rem;
+
+	transition: color var(--transition-fast);
 }
 h2 {
 	font-size: 2em;
@@ -38,15 +40,12 @@ button,
 
 	font-family: inherit;
 	font-size: 0.95em;
-	color: var(--dark-color);
+	color: var(--text-main-color);
 	&:hover {
-		color: #0083a1;
-	}
-
-	transition: scale 0.3s;
-	&:hover {
+		color: var(--text-main-color-hover);
 		scale: 1.05;
 	}
+	transition: scale var(--transition-smooth), color var(--transition-fast);
 }
 
 a {
@@ -58,12 +57,12 @@ a:not(.button),
 nav button,
 button.link {
 	position: relative;
-	transition: scale 0.2s, color 0.2s;
-	color: var(--dark-color);
+	transition: scale var(--transition-smooth), color var(--transition-fast);
+	color: var(--text-main-color);
 
 	&:hover {
 		scale: 1.05;
-		color: #0083a1;
+		color: var(--text-main-color-hover);
 	}
 
 	&:after {
@@ -76,13 +75,13 @@ button.link {
 
 		height: 2px;
 		clip-path: inset(66% 0 0 0);
-		border-bottom: 1px solid hsl(200, 47%, 50%);
+		border-bottom: 1px solid var(--border-main-color);
 		border-radius: 50%;
 		scale: 0 1;
 		@media (-webkit-max-device-pixel-ratio: 1.99) {
 			scale: 0 1.5;
 		}
-		transition: scale 0.2s;
+		transition: scale var(--transition-smooth), border-color var(--transition-fast);
 	}
 
 	&:hover:after {
@@ -90,15 +89,15 @@ button.link {
 		@media (-webkit-max-device-pixel-ratio: 1.99) {
 			scale: 1 1.5;
 		}
-		transition: scale 0.3s cubic-bezier(0.2, 1.8, 0.6, 0.7);
+		transition: scale var(--transition-bounce), border-color var(--transition-fast);
 	}
 }
 
 em {
 	font-weight: bold;
 	font-style: normal;
-	background: linear-gradient(90deg, var(--main-color), var(--secondary-color));
-	background-size: 250% 90%;
+	background: linear-gradient(in oklch 90deg, var(--main-color), var(--accent-color));
+	background-size: 200% 100%;
 	background-repeat: no-repeat;
 	background-position: 100%;
 	background-clip: text;
@@ -155,8 +154,9 @@ section {
 
 		height: 2px;
 		clip-path: inset(66% 0 0 0); // hide fantom border in safari
-		border-bottom: 1px solid var(--secondary-color-dark);
+		border-bottom: 1px solid var(--border-accent-color-muted);
 		border-radius: 50%;
+		transition: border-color var(--transition-fast);
 		@media (-webkit-max-device-pixel-ratio: 1.99) {
 			scale: 1 1.3;
 		}

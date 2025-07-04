@@ -109,7 +109,10 @@ const Img = ({ imgData, sizes }) => {
 			sizes={sizes ?? "15em"}
 		/>
 	) : (
-		<div className={css.noImg}>{imgData.alt}</div>
+		<div className={css.noImg}>
+			<span>{"⊘"}</span>
+			<span className={css.alt}>{imgData.alt}</span>
+		</div>
 	);
 };
 

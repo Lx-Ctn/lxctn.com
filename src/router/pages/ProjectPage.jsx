@@ -59,7 +59,8 @@ const Img = ({ imgData, ...props }) => {
 		</motion.div>
 	) : (
 		<motion.div className={css.noImg} {...props}>
-			{imgData.alt}
+			<span>{"⊘"}</span>
+			<span className={css.alt}>{imgData.alt}</span>
 		</motion.div>
 	);
 };

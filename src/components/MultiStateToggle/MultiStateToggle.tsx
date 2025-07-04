@@ -34,9 +34,14 @@ export const MultiStateToggle = ({
 		onChange(e.target.value);
 	};
 
+	const transparentBackground = { backgroundColor: "hsl(from var(--background-color-elevated) h s l / 70%)" };
+
 	return (
 		<motion.fieldset className={css._} {...props}>
-			<div className={css.currentIcon}>{currentValue.icon || currentValue.label}</div>
+			<div className={css.background} style={transparentBackground} />
+			<div className={css.currentIcon} style={transparentBackground}>
+				{currentValue.icon || currentValue.label}
+			</div>
 			<div className={css.content}>
 				<div className={css.contentHeader}>
 					<div className={css.toggle} style={{ "--nb-of-values": nbOfValues } as React.CSSProperties}>

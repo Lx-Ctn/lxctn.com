@@ -1,18 +1,31 @@
 ._ {
-	--active-label-bg-color: rgb(0, 176, 208);
-	--active-label-text-color: hsl(0, 0%, 100%);
+	--active-label-bg-color: var(--main-color);
+	--active-label-text-color: var(--text-main-color-inverse);
 
+	position: relative;
 	cursor: pointer;
 	display: flex;
 	align-items: center;
 
-	border: 1px solid #cbb;
+	border: none;
 	border-radius: 1.5em;
 	padding: 0.6em 0.6em 0.5em 0;
 	margin-left: 0.85em; // icon width / 2
 	margin-bottom: 0.4em;
 
-	background-color: #fff8;
+	.background {
+		position: absolute;
+		z-index: -1;
+		inset: -1px;
+
+		border: 1px solid var(--border-neutral-color);
+		border-radius: 1.5em;
+
+		background-color: var(--background-color-elevated);
+		// background-color: hsl(from var(--background-color-elevated) h s l / 70%); // not supported by Sass yet -> JS
+		mask: radial-gradient(circle 0.85em at 1px calc(50% + 1px), transparent 0.84em, black 0.85em);
+		transition: background-color var(--transition-fast), border-color var(--transition-fast);
+	}
 
 	.currentIcon {
 		height: 2.125em;
@@ -26,15 +39,21 @@
 		margin-left: -1.05em; // icon width / 2
 		margin-right: 0.6em;
 
-		border: 1px solid #cbb;
+		border: 1px solid var(--border-neutral-color);
 		border-radius: 2em;
-		background-color: #fff;
-		font-size: 0.8em;
-		color: hsl(195, 100%, 16%);
-		--stroke-color: hsl(195, 100%, 16%);
+		// background-color: hsl(from var(--background-color-elevated) h s l / 70%); // not supported by Sass yet -> JS
 
-		path {
-			transition: fill 0.15s;
+		font-size: 0.8em;
+		color: var(--text-main-color);
+		--stroke-color: var(--text-main-color);
+
+		transition: background-color var(--transition-fast), border-color var(--transition-fast),
+			color var(--transition-fast);
+
+		path,
+		circle,
+		line {
+			transition: fill var(--transition-fast), stroke var(--transition-fast);
 		}
 	}
 
@@ -58,7 +77,8 @@
 			text-align: start;
 			max-width: 30ch;
 			font-size: 0.8em;
-			color: rgb(0, 99, 126);
+			color: var(--text-main-color-soft);
+			transition: color var(--transition-fast);
 		}
 	}
 
@@ -69,10 +89,12 @@
 		grid-auto-flow: column;
 		grid-auto-columns: 1fr;
 
-		border: 1px solid rgb(0, 99, 126);
+		border: 1px solid var(--border-main-color-muted);
 		border-radius: 3em;
 		margin-right: 0.3em;
 		padding-block: 0.1em;
+
+		transition: border-color var(--transition-fast);
 
 		input[type="radio"] {
 			visibility: hidden;
@@ -87,9 +109,18 @@
 			text-align: center;
 			cursor: pointer;
 
-			color: hsl(195, 100%, 16%);
-			--stroke-color: hsl(195, 100%, 16%);
 			font-size: 0.8em;
+			color: var(--text-main-color);
+			--stroke-color: var(--text-main-color);
+
+			transition: background-color var(--transition-fast), border-color var(--transition-fast),
+				color var(--transition-fast);
+
+			path,
+			circle,
+			line {
+				transition: fill var(--transition-fast), stroke var(--transition-fast);
+			}
 		}
 
 		.currentValue {
@@ -116,11 +147,18 @@
 				--stroke-color: var(--active-label-text-color);
 
 				opacity: 0;
-				transition: opacity 0.3s cubic-bezier(0.77, 0, 0.175, 1) 0.15s;
+				transition: opacity 0.3s cubic-bezier(0.77, 0, 0.175, 1) 0.15s, background-color var(--transition-fast),
+					color var(--transition-fast);
 				will-change: opacity;
 
 				&.active {
 					opacity: 1;
+				}
+
+				path,
+				circle,
+				line {
+					transition: fill var(--transition-fast), stroke var(--transition-fast);
 				}
 			}
 		}

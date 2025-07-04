@@ -10,11 +10,12 @@
 	align-items: center;
 
 	.sideNav {
-		width: var(--side-nav-size);
-		padding: 1em 0.4em 1em 1.6em;
-		background-color: var(--background-color);
 		position: static;
+		width: var(--side-nav-size);
 		margin: 0;
+		padding: 0.9em 0.4em 1.1em 1.6em;
+		background-color: var(--background-color);
+		transition: background-color var(--transition-fast);
 
 		.logoLx {
 			min-width: 31px;
@@ -39,7 +40,7 @@
 			width: 70%;
 
 			height: 2px;
-			border-top: 1px solid var(--secondary-color-dark);
+			border-top: 1px solid var(--border-accent-color-muted);
 			border-radius: 50%;
 			clip-path: inset(0 0 66% 0);
 			@media (-webkit-max-device-pixel-ratio: 1.99) {

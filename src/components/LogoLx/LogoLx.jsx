@@ -1,7 +1,6 @@
 import css from "./LogoLx.module.scss";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
-import { LogoColor } from "../../utils/colorTheme"; // // Default brand color
 import { introVariants } from "./LogoLx.motion";
 /*
 
@@ -38,11 +37,11 @@ const cssVariables = {
  
 *** Colors : 
 */
-const LOGO_COLOR = LogoColor.toHsl();
+const LOGO_COLOR = "var(--logo-main-color)";
 
-const RIGHT_COLOR = "rgb(0, 176, 208)"; // To make a ✓
-const WRONG_COLOR = "#a10033"; // To make a ✗
-const NEUTRAL_COLOR = "#003F5413";
+const RIGHT_COLOR = "var(--logo-main-color)"; // To make a ✓
+const WRONG_COLOR = "var(--accent-color)"; // To make a ✗
+const NEUTRAL_COLOR = "var(--neutral-color-muted)"; // To make a neutral color for the logo
 
 // The logo have its theme color by default, but can take a "color" prop to change it,
 //	This prop can be "true" to color the logo as a "✓", or false to make a "✗"

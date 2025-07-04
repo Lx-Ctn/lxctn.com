@@ -28,10 +28,10 @@
 	.highlight {
 		transition: color 1.3s;
 	}
-	&:hover {
-		color: hsla(185 100% 25% / 25%);
+	&:hover span {
+		color: var(--title-main-color-transparent);
 	}
 	&:hover .highlight {
-		color: hsl(185, 100%, 25%);
+		color: var(--title-main-color);
 	}
 }

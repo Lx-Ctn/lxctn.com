@@ -9,9 +9,12 @@ export const Checkbox = ({ description, label, on = "On", off = "Off", ...props 
 		setIsCheck(isChecked => !isChecked);
 	};
 
+	const transparentBackground = { backgroundColor: "hsl(from var(--background-color-elevated) h s l / 70%)" };
+
 	return (
 		<motion.label className={css._} {...props}>
-			<LogoLx className={css.logo} color={isChecked} />
+			<div className={css.background} style={transparentBackground} />
+			<LogoLx className={css.logo} color={isChecked} style={transparentBackground} />
 			<div className={css.content}>
 				<div className={css.contentHeader}>
 					<motion.input type="checkbox" checked={isChecked} onChange={handleClick} />

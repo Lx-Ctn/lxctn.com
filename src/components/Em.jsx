@@ -12,5 +12,5 @@ export const Em = props => {
 
 const emAnimation = {
 	initial: { backgroundPosition: "0%" },
-	whileInView: { backgroundPosition: "100%", transition: { duration: 0.7 } },
+	whileInView: { backgroundPosition: "80%", transition: { duration: 0.7 } },
 };

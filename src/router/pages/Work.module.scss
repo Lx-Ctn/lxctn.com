@@ -1,7 +1,5 @@
 ._ {
-	--active-color: hsl(350deg 100% 68%);
-	--background-color: #fff;
-	--alpha-main-color: hsla(181deg, 40%, 70%, 25%);
+	--active-color: var(--accent-color-soft);
 
 	margin-top: 1em;
 	transform-origin: top;
@@ -20,6 +18,7 @@
 		justify-content: space-around;
 
 		background: var(--background-color);
+		transition: background-color var(--transition-fast);
 
 		&::before,
 		&::after {
@@ -36,16 +35,17 @@
 			}
 
 			opacity: 0.5;
-			box-shadow: 0 0 0.9em var(--dark-color);
+			box-shadow: 0 0 0.9em var(--border-main-color-muted);
+			transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
 		}
 		&::before {
 			top: -1px;
-			border-top: 1px solid var(--dark-color);
+			border-top: 1px solid var(--border-main-color-muted);
 			//clip-path: inset(0 0 66% 0);
 		}
 		&::after {
 			bottom: -1px;
-			border-bottom: 1px solid var(--dark-color);
+			border-bottom: 1px solid var(--border-main-color-muted);
 			//clip-path: inset(66% 0 0 0);
 		}
 
@@ -67,6 +67,7 @@
 	.active {
 		color: var(--active-color);
 		translate: 0 -0.1em;
+
 		&:focus-visible {
 			translate: none;
 		}
@@ -81,6 +82,7 @@
 				scale: 0.7 1.5;
 			}
 			border-color: var(--active-color);
+			transition: border-color var(--transition-fast);
 		}
 	}
 }
@@ -89,8 +91,8 @@
 	width: 12%;
 	aspect-ratio: 1;
 
-	border: 0.3em dotted hsl(195, 100%, 50%);
 	border-radius: 50%;
+	border: 0.3em dotted var(--main-color);
 
 	margin: auto;
 }
@@ -142,15 +144,21 @@
 		width: 100%;
 		min-height: 7em;
 
-		border: 2px dotted #ccc;
+		border: 2px dotted var(--border-neutral-color);
 		border-radius: 1.3em;
 
 		margin: 1em 0;
 
-		background: linear-gradient(-45deg, transparent 10%, var(--alpha-main-color, #9993) 25%, transparent 50%)
+		background: linear-gradient(
+				-45deg,
+				transparent 10%,
+				var(hsla(181deg, 40%, 70%, 25%), #9993) 25%,
+				transparent 50%
+			)
 			no-repeat center;
 		background-size: 200% 100%;
 		animation: background-position 2s 3 linear;
+		transition: border-color var(--transition-fast);
 	}
 	.noImg {
 		display: grid;
@@ -162,8 +170,26 @@
 		border-radius: 1.3em;
 
 		margin: 1em 0;
-		background: linear-gradient(30deg, var(--secondary-color-dark), var(--main-color));
-		opacity: 0.3;
+		background: linear-gradient(30deg, var(--accent-color-muted), var(--main-color));
+		color: var(--text-main-color-soft);
+		transition: background var(--transition-fast), color var(--transition-fast);
+
+		span {
+			z-index: 1;
+		}
+		span.alt {
+			font-size: 0.8em;
+			font-style: italic;
+		}
+	}
+
+	.noImg::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background-color: var(--background-color);
+		opacity: 0.7;
+		transition: background-color var(--transition-fast);
 	}
 
 	p {

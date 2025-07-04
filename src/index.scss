@@ -1,13 +1,6 @@
+@import "./theme.scss";
+
 :root {
-	--main-color: hsl(187deg 100% 50%);
-	--dark-color: hsl(195, 100%, 16%);
-	--very-light-main-color: hsl(187deg 100% 90%);
-
-	--secondary-color: hsl(347deg 100% 50%);
-	--secondary-color-dark: hsl(347deg, 50%, 20%);
-
-	--background-color: #fff;
-
 	--header-height: 5em;
 	@media (width < 500px) {
 		--header-height: 6em;
@@ -18,47 +11,15 @@
 
 	font-size: calc(10px + 1vw);
 	font-family: "K2D", sans-serif;
-	font-weight: 400;
 	text-align: center;
-	color: var(--dark-color, hsl(195, 100%, 16%));
+	font-weight: 400;
+	color: var(--text-main-color);
+	transition: color var(--transition-fast);
 
 	scrollbar-gutter: stable both-edges;
 	&::-webkit-scrollbar {
 		width: 0;
 	}
-}
-
-@font-face {
-	font-family: K2D;
-	src: url(./assets/fonts/K2D-Thin.ttf) format("truetype");
-	font-display: swap;
-	font-weight: 100;
-}
-@font-face {
-	font-family: K2D;
-	src: url(./assets/fonts/K2D-Regular.ttf) format("truetype");
-	font-display: swap;
-	font-weight: 400;
-}
-@font-face {
-	font-family: K2D;
-	src: url(./assets/fonts/K2D-Bold.ttf) format("truetype");
-	font-display: swap;
-	font-weight: 700;
-}
-
-@font-face {
-	font-family: Exo;
-	src: url(./assets/fonts/Exo-VariableFont_wght.ttf) format("truetype-variations");
-	font-display: swap;
-	font-weight: 100 900;
-}
-
-@font-face {
-	font-family: AlbertSans;
-	src: url(./assets/fonts/AlbertSans-VariableFont_wght.ttf) format("truetype-variations");
-	font-display: swap;
-	font-weight: 100 900;
 }
 
 :root,
@@ -70,8 +31,8 @@ body {
 
 body {
 	width: 100%;
-	background-color: #fff;
-	/*background-color: #011;*/
+	background-color: var(--background-color);
+	transition: background-color var(--transition-fast);
 
 	#app {
 		width: 100%;

@@ -6,13 +6,13 @@
 
 		path {
 			fill: none;
-			stroke: #0083a1;
+			stroke: var(--logo-main-color);
 			min-height: 0vw;
 			stroke-width: var(--svg-stroke-width);
 
 			opacity: 1;
 			scale: 1;
-			transition: opacity 0.2s, scale 0.2s, transform 0.2s;
+			transition: opacity 0.2s, scale 0.2s, transform 0.2s, stroke var(--transition-fast);
 			transform-origin: center;
 		}
 	}

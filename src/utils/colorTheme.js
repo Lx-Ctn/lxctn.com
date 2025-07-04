@@ -1,4 +1,4 @@
-import Color from "./Color";
+import Color from "@lxweb/color";
 
 /***   Color theme for Lx Design branding :
 
@@ -29,12 +29,11 @@ const getVariation = ({ PURE, MAX_BLACK_HUE_OFFSET, MAX_WHITE_HUE_OFFSET }, vari
 		variation > 100
 			? (variation - 100 - ((variation - 100) * (2 * variation - 400)) / 800) / 2
 			: (variation + (variation * (variation - 100)) / 180) / 2 - 50;
-	const colorVariation = new Color(PURE, 0, lightOffset);
 	const hueOffset =
 		variation > 100
 			? (MAX_WHITE_HUE_OFFSET * (variation - 100)) / 100 || 0
 			: MAX_BLACK_HUE_OFFSET - ((MAX_BLACK_HUE_OFFSET * variation) / 100 || 0);
-	colorVariation.hueOffset = hueOffset;
+	const colorVariation = new Color(PURE, { hue: hueOffset, light: lightOffset });
 	return colorVariation;
 };
 
@@ -63,19 +62,18 @@ const colorTheme = {
 				variation > 100
 					? (variation - 100 - ((variation - 100) * (variation - 200)) / 160) / 2
 					: (variation + (variation * (variation - 100)) / 180) / 2 - 50;
-			const ColorVariation = new Color(colorTheme.hot.PURE, 0, lightOffset);
 			const hueOffset =
 				variation > 100
 					? (MAX_WHITE_HUE_OFFSET * (variation - 100)) / 100 || 0
 					: MAX_BLACK_HUE_OFFSET - ((MAX_BLACK_HUE_OFFSET * variation) / 100 || 0);
-			ColorVariation.hueOffset = hueOffset;
+
+			const ColorVariation = new Color(colorTheme.hot.PURE, { hue: hueOffset, light: lightOffset });
 			return ColorVariation;
 		},
 	},
 };
 
 export default colorTheme;
-
 export const LogoColor = getVariation(colorTheme.celestial, 75);
 
 /*

@@ -1,5 +1,4 @@
 ._ {
-	--background-color: #fff;
 	--radius: 2em;
 	--rotate-from: -20deg;
 	--rotate-to: 175deg;
@@ -13,11 +12,10 @@
 		content: "";
 		position: absolute;
 		inset: 0;
-		border: 2px solid var(--secondary-color-dark);
+		border: 2px solid var(--border-accent-color-muted);
 		border-radius: var(--radius);
-
 		opacity: 0.7;
-		transition: opacity 0.3s;
+		transition: opacity var(--transition-smooth), border-color var(--transition-fast);
 	}
 }
 
@@ -26,7 +24,7 @@
 	inset: 0;
 	border-radius: var(--radius);
 
-	box-shadow: 0 0 0.8em -0.6em black;
+	box-shadow: 0 0 0.8em -0.6em var(--background-color-inverse);
 
 	opacity: 0;
 	transition: opacity 0.5s;
@@ -37,7 +35,7 @@
 		inset: 0;
 		border-radius: var(--radius);
 
-		box-shadow: 0.3em -0.1em 0.8em -0.4em var(--main-color), -0.3em 0.1em 0.8em -0.4em var(--secondary-color);
+		box-shadow: 0.3em -0.1em 0.8em -0.4em var(--main-color), -0.3em 0.1em 0.8em -0.4em var(--accent-color);
 
 		opacity: 0;
 		transition: opacity 0.5s;
@@ -61,7 +59,7 @@
 		height: 50%;
 		filter: blur(0.2em);
 		translate: -50% -50%;
-		background: linear-gradient(90deg, var(--main-color) 50%, var(--secondary-color) 50%);
+		background: linear-gradient(90deg, var(--main-color) 50%, var(--accent-color) 50%);
 		rotate: var(--rotate-from);
 		transition: rotate 0.3s;
 	}
@@ -70,8 +68,9 @@
 		position: absolute;
 		inset: 1px;
 
-		background-color: var(--background-color);
 		border-radius: calc(var(--radius) - 1px);
+		background-color: var(--background-color-elevated);
+		transition: background-color var(--transition-fast);
 	}
 }
 

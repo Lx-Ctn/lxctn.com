@@ -1,10 +1,12 @@
 ._ {
-	border: 1px solid #0099df;
+	border: 1px solid var(--border-main-color);
 	border-radius: 2em;
 
 	max-width: 800px;
 	margin: 2em;
 	padding: 1em 2em;
+
+	transition: border-color var(--transition-fast);
 
 	address {
 		display: inline-block;
@@ -23,7 +25,9 @@
 	}
 
 	dt {
+		z-index: 1; // issue with Safari when selecting
 		margin-inline-end: 1.3em;
-		color: var(--secondary-color-dark);
+		color: var(--text-accent-color-muted);
+		transition: color var(--transition-fast);
 	}
 }

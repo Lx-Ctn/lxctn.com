@@ -8,8 +8,7 @@
 	align-items: center;
 
 	.bubble {
-		--background-color: #fff;
-		--main-color: #0099df;
+		--main-color: hsl(199, 100%, 44%);
 
 		display: flex;
 		align-items: flex-end;
@@ -24,7 +23,9 @@
 		z-index: 1;
 
 		border-radius: 50%;
-		border-bottom: 1px solid var(--main-color);
+		border-bottom: 1px solid var(--border-main-color);
 		clip-path: inset(50% 0 0 0);
+
+		transition: background-color var(--transition-fast), border-color var(--transition-fast);
 	}
 }
