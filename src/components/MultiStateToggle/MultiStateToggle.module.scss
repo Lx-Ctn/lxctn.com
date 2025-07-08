@@ -77,7 +77,15 @@
 		}
 
 		legend {
-			margin-bottom: 0.1em;
+			margin-left: 0.4em;
+			margin-bottom: 0.2em;
+			text-align: start;
+
+			span {
+				display: block;
+				font-size: 0.9em;
+				line-height: 1;
+			}
 		}
 
 		p {

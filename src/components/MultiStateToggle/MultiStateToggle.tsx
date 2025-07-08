@@ -66,7 +66,10 @@ export const MultiStateToggle = ({
 						</div>
 					</div>
 
-					<legend>{`${title ?? ""} (${currentValue.label})`}</legend>
+					<legend>
+						{`${title ?? ""}`}
+						<span>{`(${currentValue.label})`}</span>
+					</legend>
 				</div>
 				{description && <p>{description}</p>}
 			</div>
