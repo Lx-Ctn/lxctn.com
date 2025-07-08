@@ -85,7 +85,7 @@ export default function Header() {
 			</AnimatePresence>
 			<div className={css.container}>
 				<Logo {...{ isIntro, isMobile, isAnimating }} />
-				<ParameterButton isAnimating={isAnimating} />
+				<ParameterButton isAnimating={isAnimating} isParameterMenuOpen={isParameterMenuOpen} />
 			</div>
 			<AnimatePresence>{isMobileMenuOpen && <Nav isMobile {...{ isAnimating }} />}</AnimatePresence>
 			<AnimatePresence>{isParameterMenuOpen && <ParameterMenu />}</AnimatePresence>
@@ -179,7 +179,7 @@ const Logo = ({ isIntro, isMobile, isAnimating }) => {
 	);
 };
 
-const ParameterButton = ({ isAnimating }) => {
+const ParameterButton = ({ isAnimating, isParameterMenuOpen }) => {
 	const dispatch = useDispatch();
 	const toggleParam = () => dispatch(toggleParameterMenu());
 
@@ -191,7 +191,7 @@ const ParameterButton = ({ isAnimating }) => {
 			variants={isAnimating && gearVariants}
 			{...animPropsNames}
 		>
-			<GearIcon />
+			<GearIcon isOpen={isParameterMenuOpen} />
 		</motion.button>
 	);
 };

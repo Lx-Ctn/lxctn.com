@@ -1,11 +1,7 @@
 import css from "./GearIcon.module.scss";
 import { motion } from "framer-motion";
-import { useSelector } from "react-redux";
-import { get } from "../../store/selectors";
 
-const GearIcon = props => {
-	const isOpen = useSelector(get.isParameterMenuOpen);
-
+const GearIcon = ({ isOpen = false, ...props }) => {
 	return (
 		<motion.div className={`${css._} ${isOpen ? css.open : ""}`} {...props}>
 			<svg width="100%" viewBox="0 0 200 200">
