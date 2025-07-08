@@ -17,6 +17,10 @@
 }
 
 ._ {
+	--right-color: var(--logo-main-color); // To make a ✓
+	--wrong-color: var(--accent-color); // To make a ✗
+	--neutral-color: var(--neutral-color-muted); // To make a neutral color for the logo
+
 	min-width: 31px; // if smaller, path animation may flinck and my eyes burns.
 
 	path {

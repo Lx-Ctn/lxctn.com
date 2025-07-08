@@ -39,13 +39,14 @@ const cssVariables = {
 */
 const LOGO_COLOR = "var(--logo-main-color)";
 
-const RIGHT_COLOR = "var(--logo-main-color)"; // To make a ✓
-const WRONG_COLOR = "var(--accent-color)"; // To make a ✗
-const NEUTRAL_COLOR = "var(--neutral-color-muted)"; // To make a neutral color for the logo
+const RIGHT_COLOR = "var(--right-color)"; // To make a ✓
+const WRONG_COLOR = "var(--wrong-color)"; // To make a ✗
+const NEUTRAL_COLOR = "var(--neutral-color)"; // To make a neutral color for the logo
 
 // The logo have its theme color by default, but can take a "color" prop to change it,
 //	This prop can be "true" to color the logo as a "✓", or false to make a "✗"
-const getLogoColors = (color, { ifWrongColor, ifRightColor } = {}) => {
+type BooleanColors = { ifWrongColor?: string; ifRightColor?: string };
+const getLogoColors = (color: string | boolean, { ifWrongColor, ifRightColor }: BooleanColors = {}) => {
 	if (color === null || color === undefined) return LOGO_COLOR;
 	if (color === true) return ifRightColor ?? RIGHT_COLOR;
 	if (color === false) return ifWrongColor ?? WRONG_COLOR;
@@ -58,7 +59,13 @@ const getLogoColors = (color, { ifWrongColor, ifRightColor } = {}) => {
 
 
 */
-const LogoLx = ({ color, intro, waving, setIsAnimationEnded, ...props }) => {
+type LogoLxProps = {
+	color?: string | boolean;
+	intro?: boolean;
+	waving?: boolean;
+	setIsAnimationEnded?: (isAnimationEned: boolean) => {};
+};
+const LogoLx = ({ color, intro, waving, setIsAnimationEnded, ...props }: LogoLxProps) => {
 	// If the app finish to load before the end of the intro drawing :
 	useEffect(() => {
 		const timedAnimEnd =
@@ -72,20 +79,26 @@ const LogoLx = ({ color, intro, waving, setIsAnimationEnded, ...props }) => {
 	const lVariants = {
 		initial: waving ? { d: L_PATH } : { d: CURVED_L_PATH },
 		animate: waving
-			? { d: CURVED_L_PATH, transition: { duration: 0.7, delay: 0.5, repeat: Infinity, repeatType: "mirror" } }
+			? {
+					d: CURVED_L_PATH,
+					transition: { duration: 0.7, delay: 0.5, repeat: Infinity, repeatType: "mirror" as const },
+			  }
 			: { d: L_PATH },
 	};
 	const smallXVariants = {
 		initial: waving ? { d: X_PATH } : { d: CURVED_X_PATH },
 		animate: waving
-			? { d: CURVED_X_PATH, transition: { duration: 0.7, delay: 0.5, repeat: Infinity, repeatType: "mirror" } }
+			? {
+					d: CURVED_X_PATH,
+					transition: { duration: 0.7, delay: 0.5, repeat: Infinity, repeatType: "mirror" as const },
+			  }
 			: { d: X_PATH },
 	};
 
 	return (
 		<motion.div // Need a container to scale relatively a svg with motion
 			className={intro ? css.intro : css._}
-			style={cssVariables}
+			style={cssVariables as React.CSSProperties}
 			key="Logo-Lx"
 			initial="initial"
 			animate="animate"
