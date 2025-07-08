@@ -41,16 +41,28 @@ const getSrcSet = (url, source) =>
 				.join(", ")
 		: "";
 
-const FixedAvatar = () => (
-	<div className={css._}>
-		<ImageWebp
-			webp={getSrcSet(avatarSources.wholeAvatar, avatarSources.webp)}
-			jpg={getSrcSet(avatarSources.wholeAvatar, avatarSources.jpg)}
-			sizes={"30vmin"}
-			alt="Lx avatar"
-		/>
-	</div>
-);
+const FixedAvatar = () => {
+	const dispatch = useDispatch();
+	const isLoaded = useSelector(get.isLoaded);
+	useEffect(() => {
+		if (!isLoaded) {
+			loading.whenAllisLoaded(() => dispatch(loadingCompleted()));
+		}
+		return () => loading.cleanUp();
+	}, [dispatch, isLoaded]);
+
+	return (
+		<div className={css._}>
+			<ImageWebp
+				webp={getSrcSet(avatarSources.wholeAvatar, avatarSources.webp)}
+				jpg={getSrcSet(avatarSources.wholeAvatar, avatarSources.jpg)}
+				sizes={"30vmin"}
+				alt="Lx avatar"
+				loadingListener={loading.listener}
+			/>
+		</div>
+	);
+};
 
 const AnimatedAvatar = () => {
 	const dispatch = useDispatch();
@@ -60,6 +72,7 @@ const AnimatedAvatar = () => {
 
 	// Get mouse coor from the center of the component :
 	const coor = useParallax(ref, css.smoothTranslate);
+
 	useEffect(() => {
 		if (!isLoaded) {
 			loading.whenAllisLoaded(() => dispatch(loadingCompleted()));
