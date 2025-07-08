@@ -1,7 +1,8 @@
 import type { RootState } from "store";
 export const get = {
 	appWidth: (state: RootState) => state.app.appWidth,
-	reducedMotion: (state: RootState) => state.app.reducedMotion,
+	reducedMotion: (state: RootState) => state.app.currentReducedMotion,
+	preferedReducedMotion: (state: RootState) => state.app.preferedReducedMotion,
 	isLoaded: (state: RootState) => state.app.isLoaded,
 	isIntro: (state: RootState) => state.app.isIntro,
 	currentTheme: (state: RootState) => state.app.currentTheme,

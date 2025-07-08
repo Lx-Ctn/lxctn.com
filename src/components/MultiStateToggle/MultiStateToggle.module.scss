@@ -55,6 +55,13 @@
 		line {
 			transition: fill var(--transition-fast), stroke var(--transition-fast);
 		}
+		div {
+			// Logo
+			width: 1.7em;
+			min-width: 1.7em;
+			height: 1.7em;
+			padding: 0.35em;
+		}
 	}
 
 	.content {
@@ -121,6 +128,13 @@
 			line {
 				transition: fill var(--transition-fast), stroke var(--transition-fast);
 			}
+			div {
+				// Logo
+				width: 1.7em;
+				min-width: 1.7em;
+				height: 1.7em;
+				padding: 0.35em;
+			}
 		}
 
 		.currentValue {
@@ -131,7 +145,7 @@
 			z-index: 2;
 			transition: translate 0.5s cubic-bezier(0.77, 0, 0.175, 1);
 
-			div {
+			& > div {
 				position: absolute;
 				inset: 0.15em;
 
@@ -159,6 +173,17 @@
 				circle,
 				line {
 					transition: fill var(--transition-fast), stroke var(--transition-fast);
+				}
+				div {
+					// if Logo
+					width: 1.7em;
+					min-width: 1.7em;
+					height: 1.7em;
+					padding: 0.35em;
+
+					--right-color: var(--active-label-text-color); // To make a ✓
+					--wrong-color: var(--active-label-text-color); // To make a ✗
+					--neutral-color: var(--neutral-color-transparent); // To make a neutral color for the logo
 				}
 			}
 		}

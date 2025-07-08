@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { reducedMotion } from "../utils/handleReducedMotion";
+import { currentReducedMotion, preferedReducedMotion } from "../utils/handleReducedMotion";
 import { currentTheme, preferedTheme } from "../utils/handleTheme";
 
 const initialAppState = {
 	isLoaded: false,
-	isIntro: !reducedMotion,
+	isIntro: !currentReducedMotion,
 	appWidth: window.innerWidth,
-	reducedMotion,
+	currentReducedMotion,
+	preferedReducedMotion,
 	currentTheme,
 	preferedTheme,
 };
@@ -24,8 +25,11 @@ const appSlice = createSlice({
 		updateAppWidth: state => {
 			state.appWidth = window.innerWidth;
 		},
-		updateReducedMotion: (state, action: PayloadAction<boolean>) => {
-			state.reducedMotion = action.payload;
+		updateCurrentReducedMotion: (state, action: PayloadAction<boolean>) => {
+			state.currentReducedMotion = action.payload;
+		},
+		updatePreferedReducedMotion: (state, action: PayloadAction<typeof preferedReducedMotion>) => {
+			state.preferedReducedMotion = action.payload;
 		},
 		updateCurrentTheme: (state, action: PayloadAction<typeof currentTheme>) => {
 			state.currentTheme = action.payload;
@@ -40,7 +44,8 @@ export const {
 	loadingCompleted,
 	introEnded,
 	updateAppWidth,
-	updateReducedMotion,
+	updateCurrentReducedMotion,
+	updatePreferedReducedMotion,
 	updateCurrentTheme,
 	updatePreferedTheme,
 } = appSlice.actions;
