@@ -1,19 +1,21 @@
 export { default as AnimatedTitle } from "./AnimatedTitle";
-export { default as GearIcon } from "./GearIcon/GearIcon";
 export { default as Header } from "./Header/Header";
 export { default as ImageWebp } from "./ImageWebp";
-export { Light, System, Dark } from "./ThemeIcons/ThemeIcons";
 export { Avatar } from "./Avatar/Avatar";
-export { default as LogoLx } from "./LogoLx/LogoLx";
 export { ContactCard } from "./ContactCard/ContactCard";
 export { BackdropGradientBlur } from "./BackdropGradientBlur/BackdropGradientBlur";
-export { HamburgerIcon } from "./HamburgerIcon/HamburgerIcon";
 export { Checkbox } from "./Checkbox/Checkbox";
 export { MultiStateToggle } from "./MultiStateToggle/MultiStateToggle";
 export { ParameterMenu } from "./ParameterMenu/ParameterMenu";
-export { HomeIcon } from "./HomeIcon/HomeIcon";
 export { Pseudo } from "./Pseudo/Pseudo";
 export { ShiningFrame } from "./ShiningFrame/ShiningFrame";
 export { Footer } from "./Footer/Footer";
 export { Em } from "./Em";
 export { UnderConstruction } from "./UnderConstruction/UnderConstruction";
+
+export { default as LogoLx } from "./LogoLx/LogoLx";
+export { HamburgerIcon } from "./HamburgerIcon/HamburgerIcon";
+export { default as GearIcon } from "./GearIcon/GearIcon";
+export { Light, System, Dark } from "./ThemeIcons/ThemeIcons";
+export { HomeIcon } from "./HomeIcon/HomeIcon";
+export { ReducedMotionIcon } from "./ReducedMotionIcon/ReducedMotionIcon";

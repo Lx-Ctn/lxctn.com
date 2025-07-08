@@ -1,0 +1,19 @@
+._ {
+	width: 1.7em;
+
+	path,
+	line {
+		fill: none;
+		stroke: var(--stroke-color);
+		stroke-width: 8px;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	.fade {
+		opacity: 0.6;
+	}
+	.moreFade {
+		opacity: 0.3;
+	}
+}
