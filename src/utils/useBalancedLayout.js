@@ -25,7 +25,7 @@ const useUIParam = () => {
 
 	const fontsize = parseFloat(window.getComputedStyle(document.body).fontSize);
 	const gap = 1 * fontsize; // gap: 1em;
-	const fontsizeItemRatio = 0.7; // font-size: 0.7em;
+	const fontsizeItemRatio = 0.8; // font-size: 0.8em; // need to be as the css .card font-size
 	const itemFontsize = fontsizeItemRatio * fontsize;
 	const itemMinWidth = 15 * itemFontsize; // flex-basis: 15em; flex-shrink: 0;
 

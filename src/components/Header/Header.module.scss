@@ -58,6 +58,10 @@
 			display: flex;
 			justify-content: space-evenly;
 			margin: auto;
+			transition: font-size var(--transition-fast);
+			@media (min-width: 1200px) {
+				font-size: 1.2em;
+			}
 
 			.navLink {
 				display: flex;

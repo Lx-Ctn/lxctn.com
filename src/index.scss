@@ -9,7 +9,7 @@
 
 	--svg-stroke-width: 8px;
 
-	font-size: calc(10px + 1vw);
+	font-size: min(10px + 1vw, 20px);
 	font-family: "K2D", sans-serif;
 	text-align: center;
 	font-weight: 400;
