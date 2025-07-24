@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <clipPath id="clippath">
+      <rect x="25" y="45" width="150" height="110" rx="30" ry="30" />
+    </clipPath>
+    <style>
+      polygon,
+      rect {
+        stroke-width: 0px;
+      }
+
+      .clip {
+        clip-path: url(#clippath);
+      }
+
+      .blue {
+        fill: #01257d;
+      }
+
+      .red {
+        fill: #ce1b2b;
+      }
+    </style>
+  </defs>
+  <g class=" clip">
+    <g class="red">
+      <polygon points="71.27 120 25 153.93 25 155 40.46 155 80 126 80 120 71.27 120" />
+      <polygon points="128.73 80 175 46.07 175 45 159.54 45 120 74 120 80 128.73 80" />
+      <polygon points="175 153.93 175 141.53 145.64 120 128.73 120 175 153.93" />
+      <polygon points="25 46.07 25 58.47 54.36 80 71.27 80 25 46.07" />
+      <polygon points="112 88 112 45 88 45 88 88 25 88 25 112 88 112 88 155 112 155 112 112 175 112 175 88 112 88" />
+    </g>
+    <g class="blue">
+      <polygon points="151.09 45 120 45 120 67.8 151.09 45" />
+      <polygon points="48.91 45 80 67.8 80 45 48.91 45" />
+      <polygon points="25 64.67 25 80 45.91 80 25 64.67" />
+      <polygon points="25 135.33 45.91 120 25 120 25 135.33" />
+      <polygon points="175 64.67 154.09 80 175 80 175 64.67" />
+      <polygon points="175 135.33 175 120 154.09 120 175 135.33" />
+      <polygon points="151.09 155 120 132.2 120 155 151.09 155" />
+      <polygon points="49 154.94 80 154.94 80 132.2 49 154.94" />
+    </g>
+  </g>
+</svg>

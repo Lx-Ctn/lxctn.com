@@ -55,6 +55,19 @@ export const ParameterMenu = ({ ...props }) => {
 					defaultValue={reducedMotionDefaultValue}
 					onChange={reducedMotionOnChange}
 				/>
+				{/* <MultiStateToggle
+					variants={!reducedMotion && childVariants}
+					{...animPropsNames}
+					animate={reducedMotion ? false : "animate"}
+					title={{fr:"Langue", en: "Lang"}[lang]}
+					description={{fr: "Changer le language", en: "Change the language"}[lang]}
+					values={[
+						{ value: "fr", icon: "🇫🇷", label: "fr" },
+						{ value: "en", icon: "🇬🇧", label: "en" },
+					]}
+					defaultValue={"fr"}
+					onChange={() => {}}
+				/> */}
 			</div>
 		</motion.div>
 	);

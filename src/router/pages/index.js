@@ -1,7 +1,7 @@
-export { WithAvatarLayout } from "./WithAvatarLayout.jsx";
-export { Home } from "./Home.jsx";
-export { Contact } from "./Contact.jsx";
-export { AboutMe } from "./AboutMe.jsx";
-export { ErrorPage } from "./Error.jsx";
-export { WorkPage, CardContainer } from "./Work.jsx";
-export { ProjectPage } from "./ProjectPage.jsx";
+export { WithAvatarLayout } from "./WithAvatarLayout";
+export { Home } from "./Home";
+export { Contact } from "./Contact";
+export { AboutMe } from "./AboutMe";
+export { ErrorPage } from "./Error";
+export { WorkPage, CardContainer } from "./Work";
+export { ProjectPage } from "./ProjectPage";

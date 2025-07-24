@@ -1,0 +1,47 @@
+.en {
+	width: 1.7em;
+
+	polygon,
+	rect {
+		stroke-width: 0px;
+	}
+
+	.clip {
+		clip-path: url(#clippath);
+	}
+
+	.blue {
+		fill: #01257d;
+	}
+
+	.red {
+		fill: #ce1b2b;
+	}
+	.white {
+		fill: #fff;
+	}
+}
+
+.fr {
+	width: 1.7em;
+
+	rect {
+		stroke-width: 0px;
+	}
+
+	.clip {
+		clip-path: url(#clippath);
+	}
+
+	.bleu {
+		fill: #01257d;
+	}
+
+	.blanc {
+		fill: #fff;
+	}
+
+	.rouge {
+		fill: #ce1b2b;
+	}
+}

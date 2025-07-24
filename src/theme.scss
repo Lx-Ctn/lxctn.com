@@ -3,9 +3,9 @@
    ===================================================== */
 :root {
 	--main-color: hsl(187deg 100% 40%);
-	--accent-color: hsl(344deg 100% 50%);
-	--accent-color-soft: hsl(344deg 60% 50%);
-	--accent-color-muted: hsl(344deg, 50%, 20%);
+	--accent-color: hsl(337deg 100% 50%);
+	--accent-color-soft: hsl(337deg 60% 50%);
+	--accent-color-muted: hsl(337deg, 50%, 20%);
 	--neutral-color: hsl(0 0% 60%);
 	--neutral-color-muted: hsl(0 0% 90%);
 	--neutral-color-transparent: hsla(0 0% 80% / 30%);
@@ -13,13 +13,13 @@
 	--background-color: hsl(187deg 10% 97%);
 	--background-color-elevated: hsl(187deg 10% 100%);
 	--background-color-inverse: hsl(195, 30%, 9%);
-	--background-accent-color-faded: hsl(344deg 100% 98%);
+	--background-accent-color-faded: hsl(337deg 100% 98%);
 
 	--text-main-color: hsl(195, 100%, 16%);
 	--text-main-color-soft: hsl(195, 100%, 25%);
 	--text-main-color-hover: hsl(191deg 100% 32%);
 	--text-main-color-inverse: hsl(187deg 30% 88%);
-	--text-accent-color: hsl(344deg 100% 50%);
+	--text-accent-color: hsl(337deg 100% 50%);
 	--text-accent-color-muted: var(--accent-color-muted);
 
 	--logo-main-color: hsl(191deg 100% 32%);
@@ -29,14 +29,14 @@
 
 	--border-main-color: hsl(196deg 80% 44%);
 	--border-main-color-muted: hsl(196deg 100% 25%);
-	--border-accent-color: hsl(344deg 100% 50%);
+	--border-accent-color: hsl(337deg 100% 50%);
 	--border-accent-color-soft: hsl(344, 100%, 25%);
 	--border-accent-color-muted: var(--accent-color-muted);
-	--border-neutral-color: hsl(344deg 10% 80%);
+	--border-neutral-color: hsl(337deg 10% 80%);
 
-	--selection-background-color: hsl(344deg 100% 41% / 99%);
+	--selection-background-color: hsl(337deg 100% 41% / 99%);
 	img {
-		--selection-background-color: hsl(344deg 100% 41% / 50%);
+		--selection-background-color: hsl(337deg 100% 41% / 50%);
 	}
 	--selection-text-color: #ffffff;
 
@@ -51,9 +51,9 @@
    ===================================================== */
 .dark {
 	--main-color: hsl(187deg 100% 60%);
-	--accent-color: hsl(344deg 100% 60%);
-	--accent-color-soft: hsl(344deg 60% 60%);
-	--accent-color-muted: hsl(344deg, 50%, 90%);
+	--accent-color: hsl(337deg 100% 60%);
+	--accent-color-soft: hsl(337deg 60% 60%);
+	--accent-color-muted: hsl(337deg, 50%, 90%);
 	--neutral-color: hsl(0 0% 40%);
 	--neutral-color-muted: hsl(0 0% 22%);
 	--neutral-color-transparent: hsla(0 0% 40% / 20%);
@@ -61,13 +61,13 @@
 	--background-color: hsl(195, 30%, 9%);
 	--background-color-elevated: hsl(195, 7%, 15%);
 	--background-color-inverse: hsl(187deg 10% 97%);
-	--background-accent-color-faded: hsl(344deg 13% 15%);
+	--background-accent-color-faded: hsl(337deg 13% 15%);
 
-	--text-main-color: hsl(187deg 30% 88%);
+	--text-main-color: hsl(187deg 10% 78%);
 	--text-main-color-soft: hsl(187deg 45% 70%);
 	--text-main-color-hover: hsl(191 80% 65%);
 	--text-main-color-inverse: hsl(195, 100%, 16%);
-	--text-accent-color: hsl(344deg 100% 50%);
+	--text-accent-color: hsl(337deg 100% 50%);
 	--text-accent-color-muted: var(--accent-color-muted);
 
 	--logo-main-color: hsl(191deg 70% 60%);
@@ -77,10 +77,10 @@
 
 	--border-main-color: hsl(187deg, 50%, 70%);
 	--border-main-color-muted: hsl(196deg 100% 80%);
-	--border-accent-color: hsl(344deg 100% 50%);
+	--border-accent-color: hsl(337deg 100% 50%);
 	--border-accent-color-soft: hsl(344, 60%, 85%);
-	--border-accent-color-muted: hsl(344deg, 40%, 93%);
-	--border-neutral-color: hsl(344deg 3% 40%);
+	--border-accent-color-muted: hsl(337deg, 40%, 93%);
+	--border-neutral-color: hsl(337deg 3% 40%);
 }
 
 /* =====================================================

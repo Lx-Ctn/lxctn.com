@@ -2,6 +2,7 @@
 	--side-nav-size: clamp(31px + 2em, (0.4 * 8.5vw) + 40px, 51px + 2em);
 
 	position: relative;
+	z-index: -1;
 	font-size: 0.8em;
 	padding: 1em;
 

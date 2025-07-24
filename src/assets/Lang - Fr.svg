@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <clipPath id="clippath">
+      <rect x="25" y="45" width="150" height="110" rx="30" ry="30" />
+    </clipPath>
+    <style>
+      rect {
+        stroke-width: 0px;
+      }
+
+      .clip {
+        clip-path: url(#clippath);
+      }
+
+      .bleu {
+        fill: #01257d;
+      }
+
+      .blanc {
+        fill: #fff;
+      }
+
+      .rouge {
+        fill: #ce1b2b;
+      }
+    </style>
+
+  </defs>
+  <g class="clip">
+    <g>
+      <rect x="25" y="45" width="50" height="110" class="bleu" />
+      <rect x="75" y="45" width="50" height="110" class="blanc" />
+      <rect x="125" y="45" width="50" height="110" class="rouge" />
+    </g>
+  </g>
+</svg>

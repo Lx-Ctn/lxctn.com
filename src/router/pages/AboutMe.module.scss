@@ -12,5 +12,42 @@
 
 	section {
 		padding: 4em 0;
+		transform-origin: top;
+
+		hgroup {
+			margin-bottom: 2.3em;
+
+			p {
+				font-size: 0.9em;
+				font-style: italic;
+				color: var(--text-main-color-soft);
+			}
+		}
+
+		.content {
+			max-width: 50ch;
+			text-align: justify;
+		}
+		p + p {
+			margin-top: 1em;
+		}
+
+		.list {
+			display: block;
+			margin-left: 0.3em;
+		}
+		.list span {
+			display: block;
+			font-size: 0.9em;
+			margin-left: 0.8em;
+
+			&::before {
+				content: "- ";
+				margin-left: -0.8em;
+			}
+		}
+		:global(.button) {
+			margin-top: 2em;
+		}
 	}
 }

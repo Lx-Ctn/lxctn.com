@@ -4,9 +4,8 @@ import { animPropsNames, noAnimPropsNames } from "../../utils/animation";
 
 import { useSelector } from "react-redux";
 import { get } from "../../store/selectors";
-import { Link } from "react-router-dom";
 
-import { ShiningFrame, AnimatedTitle } from "../../components";
+import { ButtonLink, AnimatedTitle } from "../../components";
 
 export const Home = () => {
 	const reducedMotion = useSelector(get.reducedMotion);
@@ -36,15 +35,6 @@ export const Home = () => {
 	);
 };
 
-const ButtonLink = ({ to, children }) => {
-	return (
-		<Link className="button" to={to}>
-			<ShiningFrame />
-			{children}
-		</Link>
-	);
-};
-
 const homeAnimation = isIntro => ({
 	initial: { scale: 0.4, opacity: 0 },
 	animate: {
@@ -55,7 +45,7 @@ const homeAnimation = isIntro => ({
 			delay: isIntro ? 0.7 : 0,
 			when: isIntro ? "beforeChildren" : false,
 			staggerChildren: 0.15,
-			delayChildren: isIntro ? 1 : 0.15,
+			delayChildren: isIntro ? 0 : 0.3,
 		},
 	},
 	exit: { scale: 0.4, opacity: 0, transition: { duration: 0.2 } },

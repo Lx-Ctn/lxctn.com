@@ -12,6 +12,7 @@ export { ShiningFrame } from "./ShiningFrame/ShiningFrame";
 export { Footer } from "./Footer/Footer";
 export { Em } from "./Em";
 export { UnderConstruction } from "./UnderConstruction/UnderConstruction";
+export { ButtonLink } from "./ButtonLink/ButtonLink";
 
 export { default as LogoLx } from "./LogoLx/LogoLx";
 export { HamburgerIcon } from "./HamburgerIcon/HamburgerIcon";
@@ -19,3 +20,4 @@ export { default as GearIcon } from "./GearIcon/GearIcon";
 export { Light, System, Dark } from "./ThemeIcons/ThemeIcons";
 export { HomeIcon } from "./HomeIcon/HomeIcon";
 export { ReducedMotionIcon } from "./ReducedMotionIcon/ReducedMotionIcon";
+export { LangIcons } from "./LangIcons/LangIcons";
