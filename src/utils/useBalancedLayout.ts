@@ -1,5 +1,4 @@
-import { useSelector } from "react-redux";
-import { get } from "../store/selectors";
+import type { ProjectData } from "router/handleProjetsData";
 /**
  * Flex or grid layout can leave some solo items at the end.
  *
@@ -20,26 +19,35 @@ import { get } from "../store/selectors";
  * @author lx-ctn <web@lxctn.com>
  */
 
-const useUIParam = () => {
-	const containerWidth = useSelector(get.appWidth); // will rerender on change
+type UIParams = {
+	width?: number; // in px
+	maxWidth?: number; // in px
+	gap?: number; // in em
+	itemScale?: number; // 1 = 100%, 0.8 = 80%, in em
+	itemMinWidth?: number; // in em
+};
+type ItemsWithSizes = ProjectData[] & { itemSizes?: string }; // added for img sizes attribute
+
+function useUIParam(uiParams?: UIParams) {
+	const { width = window.innerWidth, maxWidth, gap: emGap = 0, itemScale = 1 } = uiParams ?? {};
+	const containerWidth = maxWidth ? (width > maxWidth ? maxWidth : width) : width;
 
 	const fontsize = parseFloat(window.getComputedStyle(document.body).fontSize);
-	const gap = 1 * fontsize; // gap: 1em;
-	const fontsizeItemRatio = 0.8; // font-size: 0.8em; // need to be as the css .card font-size
-	const itemFontsize = fontsizeItemRatio * fontsize;
-	const itemMinWidth = 15 * itemFontsize; // flex-basis: 15em; flex-shrink: 0;
+	const gap = emGap * fontsize;
+	const itemFontsize = itemScale * fontsize;
+	const itemMinWidth = uiParams?.itemMinWidth ? uiParams.itemMinWidth * itemFontsize : 1; // px
 
 	const maxItemsInOneLine = Math.floor((containerWidth - gap) / (itemMinWidth + gap));
 
 	// Add a custom property to get correct sizes attribute for the img :
-	const getItemSizes = itemsByLine => `${(containerWidth - gap) / itemsByLine - gap}px`;
+	const getItemSizes = (itemsByLine: number) => `${(containerWidth - gap) / itemsByLine - gap}px`;
 
 	return { maxItemsInOneLine, getItemSizes };
-};
+}
 
-export const useBalancedLayout = items => {
+export const useBalancedLayout = (items: ProjectData[], uiParams?: UIParams) => {
 	const itemsNumber = items.length;
-	const { maxItemsInOneLine, getItemSizes } = useUIParam();
+	const { maxItemsInOneLine, getItemSizes } = useUIParam(uiParams);
 
 	const isMultipleLines = itemsNumber > maxItemsInOneLine;
 	const soloItemsNumber = itemsNumber % maxItemsInOneLine;
@@ -48,22 +56,27 @@ export const useBalancedLayout = items => {
 		return balancedLayout;
 	}
 
-	const itemsWithSizes = items.slice();
+	const itemsWithSizes: ItemsWithSizes = items.slice();
 	itemsWithSizes.itemSizes = getItemSizes(maxItemsInOneLine);
 	return [itemsWithSizes];
 };
 
-const getBalancedLayout = (items, maxItemsInOneLine, soloItemsNumber, getItemSizes) => {
-	const remainingItems = items.slice();
+const getBalancedLayout = (
+	items: ProjectData[],
+	maxItemsInOneLine: number,
+	soloItemsNumber: number,
+	getItemSizes: (itemsByLine: number) => string
+) => {
+	const remainingItems: ItemsWithSizes = items.slice();
 
 	if (soloItemsNumber < maxItemsInOneLine - 1) {
 		const numberOfItemsToBalance = soloItemsNumber + maxItemsInOneLine;
 
 		const numberOnTopLine = Math.floor(numberOfItemsToBalance / 2);
-		const topLine = remainingItems.splice(0, numberOnTopLine);
+		const topLine: ItemsWithSizes = remainingItems.splice(0, numberOnTopLine);
 
 		const numberOn2ndLine = numberOfItemsToBalance - numberOnTopLine;
-		const secondLine = remainingItems.splice(0, numberOn2ndLine);
+		const secondLine: ItemsWithSizes = remainingItems.splice(0, numberOn2ndLine);
 
 		topLine.itemSizes = getItemSizes(numberOnTopLine);
 		secondLine.itemSizes = getItemSizes(numberOn2ndLine);
@@ -71,7 +84,7 @@ const getBalancedLayout = (items, maxItemsInOneLine, soloItemsNumber, getItemSiz
 
 		return [topLine, secondLine, remainingItems];
 	} else {
-		const topLine = remainingItems.splice(0, soloItemsNumber);
+		const topLine: ItemsWithSizes = remainingItems.splice(0, soloItemsNumber);
 		topLine.itemSizes = getItemSizes(soloItemsNumber);
 		remainingItems.itemSizes = getItemSizes(maxItemsInOneLine);
 

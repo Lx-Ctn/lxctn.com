@@ -3,7 +3,9 @@
 
 	margin-top: 1em;
 	transform-origin: top;
-	width: 100%;
+
+	width: 100%; // Changes here have to be reflected on Work.tsx -> uiSpesificProps -> width
+	max-width: 1600px; // Changes here have to be reflected on Work.tsx -> uiSpesificProps -> maxWidth
 
 	h1 {
 		margin-bottom: 1em;
@@ -102,7 +104,7 @@
 }
 
 .cardContainer {
-	--card-gap: 1em;
+	--card-gap: 1em; // Changes here have to be reflected on Work.tsx -> uiSpesificProps -> gap
 
 	display: flex;
 	flex-direction: column;
@@ -120,7 +122,7 @@
 }
 
 .card {
-	--card-min-width: 15em;
+	--card-min-width: 15em; // Changes here have to be reflected on Work.tsx -> uiSpesificProps -> itemMinWidth
 
 	position: relative;
 	flex: 1 0 var(--card-min-width);
@@ -130,7 +132,7 @@
 	padding: 0.7em;
 	padding-bottom: 1em;
 
-	font-size: 0.8em;
+	font-size: 0.8em; // Changes here have to be reflected on Work.tsx -> uiSpesificProps -> itemScale
 
 	scale: 1;
 	transform-origin: center;

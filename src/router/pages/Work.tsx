@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { get } from "../../store/selectors";
 import { NavLink, useLoaderData, useOutlet, useNavigate } from "react-router-dom";
 import { resetScroll } from "../Router";
+import type { ProjectData } from "../handleProjetsData";
 
 import { ShiningFrame, ImageWebp } from "../../components";
 import { useBalancedLayout } from "../../utils/useBalancedLayout";
@@ -51,8 +52,17 @@ const MotionOutlet = () => {
 
 export const CardContainer = () => {
 	const reducedMotion = useSelector(get.reducedMotion);
-	const [projectsList] = useState(useLoaderData());
-	const balancedProjectList = useBalancedLayout(projectsList);
+	const [projectsList] = useState(useLoaderData() as ProjectData[]);
+
+	const uiSpesificProps = {
+		width: useSelector(get.appWidth), // will rerender on change,
+		maxWidth: 1600, //px
+		gap: 1, // em
+		itemScale: 0.8, // 0.8em
+		itemMinWidth: 15, // 15em
+	};
+
+	const balancedProjectList = useBalancedLayout(projectsList, uiSpesificProps);
 
 	return (
 		<motion.div
@@ -106,6 +116,7 @@ const Img = ({ imgData, sizes }) => {
 			webp={getSrcset(imgData.url, imgData.webp)}
 			jpg={getSrcset(imgData.url, imgData.jpg)}
 			alt={imgData.alt}
+			title={imgData.alt}
 			sizes={sizes ?? "15em"}
 		/>
 	) : (
@@ -134,7 +145,7 @@ export const Spinner = () => {
 
 const workPageTransition = {
 	initial: { scale: 0.4, opacity: 0 },
-	animate: { scale: 1, opacity: 1, transition: { type: "spring", duration: 0.6, delayChildren: 0.15 } },
+	animate: { scale: 1, opacity: 1, transition: { type: "spring" as const, duration: 0.6, delayChildren: 0.15 } },
 	exit: { scale: 0.4, opacity: 0, transition: { duration: 0.18, delay: 0.07 } },
 };
 const outletContainerTransition = {
@@ -151,6 +162,6 @@ const cardContainerTransition = {
 };
 const cardTransition = {
 	initial: { scale: 0.5, rotate: 11, opacity: 0 },
-	animate: { scale: 1, rotate: 0, opacity: 1, transition: { type: "spring", duration: 0.9 } },
+	animate: { scale: 1, rotate: 0, opacity: 1, transition: { type: "spring" as const, duration: 0.9 } },
 	exit: { scale: 0.6, rotate: -11, opacity: 0, transition: { duration: 0.13 } },
 };

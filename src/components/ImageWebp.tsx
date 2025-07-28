@@ -2,7 +2,17 @@
 
 import { useEffect, useRef } from "react";
 
-const ImageWebp = ({ webp, png, jpg, sizes, alt, title, loadingListener, ...props }) => {
+type ImageWebpProps = {
+	title: string;
+	alt: string;
+	webp?: string;
+	png?: string;
+	jpg?: string;
+	sizes?: string;
+	loadingListener?: (ref: React.RefObject<HTMLImageElement>) => void;
+} & React.HTMLAttributes<HTMLPictureElement>;
+
+const ImageWebp = ({ webp, png, jpg, sizes, alt, title, loadingListener, ...props }: ImageWebpProps) => {
 	const ref = useRef();
 
 	useEffect(() => {
